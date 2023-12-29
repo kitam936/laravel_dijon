@@ -9,6 +9,7 @@ use App\Models\Sale;
 use App\Models\Delivery;
 use App\Models\Area;
 use App\Models\Stock;
+use App\Models\Report;
 
 
 
@@ -49,6 +50,11 @@ class Shop extends Model
     public function stock()
     {
         return $this->hasMany(Stock::class);
+    }
+
+    public function report()
+    {
+        return $this->hasMany(Report::class);
     }
 
 
