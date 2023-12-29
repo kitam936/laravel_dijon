@@ -16,14 +16,14 @@ return new class extends Migration
         Schema::create('shops', function (Blueprint $table) {
             $table->id();
             // $table->bigInteger('company_id');
-            $table->foreignId('company_id')->constrained()
-            ->onUpdate('cascade')
-            ->onDelete('cascade');
+            $table->foreignId('company_id')->constrained();
+            // ->onUpdate('cascade')
+            // ->onDelete('cascade');
             $table->foreignId('area_id')->constrained();
             $table->string('shop_name');
             $table->text('shop_info')->nullable();
             $table->text('filename')->nullable();
-            $table->boolean('is_salling') ;
+            $table->boolean('is_selling') ;
             $table->timestamps();
         });
     }

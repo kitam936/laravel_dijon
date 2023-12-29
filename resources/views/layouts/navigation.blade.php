@@ -20,7 +20,13 @@
                     </x-nav-link>
                     <x-nav-link :href="route('user.shop.index')" :active="request()->routeIs('user.shop.index')">
                         SHOP情報
-                     </x-nav-link>
+                    </x-nav-link>
+                    <x-nav-link :href="route('user.product.index')" :active="request()->routeIs('user.product.index')">
+                        商品情報
+                    </x-nav-link>
+                    <x-nav-link :href="route('user.shop.report_list')" :active="request()->routeIs('user.shop.report_list')">
+                        店舗Report
+                    </x-nav-link>
                 </div>
             </div>
 
@@ -40,9 +46,9 @@
                     </x-slot>
 
                     <x-slot name="content">
-                        <x-dropdown-link :href="route('user.profile.edit')">
+                        {{-- <x-dropdown-link :href="route('user.profile.edit')">
                             {{ __('Profile') }}
-                        </x-dropdown-link>
+                        </x-dropdown-link> --}}
 
                         <!-- Authentication -->
                         <form method="POST" action="{{ route('user.logout') }}">
@@ -76,6 +82,18 @@
             <x-responsive-nav-link :href="route('user.dashboard')" :active="request()->routeIs('user.dashboard')">
                 {{ __('Dashboard') }}
             </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('user.company.index')" :active="request()->routeIs('user.company.index')">
+                会社情報
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('user.shop.index')" :active="request()->routeIs('user.shop.index')">
+                SHOP情報
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('user.product.index')" :active="request()->routeIs('user.product.index')">
+                商品情報
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('user.shop.report_list')" :active="request()->routeIs('user.shop.report_list')">
+                店舗Report
+            </x-responsive-nav-link>
         </div>
 
         <!-- Responsive Settings Options -->
@@ -86,9 +104,9 @@
             </div>
 
             <div class="mt-3 space-y-1">
-                <x-responsive-nav-link :href="route('user.profile.edit')">
+                {{-- <x-responsive-nav-link :href="route('user.profile.edit')">
                     {{ __('Profile') }}
-                </x-responsive-nav-link>
+                </x-responsive-nav-link> --}}
 
                 <!-- Authentication -->
                 <form method="POST" action="{{ route('user.logout') }}">

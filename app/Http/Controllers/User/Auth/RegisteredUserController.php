@@ -20,7 +20,7 @@ class RegisteredUserController extends Controller
      */
     public function create(): View
     {
-        return view('user.auth.register');
+        return view('user.auth.login'); //本来はuser.auth.registerに飛ばすがuserの登録を禁止しているのでloginへへ
     }
 
     /**
