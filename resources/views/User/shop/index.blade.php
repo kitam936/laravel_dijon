@@ -13,8 +13,15 @@
             <button type="button" class="w-32 flex-auto p-0 text-sm text-gray-900 dark:text-gray-100 bg-gray-200   hover:bg-gray-300 rounded" onclick="location.href='{{ route('user.shop.s_search_h_form') }}'" >品番別売上</button>
         </div>
         <div class=" p-1 text-gray-900 dark:text-gray-100 md:flex-auto ">
-            <button type="button" class="w-32 flex-auto p-0 text-sm text-gray-900 dark:text-gray-100 bg-gray-200 "  >******</button>
-            <button type="button" class="w-32 flex-auto p-0 text-sm text-gray-900 dark:text-gray-100 bg-gray-200 "  >******</button>
+            <button type="button" class="w-32 flex-auto p-0 text-sm text-gray-900 dark:text-gray-100 bg-gray-200   hover:bg-gray-300 rounded" onclick="location.href='{{ route('user.shop.s_search_md_form') }}'" >月別納品推移</button>
+            <button type="button" class="w-32 flex-auto p-0 text-sm text-gray-900 dark:text-gray-100 bg-gray-200   hover:bg-gray-300 rounded" onclick="location.href='{{ route('user.shop.s_search_wd_form') }}'" >日別納品推移</button>
+            <button type="button" class="w-32 flex-auto p-0 text-sm text-gray-900 dark:text-gray-100 bg-gray-200   hover:bg-gray-300 rounded" onclick="location.href='{{ route('user.shop.s_search_ud_form') }}'" >Unit別納品</button>
+            <button type="button" class="w-32 flex-auto p-0 text-sm text-gray-900 dark:text-gray-100 bg-gray-200   hover:bg-gray-300 rounded" onclick="location.href='{{ route('user.shop.s_search_sd_form') }}'" >Season別納品</button>
+            <button type="button" class="w-32 flex-auto p-0 text-sm text-gray-900 dark:text-gray-100 bg-gray-200   hover:bg-gray-300 rounded" onclick="location.href='{{ route('user.shop.s_search_hd_form') }}'" >品番別納品</button>
+        </div>
+        <div class=" p-1 text-gray-900 dark:text-gray-100 md:flex-auto ">
+            {{-- <button type="button" class="w-32 flex-auto p-0 text-sm text-gray-900 dark:text-gray-100 bg-gray-200 "  >******</button> --}}
+            {{-- <button type="button" class="w-32 flex-auto p-0 text-sm text-gray-900 dark:text-gray-100 bg-gray-200 "  >******</button> --}}
             <button type="button" class="w-32 flex-auto p-0 text-sm text-gray-900 dark:text-gray-100 bg-gray-200   hover:bg-gray-300 rounded" onclick="location.href='{{ route('user.shop.s_search_uz_form') }}'" >Unit別在庫</button>
             <button type="button" class="w-32 flex-auto p-0 text-sm text-gray-900 dark:text-gray-100 bg-gray-200   hover:bg-gray-300 rounded" onclick="location.href='{{ route('user.shop.s_search_sz_form') }}'" >Season別在庫</button>
             <button type="button" class="w-32 flex-auto p-0 text-sm text-gray-900 dark:text-gray-100 bg-gray-200   hover:bg-gray-300 rounded" onclick="location.href='{{ route('user.shop.s_search_hz_form') }}'" >品番別在庫</button>

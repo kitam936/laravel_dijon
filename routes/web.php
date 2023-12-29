@@ -45,6 +45,11 @@ Route::
     Route::get('search_u_form', [CompanyController::class, 'search_form_u_sales'])->name('company.search_u_form');
     Route::get('search_s_form', [CompanyController::class, 'search_form_s_sales'])->name('company.search_s_form');
     Route::get('search_h_form', [CompanyController::class, 'search_form_h_sales'])->name('company.search_h_form');
+    Route::get('search_md_form', [CompanyController::class, 'search_form_m_deliv'])->name('company.search_md_form');
+    Route::get('search_wd_form', [CompanyController::class, 'search_form_w_deliv'])->name('company.search_wd_form');
+    Route::get('search_ud_form', [CompanyController::class, 'search_form_u_deliv'])->name('company.search_ud_form');
+    Route::get('search_sd_form', [CompanyController::class, 'search_form_s_deliv'])->name('company.search_sd_form');
+    Route::get('search_hd_form', [CompanyController::class, 'search_form_h_deliv'])->name('company.search_hd_form');
     Route::get('search_uz_form', [CompanyController::class, 'search_form_uz_stocks'])->name('company.search_uz_form');
     Route::get('search_sz_form', [CompanyController::class, 'search_form_sz_stocks'])->name('company.search_sz_form');
     Route::get('search_hz_form', [CompanyController::class, 'search_form_hz_stocks'])->name('company.search_hz_form');
@@ -61,6 +66,11 @@ Route::
     Route::get('s_search_u_form', [ShopController::class, 's_search_form_u_sales'])->name('shop.s_search_u_form');
     Route::get('s_search_s_form', [ShopController::class, 's_search_form_s_sales'])->name('shop.s_search_s_form');
     Route::get('s_search_h_form', [ShopController::class, 's_search_form_h_sales'])->name('shop.s_search_h_form');
+    Route::get('s_search_md_form', [ShopController::class, 's_search_form_m_deliv'])->name('shop.s_search_md_form');
+    Route::get('s_search_wd_form', [ShopController::class, 's_search_form_w_deliv'])->name('shop.s_search_wd_form');
+    Route::get('s_search_ud_form', [ShopController::class, 's_search_form_u_deliv'])->name('shop.s_search_ud_form');
+    Route::get('s_search_sd_form', [ShopController::class, 's_search_form_s_deliv'])->name('shop.s_search_sd_form');
+    Route::get('s_search_hd_form', [ShopController::class, 's_search_form_h_deliv'])->name('shop.s_search_hd_form');
     Route::get('s_search_uz_form', [ShopController::class, 's_search_form_uz_stocks'])->name('shop.s_search_uz_form');
     Route::get('s_search_sz_form', [ShopController::class, 's_search_form_sz_stocks'])->name('shop.s_search_sz_form');
     Route::get('s_search_hz_form', [ShopController::class, 's_search_form_hz_stocks'])->name('shop.s_search_hz_form');
