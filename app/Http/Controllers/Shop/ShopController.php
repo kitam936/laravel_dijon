@@ -10,6 +10,7 @@ use App\Models\Sale;
 use App\Models\Stock;
 use App\Models\Company;
 use App\Models\Area;
+use App\Models\Delivery;
 use App\Models\Report;
 
 class ShopController extends Controller
@@ -648,9 +649,184 @@ class ShopController extends Controller
         return view('User.shop.search_sz_stocks',compact('companies','season_stocks','all_stocks','season_stocks_all','s_stocks'));
     }
 
+    public function s_search_form_m_deliv(Request $request)
+    {
+        $companies = Company::with('shop')
+        ->whereHas('shop',function($q){$q->where('is_selling','=',1);})
+        ->where('id','>',1000)
+        ->where('id','<',4000)->get();
+
+        $m_delivs = Delivery::where('shop_id','LIKE','%'.($request->sh_id).'%')
+        ->select('YM')
+        ->selectRaw('SUM(kingaku) as kingaku')
+        ->groupBy('YM')
+        ->orderBy('YM','desc')
+        ->get();
+
+        return view('User.shop.search_m_deliv',compact('m_delivs','companies'));
+    }
+
+    public function s_search_form_w_deliv(Request $request)
+    {
+        $companies = Company::with('shop')
+        ->where('id','>',1000)
+        ->where('id','<',4000)->get();
+
+        $w_delivs = Delivery::where('shop_id','LIKE','%'.($request->sh_id).'%')
+        ->select('YW','YM','deliv_date')
+        ->selectRaw('SUM(kingaku) as kingaku')
+        ->groupBy('YW','YM','deliv_date')
+        ->orderBy('deliv_date','desc')
+        ->orderBy('YW','desc')
+        ->orderBy('YM','desc')
+        ->get();
+
+        return view('User.shop.search_w_deliv',compact('w_delivs','companies'));
+    }
+
+    public function s_search_form_u_deliv(Request $request)
+    {
+        $companies = Company::with('shop')
+        ->where('id','>',1000)
+        ->where('id','<',4000)
+        ->get();
+
+        $u_delivs_all = DB::table('deliveries')
+        ->join('shops','deliveries.shop_id','=','shops.id')
+        ->join('hinbans','deliveries.hinban_id','=','hinbans.id')
+        ->join('units','hinbans.unit_id','=','units.id')
+        ->select(['hinbans.year_code','hinbans.unit_id','units.season_name'])
+        ->where('deliveries.YW','>=',($request->YW1 ?? Delivery::max('YW')))
+        ->where('deliveries.YW','<=',($request->YW2 ?? Delivery::max('YW')))
+        ->selectRaw('SUM(pcs) as pcs')
+        ->selectRaw('SUM(kingaku) as kingaku')
+        ->groupBy(['hinbans.year_code','hinbans.unit_id','units.season_name'])
+        ->orderBy('pcs','desc')
+        ->get();
+
+        $u_delivs = DB::table('deliveries')
+        ->join('shops','deliveries.shop_id','=','shops.id')
+        ->join('hinbans','deliveries.hinban_id','=','hinbans.id')
+        ->join('units','hinbans.unit_id','=','units.id')
+        ->where('shops.id','LIKE','%'.($request->sh_id).'%')
+        ->where('deliveries.YW','>=',($request->YW1 ?? Delivery::max('YW')))
+        ->where('deliveries.YW','<=',($request->YW2 ?? Delivery::max('YW')))
+        ->select(['hinbans.year_code','hinbans.unit_id','units.season_name'])
+        ->selectRaw('SUM(pcs) as pcs')
+        ->selectRaw('SUM(kingaku) as kingaku')
+        ->groupBy(['hinbans.year_code','hinbans.unit_id','units.season_name'])
+        ->orderBy('pcs','desc')
+        ->get();
 
 
+        $YWs=DB::table('deliveries')
+        ->select(['YW','YM'])
+        ->groupBy(['YW','YM'])
+        ->orderBy('YM','desc')
+        ->orderBy('YW','desc')
+        ->get();
+        $max_YW=Delivery::max('YW');
+        $max_YM=Delivery::max('YM');
+        $min_YW=Delivery::max('YW');
+        // dd($companies,$u_sales,$u_sales_all,$c_stocks,$all_stocks,$max_YW,$max_YW,$YWs,$YWs);
+        return view('User.shop.search_u_deliv',compact('companies','u_delivs_all','u_delivs','max_YW','min_YW','YWs'));
 
+    }
+
+    public function s_search_form_s_deliv(Request $request)
+    {
+        $companies = Company::with('shop')
+        ->where('id','>',1000)
+        ->where('id','<',4000)
+        ->get();
+
+        $s_delivs_all = DB::table('deliveries')
+        ->join('shops','deliveries.shop_id','=','shops.id')
+        ->join('hinbans','deliveries.hinban_id','=','hinbans.id')
+        ->join('units','hinbans.unit_id','=','units.id')
+        ->select(['hinbans.year_code','units.season_id','units.season_name'])
+        ->where('deliveries.YW','>=',($request->YW1 ?? Delivery::max('YW')))
+        ->where('deliveries.YW','<=',($request->YW2 ?? Delivery::max('YW')))
+        ->selectRaw('SUM(pcs) as pcs')
+        ->selectRaw('SUM(kingaku) as kingaku')
+        ->groupBy(['hinbans.year_code','units.season_id','units.season_name'])
+        ->orderBy('pcs','desc')
+        ->get();
+        $s_delivs = DB::table('deliveries')
+        ->join('shops','deliveries.shop_id','=','shops.id')
+        ->join('hinbans','deliveries.hinban_id','=','hinbans.id')
+        ->join('units','hinbans.unit_id','=','units.id')
+        ->where('shops.id','LIKE','%'.($request->sh_id).'%')
+        ->where('deliveries.YW','>=',($request->YW1 ?? Delivery::max('YW')))
+        ->where('deliveries.YW','<=',($request->YW2 ?? Delivery::max('YW')))
+        ->select(['hinbans.year_code','units.season_id','units.season_name'])
+        ->selectRaw('SUM(pcs) as pcs')
+        ->selectRaw('SUM(kingaku) as kingaku')
+        ->groupBy(['hinbans.year_code','units.season_id','units.season_name'])
+        ->orderBy('pcs','desc')
+        ->get();
+
+
+        $YWs=DB::table('deliveries')
+        ->select(['YW','YM'])
+        ->groupBy(['YW','YM'])
+        ->orderBy('YM','desc')
+        ->orderBy('YW','desc')
+        ->get();
+        $max_YW=Delivery::max('YW');
+        $max_YM=Delivery::max('YM');
+        $min_YW=Delivery::max('YW');
+        // dd($companies,$s_sales,$s_sales_all,$c_stocks,$all_stocks,$YWWs,$max_YW,$max_YW,$YWs,$YWs);
+        return view('User.shop.search_s_deliv',compact('companies','s_delivs_all','s_delivs','max_YW','min_YW','YWs'));
+    }
+
+    public function s_search_form_h_deliv(Request $request)
+    {
+        $companies = Company::with('shop')
+        ->whereHas('shop',function($q){$q->where('is_selling','=',1);})
+        ->where('id','>',1000)
+        ->where('id','<',4000)->get();
+
+        $h_delivs_all = DB::table('deliveries')
+        ->join('shops','deliveries.shop_id','=','shops.id')
+        ->join('hinbans','deliveries.hinban_id','=','hinbans.id')
+        ->join('units','hinbans.unit_id','=','units.id')
+        ->select(['hinbans.year_code','hinbans.unit_id','deliveries.hinban_id','hinbans.hinmei'])
+        ->where('deliveries.YW','>=',($request->YW1 ?? Delivery::max('YW')))
+        ->where('deliveries.YW','<=',($request->YW2 ?? Delivery::max('YW')))
+        ->selectRaw('SUM(pcs) as pcs')
+        ->selectRaw('SUM(kingaku) as kingaku')
+        ->groupBy(['hinbans.year_code','hinbans.unit_id','deliveries.hinban_id','hinbans.hinmei'])
+        ->orderBy('pcs','desc')
+        ->get();
+
+        $h_delivs = DB::table('deliveries')
+        ->join('shops','deliveries.shop_id','=','shops.id')
+        ->join('hinbans','deliveries.hinban_id','=','hinbans.id')
+        ->join('units','hinbans.unit_id','=','units.id')
+        ->where('shops.id','LIKE','%'.($request->sh_id).'%')
+        ->where('deliveries.YW','>=',($request->YW1 ?? Delivery::max('YW')))
+        ->where('deliveries.YW','<=',($request->YW2 ?? Delivery::max('YW')))
+        ->select(['hinbans.year_code','hinbans.unit_id','deliveries.hinban_id','hinbans.hinmei'])
+        ->selectRaw('SUM(pcs) as pcs')
+        ->groupBy(['hinbans.year_code','hinbans.unit_id','deliveries.hinban_id','hinbans.hinmei'])
+        ->orderBy('pcs','desc')
+        ->get();
+
+        $YWs=DB::table('deliveries')
+        ->select(['YW','YM'])
+        ->groupBy(['YW','YM'])
+        ->orderBy('YM','desc')
+        ->orderBy('YW','desc')
+        ->get();
+
+
+        $max_YW=Delivery::max('YW');
+        $max_YW=Delivery::max('YW');
+        $min_YW=Delivery::max('YW');
+        // dd($h_sales,$h_sales_all);
+        return view('User.shop.search_h_deliv',compact('companies','h_delivs_all','h_delivs','max_YW','min_YW','YWs'));
+    }
 
 
 }
