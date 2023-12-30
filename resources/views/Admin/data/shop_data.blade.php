@@ -6,7 +6,7 @@
             <div>
             店舗データ
             </div>
-            <div class="w-40 ml-60 text-sm items-right mb-0">
+            <div class="pl-10 ml-30 w-30 ml-60 text-sm items-right mb-0">
                 <button onclick="location.href='{{ route('admin.data.data_index') }}'" class="text-black bg-gray-200 border-0 py-2 px-8 focus:outline-none hover:bg-gray-300 rounded text-ml">戻る</button>
             </div>
             </div>
@@ -34,14 +34,15 @@
     <div class="py-0 border">
         <x-flash-message status="session('status')" />
         <div class=" mx-auto sm:px-4 lg:px-4 border ">
-            <table class="md:w-2/3 bg-white table-auto w-full text-center whitespace-no-wrap">
+            <table class="md:w-full bg-white table-auto w-full text-center whitespace-no-wrap">
                <thead>
                     <tr>
-                        <th class="w-2/12 md:px-2 py-1 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">社コード</th>
-                        <th class="w-3/12 md:px-2 py-1 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">社名</th>
-                        <th class="w-2/12 md:px-2 py-1 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">店コード</th>
-                        <th class="w-4/12 md:px-2 py-1 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">店名</th>
-                        <th class="w-2/12 md:px-2 py-1 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">編集</th>
+                        <th class="w-1/12 md:px-2 py-1 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">社コード</th>
+                        <th class="w-1/12 md:px-2 py-1 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">社名</th>
+                        <th class="w-1/12 md:px-2 py-1 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">店コード</th>
+                        <th class="w-2/12 md:px-2 py-1 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">店名</th>
+                        <th class="w-2/12 md:px-2 py-1 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">info</th>
+                        <th class="w-3/12 md:px-2 py-1 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">編集</th>
 
                     </tr>
                 </thead>
@@ -49,11 +50,12 @@
                 <tbody>
                     @foreach ($shops as $shop)
                     <tr>
-                        <td class="w-2/12 md:px-2 py-1 text-left"> {{ $shop->company_id }} </td>
-                        <td class="w-3/12 md:px-2 py-1 text-left">{{ $shop->company->co_name }}</td>
-                        <td class="w-2/12 md:px-2 py-1 text-left">{{ $shop->id }}</td>
-                        <td class="w-4/12 md:px-2 py-1 text-left">{{ $shop->shop_name }}</td>
-                        <td class="w-2/12 md:px-2 py-1 text-center"><a href="{{ route('admin.data.shop_edit',['shop'=>$shop->id]) }}" class="w-20 h-8 text-indigo-500 ml-2 "  >編集</a></td>
+                        <td class="w-1/12 md:pl-6 py-1 text-left"> {{ $shop->company_id }} </td>
+                        <td class="w-2/12 md:pl-6 py-1 text-left">{{ $shop->company->co_name }}</td>
+                        <td class="w-1/12 md:pl-6 py-1 text-left">{{ $shop->id }}</td>
+                        <td class="w-3/12 md:pl-6 py-1 text-left">{{ $shop->shop_name }}</td>
+                        <td class="w-3/12 md:pl-6 py-1 text-left">{{ $shop->shop_info }}</td>
+                        <td class="w-2/12 md:pl-6 py-1 text-center"><a href="{{ route('admin.data.shop_edit',['shop'=>$shop->id]) }}" class="w-20 h-8 text-indigo-500 ml-2 "  >編集</a></td>
                     </tr>
                     @endforeach
 

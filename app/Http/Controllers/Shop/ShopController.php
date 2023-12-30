@@ -33,13 +33,13 @@ class ShopController extends Controller
         $shops = DB::table('shops')
         ->join('areas','areas.id','=','shops.area_id')
         ->join('companies','companies.id','=','shops.company_id')
-        ->select('shops.id','shops.shop_name','shops.company_id','shops.area_id','areas.ar_name','companies.co_name')
+        ->select('shops.id','shops.shop_name','shops.company_id','shops.area_id','areas.ar_name','companies.co_name','shop_info')
         ->where('shops.company_id','>','1000')
         ->where('shops.company_id','<','4000')
         ->where('shops.is_selling','=',1)
         ->where('shops.company_id','LIKE','%'.($request->co_id).'%')
         ->where('shops.area_id','LIKE','%'.($request->ar_id).'%')
-        ->where('shops.shop_name','LIKE','%'.($request->sh_name).'%')
+        ->where('shops.shop_info','LIKE','%'.($request->info).'%')
         ->paginate(15);
         // dd($companies,$areas,$shops);
 

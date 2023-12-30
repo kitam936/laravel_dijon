@@ -19,7 +19,7 @@
                         <div class="container md:px-5 py-4 mx-auto">
                             <x-flash-message status="session('status')" />
 
-                            <div class="lg:w-2/3 w-full mx-auto overflow-auto">
+                            <div class="lg:w-full w-full mx-auto overflow-auto">
                             <table class="table-auto w-full text-left whitespace-no-wrap">
                               <thead>
                                 <tr>
