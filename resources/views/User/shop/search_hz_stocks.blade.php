@@ -10,7 +10,7 @@
             <div class="flex mb-2">
                 {{-- <span class="items-center text-sm mt-2" >店舗： 　</span> --}}
                 <select class="w-40 h-8 text-sm items-center pt-1" id="sh_id" name="sh_id" type="number" class="border">
-                    <option value="" @if(\Request::get('sh_id') == '0') selected @endif >全店</option>
+                    <option value="" @if(\Request::get('sh_id') == '0') selected @endif >全社</option>
                     @foreach ($companies as $company)
                         <optgroup  label = "{{ $company->co_name }}" class="text-indigo-700 font-weight:bold">
                             @foreach ($company->shop as $shop )
@@ -108,10 +108,10 @@
                 @foreach ($h_stocks as $h_stock)
                 <tr>
                     <td class="w-1/12 md:px-4 py-1">{{ $h_stock->unit_id }}</td>
-                    <td class="w-2/12 md:px-4 py-1">{{ $h_stock->hinban_id }}</td>
-                    <td class="w-6/12 md:px-4 py-1 text-left">{{ $h_stock->hinmei }}</td>
-                    <td class="w-1/12 pr-4 md:px-4 py-1 text-right">{{ number_format($h_stock->pcs)}}</td>
-                    <td class="w-2/12 md:px-4 py-1 text-right">{{ number_format(round($h_stock->zaikogaku)/1000)}}</td>
+                    <td class="w-1/12 md:px-4 py-1">{{ $h_stock->hinban_id }}</td>
+                    <td class="w-5/12 md:px-4 py-1 text-left">{{ $h_stock->hinmei }}</td>
+                    <td class="w-2/12 pr-4 md:px-4 py-1 text-right">{{ number_format($h_stock->pcs)}}</td>
+                    <td class="w-3/12 md:px-4 py-1 text-right">{{ number_format(round($h_stock->zaikogaku)/1000)}}</td>
                 </tr>
                 @endforeach
             </tbody>

@@ -62,7 +62,7 @@
 
                 <tbody>
                 @foreach ($h_delivs_all as $h_deliv)
-                    {{-- @foreach ($h_stock->hinban as $hinban) --}}
+
 
                 <tr>
                     <td class="w-2/8 md:px-4 py-1">{{ $h_deliv->year_code }}</td>
@@ -73,7 +73,7 @@
 
                 </tr>
                 @endforeach
-                {{-- @endforeach --}}
+
                 </tbody>
             </table>
         </div>
@@ -95,7 +95,7 @@
 
                 <tbody>
                 @foreach ($h_delivs as $h_deliv)
-                    {{-- @foreach ($h_stock->hinban as $hinban) --}}
+
 
                 <tr>
                     <td class="w-2/8 md:px-4 py-1">{{ $h_deliv->year_code }}</td>
@@ -106,7 +106,7 @@
 
                 </tr>
                 @endforeach
-                {{-- @endforeach --}}
+
                 </tbody>
             </table>
         </div>

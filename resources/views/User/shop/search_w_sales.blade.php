@@ -18,7 +18,7 @@
         <form method="get" action="{{ route('user.shop.s_search_w_form')}}" class="mt-4">
         <div class="flex">
             <select class="w-40 h-8 text-sm items-center" id="sh_id" name="sh_id" type="number" class="border">
-                <option value="0" @if(\Request::get('sh_id') == '0') selected @endif >全店</option>
+                <option value="0" @if(\Request::get('sh_id') == '0') selected @endif >全社</option>
                 @foreach ($companies as $company)
                     <optgroup  label = "{{ $company->co_name }}" class="text-indigo-700 font-weight:bold">
                         @foreach ($company->shop as $shop )
@@ -36,20 +36,21 @@
         </div>
         </form>
 
-        {{-- @if(\Request::get('sh=id') =='0') --}}
+        @if(\Request::get('sh_id') =='0')
 
-        {{-- <div class="py-6 border"> --}}
-            {{-- <div class=" w-1/2  sm:px-0 lg:px-0 border mt-4 ml-0">
+        {{-- <div class="ml-16 py-2 border"> --}}
+            <div class=" w-full  sm:px-0 lg:px-0 border mt-4 ml-0">
                 <div class='border bg-gray-100 h-6'>
                     @foreach ($all_stocks as $all_stock)
-                    　現在庫　：　　　{{ number_format($all_stock->zaikogaku) }}円　　　　　　{{ number_format($all_stock->pcs) }}枚　　　　
+                    　現在庫　：　　　{{ number_format(round($all_stock->zaikogaku)/1000) }}千円　　　　　　{{ number_format($all_stock->pcs) }}枚　　　　
                     @endforeach
                 </div>
-            </div> --}}
+            </div>
         {{-- </div> --}}
-        {{-- @else --}}
 
-            {{-- <div class="py-6 border"> --}}
+        @else
+
+            {{-- <div class="ml-16 py-2 border"> --}}
                 <div class=" w-full  sm:px-0 lg:px-0 border mt-4 ml-0">
                 <div class='border bg-gray-100 h-6'>
                     @foreach ($s_stocks as $s_stock)
@@ -58,8 +59,8 @@
                 </div>
             </div>
             {{-- </div> --}}
-        {{-- @endif --}}
 
+        @endif
 
     </x-slot>
 
