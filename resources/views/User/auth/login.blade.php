@@ -1,5 +1,5 @@
 <x-guest-layout>
-    ユーザー用
+    ユーザー用ログイン
     <!-- Session Status -->
     <x-auth-session-status class="mb-4" :status="session('status')" />
 
