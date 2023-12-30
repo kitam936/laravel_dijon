@@ -9,7 +9,7 @@
             <div class="flex mb-4">
                 {{-- <span class="items-center text-sm mt-2" >店舗： 　</span> --}}
                 <select class="w-40 h-8 text-sm items-center pt-1" id="sh_id" name="sh_id" type="number" class="border">
-                    <option value="0" @if(\Request::get('sh_id') == '0') selected @endif >全店</option>
+                    <option value="0" @if(\Request::get('sh_id') == '0') selected @endif >全社</option>
                     @foreach ($companies as $company)
                         <optgroup  label = "{{ $company->co_name }}" class="text-indigo-700 font-weight:bold">
                             @foreach ($company->shop as $shop )
@@ -55,13 +55,13 @@
                         　現在庫　：　　　{{ number_format(round($all_stock->zaikogaku)/1000) }}千円　　　　　　{{ number_format($all_stock->pcs) }}枚　　　　
                         @endforeach
                     </div>
-                </div>　
+                </div>
             {{-- </div> --}}
 
             @else
 
                 {{-- <div class="ml-16 py-2 border"> --}}
-                    <div class=" w-full  sm:px-0 lg:px-0 border mt-4 ml-0">
+                <div class=" w-full  sm:px-0 lg:px-0 border mt-4 ml-0">
                     <div class='border bg-gray-100 h-6'>
                         @foreach ($s_stocks as $s_stock)
                         　現在庫　：　　　{{ number_format(round($s_stock->zaikogaku)/1000) }}千円　　　　　　{{ number_format($s_stock->pcs) }}枚　　　　

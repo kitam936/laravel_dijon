@@ -9,7 +9,7 @@
             <div class="flex mb-4">
                 {{-- <span class="items-center text-sm mt-2" >店舗： 　</span> --}}
                 <select class="w-40 h-8 text-sm items-center pt-1" id="sh_id" name="sh_id" type="number" class="border">
-                    <option value="0" @if(\Request::get('sh_id') == '0') selected @endif >全店</option>
+                    <option value="0" @if(\Request::get('sh_id') == '0') selected @endif >全社</option>
                     @foreach ($companies as $company)
                         <optgroup  label = "{{ $company->co_name }}" class="text-indigo-700 font-weight:bold">
                             @foreach ($company->shop as $shop )
