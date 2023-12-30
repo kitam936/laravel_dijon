@@ -1,10 +1,15 @@
 
 <x-app-layout>
     <x-slot name="header">
+        <div class="flex">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
             店舗詳細
             {{-- <button type="button" onclick="location.href='{{ route('user.company.index') }}'" class="mb-2 ml-2 text-right text-black bg-indigo-300 border-0 py-0 px-2 focus:outline-none hover:bg-indigo-300 rounded ">戻る</button> --}}
         </h2>
+        <div class="ml-60 mt-0 md:mt-0">
+            <button type="button" class="w-20 h-8 bg-indigo-500 text-white ml-2 hover:bg-indigo-600 rounded" onclick="location.href='{{ route('user.shop.index') }}'" class="mb-2 ml-2 text-right text-black bg-indigo-300 border-0 py-0 px-2 focus:outline-none hover:bg-indigo-300 rounded ">shop一覧</button>
+        </div>
+        </div>
 
 
 
@@ -32,14 +37,12 @@
                     <div class="pl-2 w-32 h-8 items-center bg-gray-100 border" name="sh_name" value="">{{ $shop->shop_name }}</div>
                 </div>
                 </div>
-                <div class="flex">
+                <div class="md:flex">
                 <div class="flex pl-2 mt-1">
                     info :
-                    <div class="pl-2 ml-2 md:ml-2 w-60 h-8 items-center bg-gray-100 border" name="sh_info" value="">{{ $shop->shop_info }}</div>
+                    <div class="pl-2 ml-2 md:ml-2 w-80 h-8 items-center bg-gray-100 border" name="sh_info" value="">{{ $shop->shop_info }}</div>
                 </div>
-                <div class="ml-2 mt-1 md:mt-1">
-                    <button type="button" class="w-20 h-8 bg-indigo-500 text-white ml-2 hover:bg-indigo-600 rounded" onclick="location.href='{{ route('user.shop.index') }}'" class="mb-2 ml-2 text-right text-black bg-indigo-300 border-0 py-0 px-2 focus:outline-none hover:bg-indigo-300 rounded ">shop一覧</button>
-                </div>
+
                 </div>
                 @endforeach
 

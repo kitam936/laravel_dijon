@@ -47,8 +47,8 @@
                             <option value="{{ $company->id }}" @if(\Request::get('co_id') == $company->id) selected @endif >{{ $company->co_name }}</option>
                         @endforeach
                         </select><br>
-                        <label class="items-center text-sm mt-2 ml-4" >店名 　</label>
-                        <input class="w-44 h-8 text-sm pt-1" id="sh_name" placeholder="店名入力（一部でも可）" name="sh_name"  class="border">
+                        <label class="items-center text-sm mt-2 ml-4" >ワード検索</label>
+                        <input class="w-44 h-8 text-sm pt-1" id="info" placeholder="キーワード入力" name="info"  class="border">
                 </div>
                 <div class="ml-80 md:ml-4">
                     <button type="button" class="w-20 h-8 bg-indigo-500 text-white ml-2 hover:bg-indigo-600 rounded" onclick="location.href='{{ route('user.shop.index') }}'" class="mb-2 ml-2 text-right text-black bg-indigo-300 border-0 py-0 px-2 focus:outline-none hover:bg-indigo-300 rounded ">全表示</button>
@@ -60,13 +60,14 @@
 
     <div class="py-0 border">
         <div class=" mx-auto sm:px-4 lg:px-4 border ">
-            <table class="md:w-2/3 bg-white table-auto w-full text-center whitespace-no-wrap">
+            <table class="md:w-full bg-white table-auto w-full text-center whitespace-no-wrap">
                <thead>
                     <tr>
                         <th class="w-2/12 md:px-4 py-1 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">エリア</th>
-                        <th class="w-3/12 md:px-4 py-1 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">社名</th>
-                        <th class="w-4/12 md:px-4 py-1 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">店名</th>
-                        <th class="w-3/12 md:px-4 py-1 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">詳細</th>
+                        <th class="w-2/12 md:px-4 py-1 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">社名</th>
+                        <th class="w-2/12 md:px-4 py-1 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">店名</th>
+                        <th class="w-4/12 md:px-4 py-1 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">info</th>
+                        <th class="w-2/12 md:px-4 py-1 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">詳細</th>
 
                     </tr>
                 </thead>
@@ -75,9 +76,10 @@
                     @foreach ($shops as $shop)
                     <tr>
                         <td class="w-2/12 md:px-4 py-1 text-left"> {{ $shop->ar_name }} </td>
-                        <td class="w-3/12 md:px-4 py-1 text-left">{{ $shop->co_name }}</td>
-                        <td class="w-4/12 md:px-4 py-1 text-left">{{ $shop->shop_name }}</td>
-                        <td class="w-3/12 md:px-4 py-1 text-center"><a href="{{ route('user.shop.show',['shop'=>$shop->id]) }}" class="w-20 h-8 text-indigo-500 ml-2 "  >店舗詳細</a></td>
+                        <td class="w-2/12 md:px-4 py-1 text-left">{{ $shop->co_name }}</td>
+                        <td class="w-2/12 md:px-4 py-1 text-left">{{ $shop->shop_name }}</td>
+                        <td class="w-4/12 md:px-4 py-1 text-left">{{ $shop->shop_info }}</td>
+                        <td class="w-2/12 md:px-4 py-1 text-center"><a href="{{ route('user.shop.show',['shop'=>$shop->id]) }}" class="w-20 h-8 text-indigo-500 ml-2 "  >店舗詳細</a></td>
                     </tr>
                     @endforeach
 
@@ -88,6 +90,7 @@
                 'co_id'=>\Request::get('co_id'),
                 'ar_id'=>\Request::get('ar_id'),
                 'sh_id'=>\Request::get('sh_id'),
+                'info'=>\Request::get('info'),
             ])->links()}}
         </div>
     </div>
@@ -107,8 +110,8 @@
             this.form.submit()
             })
 
-            const shop = document.getElementById('sh_name')
-            shop.addEventListener('change', function(){
+            const info = document.getElementById('info')
+            info.addEventListener('change', function(){
             this.form.submit()
             })
 
