@@ -19,6 +19,8 @@ use App\Http\Controllers\Shop\ReportController;
 |
 */
 
+//
+
 Route::get('/', function () {
     return view('user.auth.login');
 });
