@@ -47,9 +47,10 @@
                     <div>
                     <button  type="button" class="w-24 h-8 ml-2 text-center text-gray-900 bg-gray-200 border-0 py-0 px-2 focus:outline-none hover:bg-gray-300 rounded">品番検索</button>
                     </div>
-                    <div class="pl-2">
-                        <button type="button" class="w-20 h-8 bg-indigo-500 text-white ml-0 hover:bg-indigo-600 rounded lg:ml-2 " onclick="location.href='{{ route('user.product.index') }}'" >全表示</button>
-                    </div>
+
+                </div>
+                <div class="pl-2">
+                    <button type="button" class="w-20 h-8 bg-indigo-500 text-white ml-0 hover:bg-indigo-600 rounded lg:ml-2 " onclick="location.href='{{ route('user.product.index') }}'" >全表示</button>
                 </div>
 
             </div>

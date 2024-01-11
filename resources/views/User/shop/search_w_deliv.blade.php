@@ -3,9 +3,9 @@
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
             店別日別納品<br>
-
-
         </h2>
+
+        <span class="items-center text-sm mt-2" >　※店舗を選択してください　　　</span>
 
         <form method="get" action="{{ route('user.shop.s_search_wd_form')}}" class="mt-4">
         <div class="flex">
@@ -18,7 +18,7 @@
                         @endforeach
                 @endforeach
             </select>
-            <span class="items-center text-sm mt-2" >　※店舗を選択してください　　　</span>
+
 
         <div>
             <button type="button" class="w-20 h-8 bg-indigo-500 text-white ml-2 hover:bg-indigo-600 rounded" onclick="location.href='{{ route('user.shop.index') }}'" class="mb-2 ml-2 text-right text-black bg-indigo-300 border-0 py-0 px-2 focus:outline-none hover:bg-indigo-300 rounded ">SHOP一覧</button>

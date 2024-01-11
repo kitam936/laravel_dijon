@@ -209,11 +209,19 @@ class DataController extends Controller
         return to_route('admin.data.delete_index')->with(['message'=>'削除されました','status'=>'alert']);
     }
 
+    public function stock_destroy(Request $request)
+    {
+        $Stocks=Stock::query()->delete();
+
+        return to_route('admin.data.delete_index')->with(['message'=>'削除されました','status'=>'alert']);
+    }
+
+
 
 
     public function stock_upload(Request $request)
     {
-        $Stocks=Stock::query()->delete();
+
 
         setlocale(LC_ALL, 'ja_JP.UTF-8');
         // dd($request);

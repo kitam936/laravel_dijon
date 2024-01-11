@@ -6,6 +6,8 @@
 
         </h2>
 
+        <span class="items-center text-sm mt-2" >　※会社を選択してください　　　</span>
+
         <form method="get" action="{{ route('user.company.search_wd_form')}}" class="mt-4">
         <div class="flex">
         <select class="w-40 h-8 text-sm" id= "co_id" name="co_id" type="text" class="border">
@@ -14,7 +16,7 @@
             <option value="{{ $company->id }}" @if(\Request::get('co_id') == $company->id) selected @endif >{{ $company->co_name }}</option>
         @endforeach
          </select>
-         <span class="items-center text-sm mt-2" >　※会社を選択してください　　　</span>
+
 
         <div>
             <button type="button" class="w-20 h-8 bg-indigo-500 text-white ml-2 hover:bg-indigo-600 rounded" onclick="location.href='{{ route('user.company.index') }}'" class="mb-2 ml-2 text-right text-black bg-indigo-300 border-0 py-0 px-2 focus:outline-none hover:bg-indigo-300 rounded ">会社一覧</button>

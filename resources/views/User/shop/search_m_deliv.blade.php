@@ -5,6 +5,8 @@
             店別月別納品<br>
         </h2>
 
+        <span class="items-center text-sm mt-2" >　※店舗を選択してください　　　</span>
+
         <form method="get" action="{{ route('user.shop.s_search_md_form')}}" class="mt-4">
         <div class="flex">
         <select class="w-40 h-8 text-sm items-center" id="sh_id" name="sh_id" type="number" class="border">
@@ -16,7 +18,7 @@
                 @endforeach
         @endforeach
          </select>
-         <span class="items-center text-sm mt-2" >　※店舗を選択してください　　　</span>
+
 
         <div>
             <button type="button" class="w-20 h-8 bg-indigo-500 text-white ml-2 hover:bg-indigo-600 rounded" onclick="location.href='{{ route('user.shop.index') }}'" class="mb-2 ml-2 text-right text-black bg-indigo-300 border-0 py-0 px-2 focus:outline-none hover:bg-indigo-300 rounded ">SHOP一覧</button>

@@ -3,8 +3,9 @@
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
             社別週別売上<br>
-
         </h2>
+
+        <span class="items-center text-sm mt-2" >　※会社を選択してください　　　</span>
 
         <form method="get" action="{{ route('user.company.search_w_form')}}" class="mt-4">
         <div class="flex">
@@ -14,7 +15,7 @@
             <option value="{{ $company->id }}" @if(\Request::get('co_id') == $company->id) selected @endif >{{ $company->co_name }}</option>
         @endforeach
          </select>
-         <span class="items-center text-sm mt-2" >　※会社を選択してください　　　</span>
+
          {{-- <div>
             <button  class="w-24 h-8 ml-2 text-center text-black bg-gray-300 border-0 py-0 px-2 focus:outline-none hover:bg-gray-400 rounded ">検索</button>
         </div> --}}
@@ -40,7 +41,7 @@
             <div class=" w-full  sm:px-0 lg:px-0 border mt-4 ml-0">
                 <div class='border bg-gray-100 h-6'>
                     @foreach ($c_stocks as $c_stock)
-                    　現在庫　：　　　{{ number_format(round($c_stock->zaikogaku)/1000) }}千円　　　　　　{{ number_format($c_stock->pcs) }}枚　　　　
+                    　現在庫　：　{{ number_format(round($c_stock->zaikogaku)/1000) }}千円　　{{ number_format($c_stock->pcs) }}枚　
                     @endforeach
                 </div>
             </div>

@@ -5,6 +5,8 @@
             店別月別売上<br>
         </h2>
 
+        <span class="items-center text-sm mt-2" >　※店舗を選択してください　　　</span>
+
         <form method="get" action="{{ route('user.shop.s_search_m_form')}}" class="mt-4">
         <div class="flex">
         <select class="w-40 h-8 text-sm items-center" id="sh_id" name="sh_id" type="number" class="border">
@@ -16,7 +18,7 @@
                 @endforeach
         @endforeach
          </select>
-         <span class="items-center text-sm mt-2" >　※店舗を選択してください　　　</span>
+
          {{-- <div>
             <button  class="w-24 h-8 ml-2 text-center text-black bg-gray-300 border-0 py-0 px-2 focus:outline-none hover:bg-gray-400 rounded ">検索</button>
         </div> --}}
@@ -32,7 +34,7 @@
             <div class=" w-full  sm:px-0 lg:px-0 border mt-4 ml-0">
                 <div class='border bg-gray-100 h-6'>
                     @foreach ($all_stocks as $all_stock)
-                    　現在庫　：　　　{{ number_format(round($all_stock->zaikogaku)/1000) }}千円　　　　　　{{ number_format($all_stock->pcs) }}枚　　　　
+                    　現在庫　：　{{ number_format(round($all_stock->zaikogaku)/1000) }}千円　　{{ number_format($all_stock->pcs) }}枚　
                     @endforeach
                 </div>
             </div>
@@ -44,7 +46,7 @@
                 <div class=" w-full  sm:px-0 lg:px-0 border mt-4 ml-0">
                 <div class='border bg-gray-100 h-6'>
                     @foreach ($s_stocks as $s_stock)
-                    　現在庫　：　　　{{ number_format(round($s_stock->zaikogaku)/1000) }}千円　　　　　　{{ number_format($s_stock->pcs) }}枚　　　　
+                    　現在庫　：　{{ number_format(round($s_stock->zaikogaku)/1000) }}千円　　{{ number_format($s_stock->pcs) }}枚　
                     @endforeach
                 </div>
             </div>

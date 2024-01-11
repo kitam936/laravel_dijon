@@ -56,6 +56,7 @@ Route::middleware('auth:admin')->group(function () {
     Route::get('data/delete_index', [DataController::class, 'delete_index'])->name('data.delete_index');
     Route::delete('sales_destroy', [DataController::class, 'sales_destroy'])->name('data.sales_destroy');
     Route::delete('deliv_destroy', [DataController::class, 'deliv_destroy'])->name('data.deliv_destroy');
+    Route::delete('stock_destroy', [DataController::class, 'stock_destroy'])->name('data.stock_destroy');
 
 });
 

@@ -5,6 +5,8 @@
             店別UNIT納品<br>
         </h2>
 
+        <span class="items-center text-sm mt-2" >※店舗・期間を選択してください</span>
+
         <form method="get" action="{{ route('user.shop.s_search_ud_form')}}" class="mt-4">
             <div class="flex mb-4">
                 {{-- <span class="items-center text-sm mt-2" >店舗： 　</span> --}}
@@ -17,7 +19,7 @@
                             @endforeach
                     @endforeach
                 </select>
-                <span class="items-center text-sm mt-2" >※店舗・期間を選択してください</span>
+
                 <div class="ml-4 ">
                     <button type="button" class="w-20 h-8 bg-indigo-500 text-white ml-2 hover:bg-indigo-600 rounded " onclick="location.href='{{ route('user.shop.index') }}'" class="mb-2 ml-2 text-right text-black bg-indigo-300 border-0 py-0 px-2 focus:outline-none hover:bg-indigo-300 rounded ">SHOP一覧</button>
                 </div>
@@ -30,14 +32,14 @@
                             <option value="{{ $YW->YW }}" @if(\Request::get('YW1') == $YW->YW) selected @endif >{{ floor(($YW->YM)/100)%100 }}年{{ ($YW->YM)%100 }}月{{ ($YW->YW)%100 }}週</option>
                         @endforeach
                     </select>
-                    <span class="items-center text-sm mt-2" >　週～　</span>
+                    <span class="items-center text-sm mt-2" >　～　</span>
                     <select class="w-32 h-8 text-sm pt-1" id="YW2" name="YW2" type="number" class="border">
                         <option value="" @if(\Request::get('YW2') == '0') selected @endif >{{ $max_YW }}直近週</option>
                         @foreach ($YWs as $YW)
                             <option value="{{ $YW->YW }}" @if(\Request::get('YW2') == $YW->YW) selected @endif >{{ floor(($YW->YM)/100)%100 }}年{{ ($YW->YM)%100 }}月{{ ($YW->YW)%100 }}週</option>
                         @endforeach
                     </select>
-                    <span class="items-center text-sm mt-2" >　週　　　</span>
+                    <span class="items-center text-sm mt-2" >　</span>
 
             </div>
             </form>
