@@ -29,7 +29,7 @@
                             <option value="{{ $YW->YW }}" @if(\Request::get('YW1') == $YW->YW) selected @endif >{{ floor(($YW->YM)/100)%100 }}年{{ ($YW->YM)%100 }}月{{ ($YW->YW)%100 }}週</option>
                         @endforeach
                     </select>
-                    <span class="items-center text-sm mt-2 text-gray-800 dark:text-gray-200 leading-tight" > 　～</span>
+                    <span class="items-center text-sm mt-2 text-gray-800 dark:text-gray-200 leading-tight" > 　～　</span>
                     <select class="w-32 h-8 rounded text-sm items-center pt-1" id="YW2" name="YW2" type="number" class="border">
                         <option value="" @if(\Request::get('YW2') == '0') selected @endif >{{ $max_YW }}直近週</option>
                         @foreach ($YWs as $YW)

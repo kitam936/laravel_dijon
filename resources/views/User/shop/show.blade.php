@@ -21,60 +21,60 @@
 
 
 
-        <form method="get" action="" class="mt-2 mb-6">
+        <form method="get" action="" class="mt-2 mb-4">
 
             <div class="md:flex">
                 @foreach ($shops as $shop)
                 <div class="flex">
                 <div class="flex pl-0 mt-0">
 
-                    <div class="pl-2  ml-0 md:ml-2 w-32 h-6 items-center bg-gray-100 border" name="co_id"  value="">{{ $shop->co_name }}</div>
+                    <div class="pl-2 ml-0 md:ml-2 w-32 h-6 items-center bg-gray-100 border rounded" name="co_id"  value="">{{ $shop->co_name }}</div>
                 </div>
                 <div class="flex pl-2 mt-0">
 
-                    <div class="pl-2 w-32 h-6 items-center bg-gray-100 border" name="ar_id" value="">{{ $shop->ar_name }}</div>
+                    <div class="pl-2 w-32 h-6 items-center bg-gray-100 border rounded" name="ar_id" value="">{{ $shop->ar_name }}</div>
                 </div>
                 </div>
                 <div class="flex">
                 <div class="flex pl- mt-1 md:mt-0">
 
-                    <div class="pl-2 w-32 h-6 items-center bg-gray-100 border md:ml-2" name="sh_id" value="">{{ $shop->id }}</div>
+                    <div class="pl-2 w-32 h-6 items-center bg-gray-100 border rounded md:ml-2" name="sh_id" value="">{{ $shop->id }}</div>
                 </div>
                 <div class="flex pl-2 mt-1 md:mt-0 ">
 
-                    <div class="pl-2 w-32 h-6 items-center bg-gray-100 border" name="sh_name" value="">{{ $shop->shop_name }}</div>
+                    <div class="pl-2 w-32 h-6 items-center bg-gray-100 border rounded" name="sh_name" value="">{{ $shop->shop_name }}</div>
                 </div>
                 </div>
                 <div class="md:flex">
                 <div class="flex pl-0 mt-1 md:mt-0">
 
-                    <div class="pl-2 ml-0 md:ml-2 w-80 h-6 items-center bg-gray-100 border" name="sh_info" value="">{{ $shop->shop_info }}</div>
+                    <div class="pl-2 ml-0 md:ml-2 w-80 h-6 items-center bg-gray-100 border rounded" name="sh_info" value="">{{ $shop->shop_info }}</div>
                 </div>
 
                 </div>
                 @endforeach
             </div>
      </form>
-            <div class=" p-1 text-gray-900 dark:text-gray-100 md:flex-auto md:mt-10">
-                <button type="button" class="w-32 flex-auto p-0 text-sm text-gray-900 dark:text-gray-100 bg-gray-200   hover:bg-gray-300 rounded" onclick="location.href='{{ route('user.shop.s_m_form',['shop'=>$shop->id]) }}'" >月別売上推移</button>
-                <button type="button" class="w-32 flex-auto p-0 text-sm text-gray-900 dark:text-gray-100 bg-gray-200   hover:bg-gray-300 rounded" onclick="location.href='{{ route('user.shop.s_w_form',['shop'=>$shop->id]) }}'" >週別売上推移</button>
-                <button type="button" class="w-32 flex-auto p-0 text-sm text-gray-900 dark:text-gray-100 bg-gray-200   hover:bg-gray-300 rounded" onclick="location.href='{{ route('user.shop.s_u_form',['shop'=>$shop->id]) }}'" >Unit別売上</button>
-                <button type="button" class="w-32 flex-auto p-0 text-sm text-gray-900 dark:text-gray-100 bg-gray-200   hover:bg-gray-300 rounded" onclick="location.href='{{ route('user.shop.s_s_form',['shop'=>$shop->id]) }}'" >Season別売上</button>
-                <button type="button" class="w-32 flex-auto p-0 text-sm text-gray-900 dark:text-gray-100 bg-gray-200   hover:bg-gray-300 rounded" onclick="location.href='{{ route('user.shop.s_h_form',['shop'=>$shop->id]) }}'" >品番別売上</button>
+            <div class=" p-1 text-gray-900 dark:text-gray-100 md:flex-auto md:mt-6">
+                <button type="button" class="w-32 flex-auto p-0 text-sm text-white dark:text-white bg-indigo-400 hover:bg-indigo-600 rounded" onclick="location.href='{{ route('user.shop.s_m_form',['shop'=>$shop->id]) }}'" >月別売上推移</button>
+                <button type="button" class="w-32 flex-auto p-0 text-sm text-white dark:text-white bg-indigo-400 hover:bg-indigo-600 rounded" onclick="location.href='{{ route('user.shop.s_w_form',['shop'=>$shop->id]) }}'" >週別売上推移</button>
+                <button type="button" class="w-32 flex-auto p-0 text-sm text-white dark:text-white bg-indigo-400 hover:bg-indigo-600 rounded" onclick="location.href='{{ route('user.shop.s_u_form',['shop'=>$shop->id]) }}'" >Unit別売上</button>
+                <button type="button" class="w-32 flex-auto p-0 text-sm text-white dark:text-white bg-indigo-400 hover:bg-indigo-600 rounded" onclick="location.href='{{ route('user.shop.s_s_form',['shop'=>$shop->id]) }}'" >Season別売上</button>
+                <button type="button" class="w-32 flex-auto p-0 text-sm text-white dark:text-white bg-indigo-400 hover:bg-indigo-600 rounded" onclick="location.href='{{ route('user.shop.s_h_form',['shop'=>$shop->id]) }}'" >品番別売上</button>
             </div>
             <div class=" p-1 text-gray-900 dark:text-gray-100 md:flex-auto ">
-                <button type="button" class="w-32 flex-auto p-0 text-sm text-gray-900 dark:text-gray-100 bg-gray-200   hover:bg-gray-300 rounded" onclick="location.href='{{ route('user.shop.s_md_form',['shop'=>$shop->id]) }}'" >月別納品推移</button>
-                <button type="button" class="w-32 flex-auto p-0 text-sm text-gray-900 dark:text-gray-100 bg-gray-200   hover:bg-gray-300 rounded" onclick="location.href='{{ route('user.shop.s_wd_form',['shop'=>$shop->id]) }}'" >日別納品推移</button>
-                <button type="button" class="w-32 flex-auto p-0 text-sm text-gray-900 dark:text-gray-100 bg-gray-200   hover:bg-gray-300 rounded" onclick="location.href='{{ route('user.shop.s_ud_form',['shop'=>$shop->id]) }}'" >Unit別納品</button>
-                <button type="button" class="w-32 flex-auto p-0 text-sm text-gray-900 dark:text-gray-100 bg-gray-200   hover:bg-gray-300 rounded" onclick="location.href='{{ route('user.shop.s_sd_form',['shop'=>$shop->id]) }}'" >Season別納品</button>
-                <button type="button" class="w-32 flex-auto p-0 text-sm text-gray-900 dark:text-gray-100 bg-gray-200   hover:bg-gray-300 rounded" onclick="location.href='{{ route('user.shop.s_hd_form',['shop'=>$shop->id]) }}'" >品番別納品</button>
+                <button type="button" class="w-32 flex-auto p-0 text-sm text-white dark:text-white bg-indigo-400 hover:bg-indigo-600 rounded" onclick="location.href='{{ route('user.shop.s_md_form',['shop'=>$shop->id]) }}'" >月別納品推移</button>
+                <button type="button" class="w-32 flex-auto p-0 text-sm text-white dark:text-white bg-indigo-400 hover:bg-indigo-600 rounded" onclick="location.href='{{ route('user.shop.s_wd_form',['shop'=>$shop->id]) }}'" >日別納品推移</button>
+                <button type="button" class="w-32 flex-auto p-0 text-sm text-white dark:text-white bg-indigo-400 hover:bg-indigo-600 rounded" onclick="location.href='{{ route('user.shop.s_ud_form',['shop'=>$shop->id]) }}'" >Unit別納品</button>
+                <button type="button" class="w-32 flex-auto p-0 text-sm text-white dark:text-white bg-indigo-400 hover:bg-indigo-600 rounded" onclick="location.href='{{ route('user.shop.s_sd_form',['shop'=>$shop->id]) }}'" >Season別納品</button>
+                <button type="button" class="w-32 flex-auto p-0 text-sm text-white dark:text-white bg-indigo-400 hover:bg-indigo-600 rounded" onclick="location.href='{{ route('user.shop.s_hd_form',['shop'=>$shop->id]) }}'" >品番別納品</button>
             </div>
             <div class=" p-1 text-gray-900 dark:text-gray-100 md:flex-auto ">
                 {{-- <button type="button" class="w-32 flex-auto p-0 text-sm text-gray-900 dark:text-gray-100 bg-gray-200 "  >******</button> --}}
                 {{-- <button type="button" class="w-32 flex-auto p-0 text-sm text-gray-900 dark:text-gray-100 bg-gray-200 "  >******</button> --}}
-                <button type="button" class="w-32 flex-auto p-0 text-sm text-gray-900 dark:text-gray-100 bg-gray-200   hover:bg-gray-300 rounded" onclick="location.href='{{ route('user.shop.s_uz_form',['shop'=>$shop->id]) }}'" >Unit別在庫</button>
-                <button type="button" class="w-32 flex-auto p-0 text-sm text-gray-900 dark:text-gray-100 bg-gray-200   hover:bg-gray-300 rounded" onclick="location.href='{{ route('user.shop.s_sz_form',['shop'=>$shop->id]) }}'" >Season別在庫</button>
-                <button type="button" class="w-32 flex-auto p-0 text-sm text-gray-900 dark:text-gray-100 bg-gray-200   hover:bg-gray-300 rounded" onclick="location.href='{{ route('user.shop.s_hz_form',['shop'=>$shop->id]) }}'" >品番別在庫</button>
+                <button type="button" class="w-32 flex-auto p-0 text-sm text-white dark:text-white bg-indigo-400 hover:bg-indigo-600 rounded" onclick="location.href='{{ route('user.shop.s_uz_form',['shop'=>$shop->id]) }}'" >Unit別在庫</button>
+                <button type="button" class="w-32 flex-auto p-0 text-sm text-white dark:text-white bg-indigo-400 hover:bg-indigo-600 rounded" onclick="location.href='{{ route('user.shop.s_sz_form',['shop'=>$shop->id]) }}'" >Season別在庫</button>
+                <button type="button" class="w-32 flex-auto p-0 text-sm text-white dark:text-white bg-indigo-400 hover:bg-indigo-600 rounded" onclick="location.href='{{ route('user.shop.s_hz_form',['shop'=>$shop->id]) }}'" >品番別在庫</button>
             </div>
 
 
