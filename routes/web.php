@@ -67,10 +67,10 @@ Route::
     Route::get('report_detail/{id}', [ReportController::class, 'report_detail'])->name('shop.report_detail');
     Route::get('report_create/{shop}', [ReportController::class, 'report_create'])->name('shop.report_create');
     Route::get('report_store', [ReportController::class, 'report_store'])->name('shop.report_store');
-    Route::post('report_store', [ReportController::class, 'report_store'])->name('shop.report_store');
+    Route::post('report_store', [ReportController::class, 'report_store_rs'])->name('shop.report_store');
     Route::get('report_edit/{report}', [ReportController::class, 'report_edit'])->name('shop.report_edit');
     Route::get('report_update/{report}', [ReportController::class, 'report_update'])->name('shop.report_update');
-    Route::post('report_update/{report}', [ReportController::class, 'report_update'])->name('shop.report_update');
+    Route::post('report_update/{report}', [ReportController::class, 'report_update_rs'])->name('shop.report_update');
     Route::delete('report_destroy/{report}', [ReportController::class, 'report_destroy'])->name('shop.report_destroy');
 
     Route::get('s_m_form/{shop}', [ShopController::class, 's_form_m_sales'])->name('shop.s_m_form');
