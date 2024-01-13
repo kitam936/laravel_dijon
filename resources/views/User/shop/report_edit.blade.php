@@ -28,9 +28,9 @@
                         <div class="px-2 py-1 mx-auto">
                             <div class="relative flex">
                               {{--  <label for="sh_id" class="p-2 w-28 leading-7 text-sm text-gray-600"></label>  --}}
-                              <div id="sh_id" name="sh_id" value="{{ $report->shop_id }}" required class="w-20 ml-2 bg-gray-100 bg-opacity-50 rounded text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">{{ $report->shop_id }}</div>
+                              <div id="sh_id" name="sh_id" value="{{ $report->shop_id }}" required class="w-20 ml-2 bg-gray-100 bg-opacity-50 rounded border text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">{{ $report->shop_id }}</div>
                               {{--  <label for="sh_name" class="p-2 ml-3 w-16 leading-7 text-sm text-gray-600"></label>  --}}
-                              <div id="sh_name" name="sh_name" value="{{ $report->shop_name }}" required class="w-80 ml-2 bg-gray-100 bg-opacity-50 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">{{ $report->shop_name }}</div>
+                              <div id="sh_name" name="sh_name" value="{{ $report->shop_name }}" required class="w-80 ml-2 bg-gray-100 bg-opacity-50 rounded border text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">{{ $report->shop_name }}</div>
                             </div>
                         </div>
 

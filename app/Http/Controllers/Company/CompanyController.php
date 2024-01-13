@@ -335,8 +335,8 @@ class CompanyController extends Controller
 
     public function search_form_hz_stocks(Request $request)
     {
-        $companies = Company::where('id','>',1000)->where('id','<',4000)->select('id','co_name')->get();
-
+        // $companies = Company::where('id','>',1000)->where('id','<',4000)->select('id','co_name')->get();
+        $companies = Company::where('id','>',0)->where('id','<',9999)->select('id','co_name')->get();
         // $h_stocks = Stock::with('hinban')
         // ->whereHas('shop',function($q)use($request){$q->where('company_id',($request->co_id ?? '0'));})
         // ->select('hinban_id')
@@ -370,7 +370,7 @@ class CompanyController extends Controller
         ->join('shops','stocks.shop_id','=','shops.id')
         ->join('hinbans','stocks.hinban_id','=','hinbans.id')
         ->join('units','hinbans.unit_id','=','units.id')
-        ->where('shop_id','>',1000)->where('shop_id','<',4000)
+        // ->where('shop_id','>',1000)->where('shop_id','<',4000)
         ->select('stocks.hinban_id','hinbans.hinmei','hinbans.unit_id')
         ->selectRaw('SUM(pcs) as pcs')
         ->selectRaw('SUM(zaikogaku) as zaikogaku')
@@ -385,7 +385,7 @@ class CompanyController extends Controller
 
 
         $all_stocks = DB::table('stocks')
-        ->where('shop_id','>',1000)->where('shop_id','<',4000)
+        // ->where('shop_id','>',1000)->where('shop_id','<',4000)
         ->selectRaw('SUM(zaikogaku) as zaikogaku')
         ->selectRaw('SUM(pcs) as pcs')
         ->get();
@@ -396,7 +396,8 @@ class CompanyController extends Controller
 
     public function search_form_uz_stocks(Request $request)
     {
-        $companies = Company::where('id','>',1000)->where('id','<',4000)->select('id','co_name')->get();
+        // $companies = Company::where('id','>',1000)->where('id','<',4000)->select('id','co_name')->get();
+        $companies = Company::where('id','>',0)->where('id','<',9999)->select('id','co_name')->get();
 
         $u_stocks = DB::table('stocks')
         ->join('shops','stocks.shop_id','=','shops.id')
@@ -413,7 +414,7 @@ class CompanyController extends Controller
         ->join('shops','stocks.shop_id','=','shops.id')
         ->join('hinbans','stocks.hinban_id','=','hinbans.id')
         ->join('units','hinbans.unit_id','=','units.id')
-        ->where('shop_id','>',1000)->where('shop_id','<',4000)
+        // ->where('shop_id','>',1000)->where('shop_id','<',4000)
         ->select(['hinbans.unit_id','units.season_name'])
         ->selectRaw('SUM(pcs) as pcs')
         ->selectRaw('SUM(zaikogaku) as zaikogaku')
@@ -427,7 +428,7 @@ class CompanyController extends Controller
 
 
         $all_stocks = DB::table('stocks')
-        ->where('shop_id','>',1000)->where('shop_id','<',4000)
+        // ->where('shop_id','>',1000)->where('shop_id','<',4000)
         ->selectRaw('SUM(zaikogaku) as zaikogaku')
         ->selectRaw('SUM(pcs) as pcs')
         ->get();
@@ -438,7 +439,8 @@ class CompanyController extends Controller
 
     public function search_form_sz_stocks(Request $request)
     {
-        $companies = Company::where('id','>',1000)->where('id','<',4000)->select('id','co_name')->get();
+        // $companies = Company::where('id','>',1000)->where('id','<',4000)->select('id','co_name')->get();
+        $companies = Company::where('id','>',0)->where('id','<',9999)->select('id','co_name')->get();
 
         $season_stocks = DB::table('stocks')
         ->join('shops','stocks.shop_id','=','shops.id')
@@ -455,7 +457,7 @@ class CompanyController extends Controller
         ->join('shops','stocks.shop_id','=','shops.id')
         ->join('hinbans','stocks.hinban_id','=','hinbans.id')
         ->join('units','hinbans.unit_id','=','units.id')
-        ->where('shop_id','>',1000)->where('shop_id','<',4000)
+        // ->where('shop_id','>',1000)->where('shop_id','<',4000)
         ->select(['units.season_id','units.season_name'])
         ->selectRaw('SUM(pcs) as pcs')
         ->selectRaw('SUM(zaikogaku) as zaikogaku')
@@ -469,7 +471,7 @@ class CompanyController extends Controller
 
 
         $all_stocks = DB::table('stocks')
-        ->where('shop_id','>',1000)->where('shop_id','<',4000)
+        // ->where('shop_id','>',1000)->where('shop_id','<',4000)
         ->selectRaw('SUM(zaikogaku) as zaikogaku')
         ->selectRaw('SUM(pcs) as pcs')
         ->get();

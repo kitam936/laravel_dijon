@@ -32,7 +32,7 @@
             <div class="md:flex">
                 <div class="mb-2 md:flex mb-4">
                     <label class="items-center text-sm mt-2 text-gray-800 dark:text-gray-200 leading-tight" >エリア　</label>
-                        <select class="w-32 h-8 text-sm pt-1" id="ar_id" name="ar_id"  class="border">
+                        <select class="w-32 h-8 rounded text-sm pt-1" id="ar_id" name="ar_id"  class="border">
                         <option value="" @if(\Request::get('ar_id') == '0') selected @endif >指定なし</option>
                         @foreach ($areas as $area)
                             <option value="{{ $area->id }}" @if(\Request::get('ar_id') == $area->id) selected @endif >{{ $area->ar_name }}</option>

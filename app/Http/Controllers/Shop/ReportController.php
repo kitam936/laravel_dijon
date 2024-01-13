@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
 use App\Http\Requests\UploadImageRequest;
 use App\Services\ImageService;
+use InterventionImage;
 use App\Models\Report;
 use App\Models\Shop;
 use App\Models\Company;
@@ -146,6 +147,67 @@ class ReportController extends Controller
         return to_route('user.shop.report_list')->with(['message'=>'Reportが登録されました','status'=>'info']);
     }
 
+    public function report_store_rs(UploadImageRequest $request)
+    {
+
+        // dd($request->sh_id,$request->image1->extension(),$request->comment,$request->image2,$request->image3,$request->image4);
+        $folderName='reports';
+        if(!is_null($request->file('image1'))){
+            $fileName1 = uniqid(rand().'_');
+            $extension1 = $request->file('image1')->extension();
+            $fileNameToStore1 = $fileName1. '.' . $extension1;
+            $resizedImage1 = InterventionImage::make($request->file('image1'))->resize(400, 400,function($constraint){$constraint->aspectRatio();})->encode();
+            Storage::put('public/reports/' . $fileNameToStore1, $resizedImage1 );
+        }else{
+            $fileNameToStore1 = '';
+        };
+
+        if(!is_null($request->file('image2'))){
+            $fileName2 = uniqid(rand().'_');
+            $extension2 = $request->file('image2')->extension();
+            $fileNameToStore2 = $fileName2. '.' . $extension2;
+            $resizedImage2 = InterventionImage::make($request->file('image2'))->resize(400, 400,function($constraint){$constraint->aspectRatio();})->encode();
+            Storage::put('public/reports/' . $fileNameToStore2, $resizedImage2 );
+        }else{
+            $fileNameToStore2 = '';
+        };
+        if(!is_null($request->file('image3'))){
+            $fileName3 = uniqid(rand().'_');
+            $extension3 = $request->file('image3')->extension();
+            $fileNameToStore3 = $fileName3. '.' . $extension3;
+            $resizedImage3 = InterventionImage::make($request->file('image3'))->resize(400, 400,function($constraint){$constraint->aspectRatio();})->encode();
+            Storage::put('public/reports/' . $fileNameToStore3, $resizedImage3 );
+        }else{
+            $fileNameToStore3 = '';
+        };
+
+
+        if(!is_null($request->file('image4'))){
+            $fileName4 = uniqid(rand().'_');
+            $extension4 = $request->file('image4')->extension();
+            $fileNameToStore4 = $fileName4. '.' . $extension4;
+            $resizedImage4 = InterventionImage::make($request->file('image4'))->resize(400, 400,function($constraint){$constraint->aspectRatio();})->encode();
+            Storage::put('public/reports/' . $fileNameToStore4, $resizedImage4 );
+        }else{
+            $fileNameToStore4 = '';
+        };
+
+        // dd($request->sh_id,$request->comment);
+        Report::create([
+            'shop_id' => $request->sh_id2,
+            'image1' => $fileNameToStore1,
+            'image2' => $fileNameToStore2,
+            'image3' => $fileNameToStore3,
+            'image4' => $fileNameToStore4,
+            'comment' => $request->comment,
+        ]);
+
+
+
+        return to_route('user.shop.report_list')->with(['message'=>'Reportが登録されました','status'=>'info']);
+    }
+
+
     public function report_edit($id)
     {
         $report=DB::table('reports')
@@ -210,6 +272,64 @@ class ReportController extends Controller
 
         return to_route('user.shop.report_list')->with(['message'=>'Reportが更新されました','status'=>'info']);
     }
+
+    public function report_update_rs(Request $request, $id)
+    {
+        $report=Report::findOrFail($id);
+
+        if(!is_null($request->file('image1'))){
+            $fileName1 = uniqid(rand().'_');
+            $extension1 = $request->file('image1')->extension();
+            $fileNameToStore1 = $fileName1. '.' . $extension1;
+            $resizedImage1 = InterventionImage::make($request->file('image1'))->resize(400, 400,function($constraint){$constraint->aspectRatio();})->encode();
+            Storage::put('public/reports/' . $fileNameToStore1, $resizedImage1 );
+        }else{
+            $fileNameToStore1 = $report->image1;
+        };
+
+        if(!is_null($request->file('image2'))){
+            $fileName2 = uniqid(rand().'_');
+            $extension2 = $request->file('image2')->extension();
+            $fileNameToStore2 = $fileName2. '.' . $extension2;
+            $resizedImage2 = InterventionImage::make($request->file('image2'))->resize(400, 400,function($constraint){$constraint->aspectRatio();})->encode();
+            Storage::put('public/reports/' . $fileNameToStore2, $resizedImage2 );
+        }else{
+            $fileNameToStore2 = $report->image2;
+        };
+        if(!is_null($request->file('image3'))){
+            $fileName3 = uniqid(rand().'_');
+            $extension3 = $request->file('image3')->extension();
+            $fileNameToStore3 = $fileName3. '.' . $extension3;
+            $resizedImage3 = InterventionImage::make($request->file('image3'))->resize(400, 400,function($constraint){$constraint->aspectRatio();})->encode();
+            Storage::put('public/reports/' . $fileNameToStore3, $resizedImage3 );
+        }else{
+            $fileNameToStore3 = $report->image3;
+        };
+
+
+        if(!is_null($request->file('image4'))){
+            $fileName4 = uniqid(rand().'_');
+            $extension4 = $request->file('image4')->extension();
+            $fileNameToStore4 = $fileName4. '.' . $extension4;
+            $resizedImage4 = InterventionImage::make($request->file('image4'))->resize(400, 400,function($constraint){$constraint->aspectRatio();})->encode();
+            Storage::put('public/reports/' . $fileNameToStore4, $resizedImage4 );
+        }else{
+            $fileNameToStore4 = $report->image4;
+        };
+
+        $report->image1 = $fileNameToStore1;
+        $report->image2 = $fileNameToStore2;
+        $report->image3 = $fileNameToStore3;
+        $report->image4 = $fileNameToStore4;
+        $report->comment = $request->comment;
+
+        // dd($request->sh_id,$fileNameToStore1,$fileNameToStore2,$fileNameToStore3,$fileNameToStore4);
+
+        $report->save();
+
+        return to_route('user.shop.report_list')->with(['message'=>'Reportが更新されました','status'=>'info']);
+    }
+
 
     public function report_destroy($id)
     {

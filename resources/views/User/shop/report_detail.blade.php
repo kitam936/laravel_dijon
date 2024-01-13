@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
 
-        <h2 class="font-semibold text-xl  text-gray-800 dark:text-gray-200 leading-tight">
+        <h2 class="font-semibold text-xl mb-4 text-gray-800 dark:text-gray-200 leading-tight">
         <div>
             店舗Report詳細
         </div>
@@ -37,17 +37,17 @@
                                 <div class="p-2 w-full mx-auto">
                                     <div class="relative">
                                         <label for="date" class="leading-7 text-sm  text-gray-800 dark:text-gray-200 leading-tight">date</label>
-                                        <div  id="date" name="date" value="{{$report->created_at}}" class="h-10 text-lg w-full bg-gray-100 bg-opacity-50 rounded focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">{{$report->created_at}}
+                                        <div  id="date" name="date" value="{{$report->created_at}}" class="h-10 text-lg w-full bg-gray-100 bg-opacity-50 border rounded focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">{{$report->created_at}}
                                     </div>
                                     <div class="relative">
                                         <label for="name" class="leading-7 text-sm  text-gray-800 dark:text-gray-200 leading-tight">店名</label>
-                                        <div  id="name" name="name" value="{{$report->shop_name}}" class="h-10 text-lg w-full bg-gray-100 bg-opacity-50 rounded focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">{{$report->shop_name}}
+                                        <div  id="name" name="name" value="{{$report->shop_name}}" class="h-10 text-lg w-full bg-gray-100 bg-opacity-50 border rounded focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">{{$report->shop_name}}
                                     </div>
                                     </div>
-                                    <div class="p-2 mx-auto mb-1">
+                                    <div class="mx-auto mb-1">
                                         <div class="relative">
                                             <label for="information" class="leading-7 text-sm  text-gray-800 dark:text-gray-200 leading-tight">コメント</label>
-                                            <div id="information" name="information" rows="10" class="w-full bg-gray-100 bg-opacity-50 rounded focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">{{$report->comment}}</div>
+                                            <div id="information" name="information" rows="10" class="w-full bg-gray-100 bg-opacity-50 border rounded focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">{{$report->comment}}</div>
                                         </div>
                                     </div>
                                 {{-- <div class="px-2 md:w-2/1 mx-auto">
