@@ -41,11 +41,9 @@ Route::middleware('auth:admin')->group(function () {
     Route::get('data/deliv_index', [DataController::class, 'delivery_index'])->name('data.deliv_index');
     Route::get('data/stock_index', [DataController::class, 'stock_index'])->name('data.stock_index');
     Route::POST('data/stock_upload', [DataController::class, 'stock_upload'])->name('data.stock_upload');
-    Route::POST('data/shop_upload', [DataController::class, 'shop_upload'])->name('data.shop_upload');
     Route::POST('data/shop_upsert', [DataController::class, 'shop_upsert'])->name('data.shop_upsert');
     Route::POST('data/sales_upload', [DataController::class, 'sales_upload'])->name('data.sales_upload');
     Route::POST('data/deliv_upload', [DataController::class, 'delivery_upload'])->name('data.deliv_upload');
-    Route::POST('data/hinban_upload', [DataController::class, 'hinban_upload'])->name('data.hinban_upload');
     Route::POST('data/hinban_upsert', [DataController::class, 'hinban_upsert'])->name('data.hinban_upsert');
     Route::POST('data/company_upsert', [DataController::class, 'company_upsert'])->name('data.company_upsert');
     Route::POST('data/area_upsert', [DataController::class, 'area_upsert'])->name('data.area_upsert');
@@ -58,6 +56,7 @@ Route::middleware('auth:admin')->group(function () {
     Route::get('data/delete_index', [DataController::class, 'delete_index'])->name('data.delete_index');
     Route::delete('sales_destroy', [DataController::class, 'sales_destroy'])->name('data.sales_destroy');
     Route::delete('deliv_destroy', [DataController::class, 'deliv_destroy'])->name('data.deliv_destroy');
+    Route::delete('stock_destroy', [DataController::class, 'stock_destroy'])->name('data.stock_destroy');
 
 });
 

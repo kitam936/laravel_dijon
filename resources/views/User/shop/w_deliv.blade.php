@@ -5,27 +5,23 @@
             店別日別納品<br>
         </h2>
 
-        <span class="items-center text-sm mt-2 text-gray-800 dark:text-gray-200 leading-tight" >　※店舗を選択してください　　　</span>
+        <div class="mt-4 md:flex">
+            @foreach ($shops as $shop)
+            <div class="flex">
+            <div class="flex pl-0 mt-0">
 
-        <form method="get" action="{{ route('user.shop.s_search_wd_form')}}" class="mt-4">
-        <div class="flex">
-            <select class="w-40 h-8 rounded text-sm items-center" id="sh_id" name="sh_id" type="number" class="border">
-                <option value="0" @if(\Request::get('sh_id') == '0') selected @endif >全店</option>
-                @foreach ($companies as $company)
-                    <optgroup  label = "{{ $company->co_name }}" class="text-indigo-700 font-weight:bold">
-                        @foreach ($company->shop as $shop )
-                        <option  value="{{ $shop->id }}" @if(\Request::get('sh_id') == $shop->id) selected @endif >{{ $shop->shop_name }}</option>
-                        @endforeach
-                @endforeach
-            </select>
+                <div class="pl-0  ml-0 md:ml-2 w-32 h-6 items-center bg-gray-100 border" name="co_id"  value="">{{ $shop->co_name }}</div>
+            </div>
+            <div class="flex pl-0 mt-0">
 
-
-        <div>
-            <button type="button" class="w-20 h-8 bg-indigo-500 text-white ml-2 hover:bg-indigo-600 rounded" onclick="location.href='{{ route('user.shop.index') }}'" class="mb-2 ml-2 text-right text-black bg-indigo-300 border-0 py-0 px-2 focus:outline-none hover:bg-indigo-300 rounded ">SHOP一覧</button>
+                <div class="pl-0 w-32 h-6 items-center bg-gray-100 border ml-2" name="ar_id" value="">{{ $shop->shop_name }}</div>
+            </div>
+            <div>
+                <button type="button" class="w-20 h-6 bg-indigo-500 text-white ml-2 hover:bg-indigo-600 rounded" onclick="location.href='{{ route('user.shop.show',['shop'=>$shop->id]) }}'" >戻る</button>
+            </div>
+            </div>
+            @endforeach
         </div>
-        </div>
-        </form>
-
     </x-slot>
 
 

@@ -4,17 +4,20 @@
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
             社別品番在庫<br>
         </h2>
+
+        <span class="items-center text-sm mt-2 text-gray-800 dark:text-gray-200 leading-tight" >　※会社を選択してください　　　</span>
+
         <form method="get" action="{{ route('user.company.search_hz_form')}}" class="mt-2">
             <div class="flex">
                 <div class="flex mb-2">
-                    <span class="items-center text-sm mt-0" >会社： 　</span>
-                        <select class="w-32 h-8 text-sm pt-1" id="co_id" name="co_id"  class="border">
+
+                        <select class="w-32 h-8 rounded text-sm pt-1" id="co_id" name="co_id"  class="border">
                         <option value="0" @if(\Request::get('co_id') == '0') selected @endif >全社</option>
                         @foreach ($companies as $company)
                             <option value="{{ $company->id }}" @if(\Request::get('co_id') == $company->id) selected @endif >{{ $company->co_name }}</option>
                         @endforeach
                          </select>
-                         <span class="items-center text-sm mt-2" >　※会社を選択してください　　　</span>
+
                 </div>
                 <div class="flex">
                 {{-- <div>
@@ -33,7 +36,7 @@
                 <div class=" w-full  sm:px-0 lg:px-0 border mt-0 ">
                     <div class='border bg-gray-100 h-6'>
                         @foreach ($all_stocks as $all_stock)
-                        　現在庫　：　　　{{ number_format(round($all_stock->zaikogaku)/1000) }}千円　　　　　　{{ number_format($all_stock->pcs) }}枚　　　　
+                        　現在庫　：　{{ number_format(round($all_stock->zaikogaku)/1000) }}千円　　{{ number_format($all_stock->pcs) }}枚　
                         @endforeach
                     </div>
                 </div>　
@@ -45,7 +48,7 @@
                     <div class=" w-full  sm:px-0 lg:px-0 border mt-0 ">
                     <div class='border bg-gray-100 h-6'>
                         @foreach ($c_stocks as $c_stock)
-                        　現在庫　：　　　{{ number_format(round($c_stock->zaikogaku)/1000) }}千円　　　　　　{{ number_format($c_stock->pcs) }}枚　　　　
+                        　現在庫　：　{{ number_format(round($c_stock->zaikogaku)/1000) }}千円　　{{ number_format($c_stock->pcs) }}枚　
                         @endforeach
                     </div>
                 </div>
@@ -72,11 +75,11 @@
                 <tbody>
                     @foreach ($h_stocks_all as $h_stock)
                     <tr>
-                        <td class="w-1/12 md:px-4 py-1">{{ $h_stock->unit_id }}</td>
-                        <td class="w-2/12 md:px-4 py-1">{{ $h_stock->hinban_id }}</td>
-                        <td class="w-6/12 md:px-4 py-1 text-left">{{ $h_stock->hinmei }}</td>
-                        <td class="w-1/12 pr-6 md:px-4 py-1 text-right">{{ number_format($h_stock->pcs)}}</td>
-                        <td class="w-2/12 md:px-4 py-1 text-right">{{ number_format(round($h_stock->zaikogaku)/1000)}}</td>
+                        <td class="w-1/12 text-sm md:px-4 py-1">{{ $h_stock->unit_id }}</td>
+                        <td class="w-2/12 text-sm md:px-4 py-1">{{ $h_stock->hinban_id }}</td>
+                        <td class="w-6/12 text-xs md:px-4 py-1 text-left">{{ $h_stock->hinmei }}</td>
+                        <td class="w-1/12 text-sm pr-6 md:px-4 py-1 text-right">{{ number_format($h_stock->pcs)}}</td>
+                        <td class="w-2/12 text-sm md:px-4 py-1 text-right">{{ number_format(round($h_stock->zaikogaku)/1000)}}</td>
                     </tr>
                     @endforeach
                 </tbody>
@@ -101,11 +104,11 @@
             <tbody>
                 @foreach ($h_stocks as $h_stock)
                 <tr>
-                    <td class="w-1/12 md:px-4 py-1">{{ $h_stock->unit_id }}</td>
-                    <td class="w-2/12 md:px-4 py-1">{{ $h_stock->hinban_id }}</td>
-                    <td class="w-6/12 md:px-4 py-1 text-left">{{ $h_stock->hinmei }}</td>
-                    <td class="w-1/12 pr-6 md:px-4 py-1 text-right">{{ number_format($h_stock->pcs)}}</td>
-                    <td class="w-2/12 md:px-4 py-1 text-right">{{ number_format(round($h_stock->zaikogaku)/1000)}}</td>
+                    <td class="w-1/12 text-sm md:px-4 py-1">{{ $h_stock->unit_id }}</td>
+                    <td class="w-2/12 text-sm md:px-4 py-1">{{ $h_stock->hinban_id }}</td>
+                    <td class="w-6/12 text-xs md:px-4 py-1 text-left">{{ $h_stock->hinmei }}</td>
+                    <td class="w-1/12 text-sm pr-6 md:px-4 py-1 text-right">{{ number_format($h_stock->pcs)}}</td>
+                    <td class="w-2/12text-sm  md:px-4 py-1 text-right">{{ number_format(round($h_stock->zaikogaku)/1000)}}</td>
                 </tr>
                 @endforeach
             </tbody>

@@ -4,17 +4,20 @@
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
             社別Season在庫<br>
         </h2>
+
+        <span class="items-center text-sm mt-1 text-gray-800 dark:text-gray-200 leading-tight" >　※会社を選択してください　　　</span>
+
         <form method="get" action="{{ route('user.company.search_sz_form')}}" class="mt-2">
             <div class="flex">
                 <div class="flex mb-2">
-                    <span class="items-center text-sm mt-1" >会社： 　</span>
-                        <select class="w-32 h-8 text-sm pt-1" id="co_id" name="co_id"  class="border">
+
+                        <select class="w-32 h-8 rounded text-sm pt-1" id="co_id" name="co_id"  class="border">
                         <option value="" @if(\Request::get('co_id') == '0') selected @endif >全社</option>
                         @foreach ($companies as $company)
                             <option value="{{ $company->id }}" @if(\Request::get('co_id') == $company->id) selected @endif >{{ $company->co_name }}</option>
                         @endforeach
                          </select>
-                         <span class="items-center text-sm mt-1" >　※会社を選択してください　　　</span>
+
                 </div>
                 <div class="flex">
                 {{-- <div>
@@ -33,7 +36,7 @@
                 <div class=" w-full  sm:px-0 lg:px-0 border mt-0 ">
                     <div class='border bg-gray-100 h-6'>
                         @foreach ($all_stocks as $all_stock)
-                        　現在庫　：　　　{{ number_format(round($all_stock->zaikogaku)/1000) }}千円　　　　　　{{ number_format($all_stock->pcs) }}枚　　　　
+                        　現在庫　：　{{ number_format(round($all_stock->zaikogaku)/1000) }}千円　　{{ number_format($all_stock->pcs) }}枚　
                         @endforeach
                     </div>
                 </div>　
@@ -45,7 +48,7 @@
                     <div class=" w-full  sm:px-0 lg:px-0 border mt-0 ">
                     <div class='border bg-gray-100 h-6'>
                         @foreach ($c_stocks as $c_stock)
-                        　現在庫　：　　　{{ number_format(round($c_stock->zaikogaku)/1000) }}千円　　　　　　{{ number_format($c_stock->pcs) }}枚　　　　
+                        　現在庫　：　{{ number_format(round($c_stock->zaikogaku)/1000) }}千円　　{{ number_format($c_stock->pcs) }}枚　
                         @endforeach
                     </div>
                 </div>

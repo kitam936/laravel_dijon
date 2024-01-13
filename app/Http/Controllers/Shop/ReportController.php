@@ -79,14 +79,15 @@ class ReportController extends Controller
         return view('User.shop.report_detail',compact('reports'));
     }
 
-    public function report_create()
+    public function report_create($id)
     {
-        $companies = Company::with('shop')
-        ->whereHas('shop',function($q){$q->where('is_selling','=',1);})
-        ->where('id','>',1000)
-        ->where('id','<',4000)->get();
+        $shops = DB::table('shops')
+        ->join('companies','companies.id','=','shops.company_id')
+        ->where('shops.id',$id)
+        ->select(['shops.company_id','companies.co_name','shops.id','shops.shop_name'])
+        ->get();
 
-        return view('User.shop.report_create',compact('companies'));
+        return view('User.shop.report_create',compact('shops'));
     }
 
     public function report_store(UploadImageRequest $request)
@@ -132,7 +133,7 @@ class ReportController extends Controller
 
         // dd($request->sh_id,$request->comment);
         Report::create([
-            'shop_id' => $request->sh_id,
+            'shop_id' => $request->sh_id2,
             'image1' => $fileNameToStore1,
             'image2' => $fileNameToStore2,
             'image3' => $fileNameToStore3,
@@ -154,7 +155,7 @@ class ReportController extends Controller
         ->where('reports.id',$id)
         ->first();
         // dd($report);
-        return view('user.shop.report_edit',compact('report'));
+        return view('User.shop.report_edit',compact('report'));
     }
 
     public function report_update(Request $request, $id)

@@ -65,13 +65,27 @@ Route::
     Route::get('product_h_shop_zaiko/{hinban}', [ProductController::class, 'h_shop_zaiko'])->name('product.h_shop_zaiko');
     Route::get('report_list', [ReportController::class, 'report_list'])->name('shop.report_list');
     Route::get('report_detail/{id}', [ReportController::class, 'report_detail'])->name('shop.report_detail');
-    Route::get('report_create', [ReportController::class, 'report_create'])->name('shop.report_create');
+    Route::get('report_create/{shop}', [ReportController::class, 'report_create'])->name('shop.report_create');
     Route::get('report_store', [ReportController::class, 'report_store'])->name('shop.report_store');
     Route::post('report_store', [ReportController::class, 'report_store'])->name('shop.report_store');
     Route::get('report_edit/{report}', [ReportController::class, 'report_edit'])->name('shop.report_edit');
     Route::get('report_update/{report}', [ReportController::class, 'report_update'])->name('shop.report_update');
     Route::post('report_update/{report}', [ReportController::class, 'report_update'])->name('shop.report_update');
     Route::delete('report_destroy/{report}', [ReportController::class, 'report_destroy'])->name('shop.report_destroy');
+
+    Route::get('s_m_form/{shop}', [ShopController::class, 's_form_m_sales'])->name('shop.s_m_form');
+    Route::get('s_w_form/{shop}', [ShopController::class, 's_form_w_sales'])->name('shop.s_w_form');
+    Route::get('s_u_form/{shop}', [ShopController::class, 's_form_u_sales'])->name('shop.s_u_form');
+    Route::get('s_s_form/{shop}', [ShopController::class, 's_form_s_sales'])->name('shop.s_s_form');
+    Route::get('s_h_form/{shop}', [ShopController::class, 's_form_h_sales'])->name('shop.s_h_form');
+    Route::get('s_md_form/{shop}', [ShopController::class, 's_form_m_deliv'])->name('shop.s_md_form');
+    Route::get('s_wd_form/{shop}', [ShopController::class, 's_form_w_deliv'])->name('shop.s_wd_form');
+    Route::get('s_ud_form/{shop}', [ShopController::class, 's_form_u_deliv'])->name('shop.s_ud_form');
+    Route::get('s_sd_form/{shop}', [ShopController::class, 's_form_s_deliv'])->name('shop.s_sd_form');
+    Route::get('s_hd_form/{shop}', [ShopController::class, 's_form_h_deliv'])->name('shop.s_hd_form');
+    Route::get('s_uz_form/{shop}', [ShopController::class, 's_form_uz_stocks'])->name('shop.s_uz_form');
+    Route::get('s_sz_form/{shop}', [ShopController::class, 's_form_sz_stocks'])->name('shop.s_sz_form');
+    Route::get('s_hz_form/{shop}', [ShopController::class, 's_form_hz_stocks'])->name('shop.s_hz_form');
 });
 
 Route::resource('shop', ShopController::class)

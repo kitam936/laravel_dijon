@@ -5,26 +5,27 @@
             店別品番納品<br>
         </h2>
 
-        <span class="items-center text-sm mt-2 text-gray-800 dark:text-gray-200 leading-tight" >※店舗・期間を選択してください</span>
-
-        <form method="get" action="{{ route('user.shop.s_search_hd_form')}}" class="mt-4">
-            <div class="flex mb-4">
-                {{-- <span class="items-center text-sm mt-2" >店舗： 　</span> --}}
-                <select class="w-40 h-8 rounded text-sm items-center pt-1" id="sh_id" name="sh_id" type="number" class="border">
-                    <option value="0" @if(\Request::get('sh_id') == '0') selected @endif >全店</option>
-                    @foreach ($companies as $company)
-                        <optgroup  label = "{{ $company->co_name }}" class="text-indigo-700 font-weight:bold">
-                            @foreach ($company->shop as $shop )
-                            <option  value="{{ $shop->id }}" @if(\Request::get('sh_id') == $shop->id) selected @endif >{{ $shop->shop_name }}</option>
-                            @endforeach
-                    @endforeach
-                </select>
-
-                <div class="ml-4" >
-                    <button type="button" class="w-20 h-8 bg-indigo-500 text-white ml-2 hover:bg-indigo-600 rounded " onclick="location.href='{{ route('user.shop.index') }}'" class="mb-2 ml-2 text-right text-black bg-indigo-300 border-0 py-0 px-2 focus:outline-none hover:bg-indigo-300 rounded ">SHOP一覧</button>
-                </div>
-            </div>
+        <div class="mt-4 md:flex">
+            @foreach ($shops as $shop)
             <div class="flex">
+            <div class="flex pl-0 mt-0">
+
+                <div class="pl-0  ml-0 md:ml-2 w-32 h-6 items-center bg-gray-100 border" name="co_id"  value="">{{ $shop->co_name }}</div>
+            </div>
+            <div class="flex pl-0 mt-0">
+
+                <div class="pl-0 w-32 h-6 items-center bg-gray-100 border ml-2" name="ar_id" value="">{{ $shop->shop_name }}</div>
+            </div>
+            <div>
+                <button type="button" class="w-20 h-6 bg-indigo-500 text-white ml-2 hover:bg-indigo-600 rounded" onclick="location.href='{{ route('user.shop.show',['shop'=>$shop->id]) }}'" >戻る</button>
+            </div>
+            </div>
+            @endforeach
+        </div>
+
+        <form method="get" action="{{ route('user.shop.s_hd_form',['shop'=>$shop->id])}}" class="mt-4">
+
+            <div class="flex ml-0">
                      {{-- <span class="items-center text-sm mt-2" >期間： 　</span> --}}
                      <select class="w-32 h-8 rounded text-sm pt-1" id="YW1" name="YW1" type="number" class="border">
                         <option value="" @if(\Request::get('YW1') == '0') selected @endif >{{ $max_YW }}直近週</option>
@@ -72,7 +73,7 @@
                     <td class="w-2/8 text-sm md:px-4 py-1">{{ $h_deliv->year_code }}</td>
                     <td class="w-2/8 text-sm md:px-4 py-1">{{ $h_deliv->unit_id }}</td>
                     <td class="w-2/8 text-sm md:px-4 py-1">{{ $h_deliv->hinban_id }}</td>
-                    <td class="w-2/8 pl-4 text-xs md:px-4 py-1 text-left">{{ $h_deliv->hinmei }}</td>
+                    <td class="w-2/8 text-xs pl-4 md:px-4 py-1 text-left">{{ $h_deliv->hinmei }}</td>
                     <td class="w-2/8 text-sm pr-10 md:px-4 py-1 text-right">{{ number_format($h_deliv->pcs)}}</td>
 
                 </tr>
@@ -105,7 +106,7 @@
                     <td class="w-2/8 text-sm md:px-4 py-1">{{ $h_deliv->year_code }}</td>
                     <td class="w-2/8 text-sm md:px-4 py-1">{{ $h_deliv->unit_id }}</td>
                     <td class="w-2/8 text-sm md:px-4 py-1">{{ $h_deliv->hinban_id }}</td>
-                    <td class="w-2/8 pl-4 text-xs md:px-4 py-1 text-left">{{ $h_deliv->hinmei }}</td>
+                    <td class="w-2/8 text-xs pl-4 md:px-4 py-1 text-left">{{ $h_deliv->hinmei }}</td>
                     <td class="w-2/8 text-sm pr-10 md:px-4 py-1 text-right">{{ number_format($h_deliv->pcs)}}</td>
 
                 </tr>
@@ -118,10 +119,6 @@
         @endif
 
         <script>
-            const shop = document.getElementById('sh_id')
-            shop.addEventListener('change', function(){
-            this.form.submit()
-            })
 
             const YW1 = document.getElementById('YW1')
             YW1.addEventListener('change', function(){

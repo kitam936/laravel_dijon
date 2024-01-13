@@ -1,12 +1,12 @@
 <?php
 
+
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
-use Rap2hpoutre\FastExcel\FastExcel;
 use Illuminate\Support\Facades\Log;
 use \SplFileObject;
 use Throwable;
@@ -22,6 +22,7 @@ use App\Models\Unit;
 
 class DataController extends Controller
 {
+
 
     public function __construct(){
         $this->middleware('auth:admin');
@@ -210,11 +211,20 @@ class DataController extends Controller
         return to_route('admin.data.delete_index')->with(['message'=>'削除されました','status'=>'alert']);
     }
 
+    public function stock_destroy(Request $request)
+    {
+        $Stocks=Stock::query()->delete();
+
+        return to_route('admin.data.delete_index')->with(['message'=>'削除されました','status'=>'alert']);
+    }
+
+
 
 
     public function stock_upload(Request $request)
     {
-        $Stocks=Stock::query()->delete();
+        // タイムアウト対応？
+        set_time_limit(150);
 
         setlocale(LC_ALL, 'ja_JP.UTF-8');
         // dd($request);
@@ -275,89 +285,10 @@ class DataController extends Controller
     }
 
 
-    public function stock_upload2(Request $request)
-    {
-        $Stocks=Stock::query()->delete();
-        // dd($Stocks);
-
-        // 一旦アップロードされたCSVファイルを受け取り保存する
-        $uploaded_file = $request->file('stock_data'); // inputのnameはcsvdataとする
-        $orgName = date('YmdHis') ."_".$request->file('stock_data')->getClientOriginalName();
-        $spath = storage_path('app\\');
-        $path = $spath.$request->file('stock_data')->storeAs('',$orgName);
-
-        // CSVファイル（エクセルファイルも可）を読み込む
-        //$result = (new FastExcel)->importSheets($path); //エクセルファイルをアップロードする時はこちら
-        $result = (new FastExcel)->configureCsv(',')->importSheets($path); // カンマ区切りのCSVファイル時
-
-        // DB登録処理
-        $count = 0; // 登録件数確認用
-        foreach ($result as $row) {
-        foreach($row as $item){
-            // ここでCSV内データとテーブルのカラムを紐付ける（左側カラム名、右側CSV１行目の項目名）
-            $param = [
-            'shop_id' => $item["shop_id"],
-            'hinban_id' => $item["hinban_id"],
-            'pcs' => $item["pcs"],
-            'zaikogaku' => $item["zaikogaku"],
-            ];
-            // 次にDBにinsertする（更新フラグなどに対応するため１行ずつinsertする）
-            DB::table('stocks')->insert($param);
-            $count++;
-        }
-        }
-        return view('admin.data.result',compact('count'));
-        }
 
 
 
 
-    public function shop_upload(Request $request)
-    {
-        DB::beginTransaction();
-
-        try{
-			// 一旦アップロードされたCSVファイルを受け取り保存する
-            $uploaded_file = $request->file('shop_data'); // inputのnameはcsvdataとする
-            // dd($uploaded_file);
-            $orgName = date('YmdHis') ."_".$request->file('shop_data')->getClientOriginalName();
-            // $orgName = date('YmdHis') ."_".$request->shop_data;
-            // dd($orgName);
-            $spath = storage_path('app\\');
-            $path = $spath.$request->shop_data->storeAs('',$orgName);
-            // dd($path);
-            // CSVファイル（エクセルファイルも可）を読み込む
-            //$result = (new FastExcel)->importSheets($path); //エクセルファイルをアップロードする時はこちら
-            $result = (new FastExcel)->configureCsv(',')->importSheets($path); // カンマ区切りのCSVファイル時
-
-            // DB登録処理
-            $count = 0; // 登録件数確認用
-            foreach ($result as $row) {
-            foreach($row as $item){
-                // ここでCSV内データとテーブルのカラムを紐付ける（左側カラム名、右側CSV１行目の項目名）
-                $param = [
-                'id' => $item["id"],
-                'company_id' => $item["company_id"],
-                'area_id' => $item["area_id"],
-                'shop_name' => $item["shop_name"],
-                'shop_info' => $item["info"],
-                'filename' => $item["filename"],
-                'is_selling' => $item["is_selling"],
-                ];
-
-                // 次にDBにinsertする（更新フラグなどに対応するため１行ずつinsertする）
-                DB::table('shops')->insert($param);
-                $count++;
-            }
-            }
-            return view('admin.data.result',compact('count'));
-		}catch(Throwable $e){
-			DB::rollback();
-            Log::error($e);
-            // throw $e;
-            return to_route('admin.data.create')->with(['message'=>'エラーにより処理を中断しました。csvデータを確認してください。','status'=>'alert']);
-		}
-    }
 
     public function sales_upload(Request $request)
     {
