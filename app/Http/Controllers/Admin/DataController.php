@@ -1,5 +1,6 @@
 <?php
 
+
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
@@ -21,6 +22,7 @@ use App\Models\Unit;
 
 class DataController extends Controller
 {
+
 
     public function __construct(){
         $this->middleware('auth:admin');
@@ -221,7 +223,8 @@ class DataController extends Controller
 
     public function stock_upload(Request $request)
     {
-
+        // タイムアウト対応？
+        set_time_limit(150);
 
         setlocale(LC_ALL, 'ja_JP.UTF-8');
         // dd($request);

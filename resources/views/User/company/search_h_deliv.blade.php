@@ -5,12 +5,12 @@
             社別品番納品<br>
         </h2>
 
-        <span class="items-center text-sm mt-2" >　※会社・期間を選択してください</span>
+        <span class="items-center text-sm mt-2 text-gray-800 dark:text-gray-200 leading-tight" >　※会社・期間を選択してください</span>
 
         <form method="get" action="{{ route('user.company.search_hd_form')}}" class="mt-4">
             <div class="flex mb-4">
                 {{-- <span class="items-center text-sm mt-2" >会社： 　</span> --}}
-                    <select class="w-32 h-8 text-sm items-center pt-1" id="co_id" name="co_id"  class="border">
+                    <select class="w-32 h-8 rounded text-sm items-center pt-1" id="co_id" name="co_id"  class="border">
                     <option value="" @if(\Request::get('co_id') == '0') selected @endif >全社</option>
                     @foreach ($companies as $company)
                         <option value="{{ $company->id }}" @if(\Request::get('co_id') == $company->id) selected @endif >{{ $company->co_name }}</option>
@@ -23,14 +23,14 @@
             </div>
             <div class="flex">
                      {{-- <span class="items-center text-sm mt-2" >期間： 　</span> --}}
-                     <select class="w-32 h-8 text-sm items-center pt-1" id="YW1" name="YW1" type="number" class="border">
+                     <select class="w-32 h-8 rounded text-sm items-center pt-1" id="YW1" name="YW1" type="number" class="border">
                         <option value="" @if(\Request::get('YW1') == '0') selected @endif >{{ $max_YW }}直近週</option>
                         @foreach ($YWs as $YW)
                             <option value="{{ $YW->YW }}" @if(\Request::get('YW1') == $YW->YW) selected @endif >{{ floor(($YW->YM)/100)%100 }}年{{ ($YW->YM)%100 }}月{{ ($YW->YW)%100 }}週</option>
                         @endforeach
                     </select>
-                    <span class="items-center text-sm mt-2" > 　～</span>
-                    <select class="w-32 h-8 text-sm items-center pt-1" id="YW2" name="YW2" type="number" class="border">
+                    <span class="items-center text-sm mt-2 text-gray-800 dark:text-gray-200 leading-tight" > 　～</span>
+                    <select class="w-32 h-8 rounded text-sm items-center pt-1" id="YW2" name="YW2" type="number" class="border">
                         <option value="" @if(\Request::get('YW2') == '0') selected @endif >{{ $max_YW }}直近週</option>
                         @foreach ($YWs as $YW)
                             <option value="{{ $YW->YW }}" @if(\Request::get('YW2') == $YW->YW) selected @endif >{{ floor(($YW->YM)/100)%100 }}年{{ ($YW->YM)%100 }}月{{ ($YW->YW)%100 }}週</option>
@@ -67,11 +67,11 @@
 
 
                 <tr>
-                    <td class="w-2/8 md:px-4 py-1">{{ $h_deliv->year_code }}</td>
-                    <td class="w-1/8 md:px-4 py-1">{{ $h_deliv->unit_id }}</td>
-                    <td class="w-3/8 md:px-4 py-1">{{ $h_deliv->hinban_id }}</td>
-                    <td class="w-2/8 md:px-4 py-1 text-left">{{ $h_deliv->hinmei }}</td>
-                    <td class="w-2/8 pr-10 md:px-4 py-1 text-right">{{ number_format($h_deliv->pcs)}}</td>
+                    <td class="w-2/8 text-sm md:px-4 py-1">{{ $h_deliv->year_code }}</td>
+                    <td class="w-1/8 text-sm md:px-4 py-1">{{ $h_deliv->unit_id }}</td>
+                    <td class="w-3/8 text-sm md:px-4 py-1">{{ $h_deliv->hinban_id }}</td>
+                    <td class="w-2/8 text-xs md:px-4 py-1 text-left">{{ $h_deliv->hinmei }}</td>
+                    <td class="w-2/8 text-sm pr-10 md:px-4 py-1 text-right">{{ number_format($h_deliv->pcs)}}</td>
 
                 </tr>
                 @endforeach
@@ -100,11 +100,11 @@
 
 
                 <tr>
-                    <td class="w-2/8 md:px-4 py-1">{{ $h_deliv->year_code }}</td>
-                    <td class="w-1/8 md:px-4 py-1">{{ $h_deliv->unit_id }}</td>
-                    <td class="w-3/8 md:px-4 py-1">{{ $h_deliv->hinban_id }}</td>
-                    <td class="w-2/8 pl-4 md:px-4 py-1 text-left">{{ $h_deliv->hinmei }}</td>
-                    <td class="w-2/8 pr-10 md:px-4 py-1 text-right">{{ number_format($h_deliv->pcs)}}</td>
+                    <td class="w-2/8 text-sm md:px-4 py-1">{{ $h_deliv->year_code }}</td>
+                    <td class="w-1/8 text-sm md:px-4 py-1">{{ $h_deliv->unit_id }}</td>
+                    <td class="w-3/8 text-sm md:px-4 py-1">{{ $h_deliv->hinban_id }}</td>
+                    <td class="w-2/8 text-xs pl-4 md:px-4 py-1 text-left">{{ $h_deliv->hinmei }}</td>
+                    <td class="w-2/8 text-sm pr-10 md:px-4 py-1 text-right">{{ number_format($h_deliv->pcs)}}</td>
 
                 </tr>
                 @endforeach

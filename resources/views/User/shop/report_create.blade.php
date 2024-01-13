@@ -1,17 +1,17 @@
 <x-app-layout>
     <x-slot name="header">
         <div >
-            <h2 class="mb-4 font-semibold text-xl text-gray-800 leading-tight">
+            <h2 class="mb-4 font-semibold text-xl  text-gray-800 dark:text-gray-200 leading-tight">
             <div>
                 店舗Report登録
             </div>
             </h2>
             <div class="flex">
             <div class="ml-10 mb-2">
-                <button type="button" onclick="location.href='{{ route('user.shop.report_list') }}'" class="w-32 flex-auto p-1 text-sm text-gray-900 dark:text-gray-100 bg-gray-200   hover:bg-gray-300 rounded">店舗Report一覧</button>
+                <button type="button" onclick="location.href='{{ route('user.shop.report_list') }}'" class="w-32 flex-auto p-1 text-sm text-white dark:text-gray-100 bg-indigo-400 hover:bg-indigo-500 rounded">店舗Report一覧</button>
             </div>
             <div class="ml-4 mb-2">
-                <button type="button" onclick="location.href='{{ route('user.shop.index') }}'" class="w-32 flex-auto p-1 text-sm text-gray-900 dark:text-gray-100 bg-gray-200   hover:bg-gray-300 rounded">店舗一覧</button>
+                <button type="button" onclick="location.href='{{ route('user.shop.index') }}'" class="w-32 flex-auto p-1 text-sm text-white dark:text-gray-100 bg-indigo-400 hover:bg-indigo-500 rounded">店舗一覧</button>
             </div>
             </div>
         </div>
@@ -26,15 +26,14 @@
                     @csrf
                     <div class="-m-2">
                         <div class="mb-0">
-                            <span class="items-center text-sm mt-2" >店舗： 　</span>
-                            <select class="w-40 h-8 text-sm items-center pt-1" id="sh_id" name="sh_id" type="number" class="border">
-                                <option value="{{ old('name') }}">店舗選択※必須</option>
-                                @foreach ($companies as $company)
-                                    <optgroup  label = "{{ $company->co_name }}" class="text-indigo-700 font-weight:bold">
-                                        @foreach ($company->shop as $shop )
-                                        <option  value="{{ $shop->id }}" >{{ $shop->shop_name }}</option>
-                                        @endforeach
+                            <span class="items-center text-sm mt-2 text-gray-800 dark:text-gray-200 leading-tight" >店舗： 　</span>
+                                @foreach ($shops as $shop)
+                                <div class="flex pl-0 mt-0">
+                                    <div class="pl-0  ml-0 md:ml-2 w-80 h-6 items-center bg-gray-100 border rounded text-gray-800 dark:text-gray-200 leading-tight" name="sh_id"  value="{{ $shop->id }}">{{ $shop->id }}--{{ $shop->shop_name }}</div>
+                                    <input type="hidden" class="pl-0  ml-0 md:ml-2 w-32 h-6 items-center bg-gray-100 border rounded" name="sh_id2"  value="{{ $shop->id }}"/>
+                                </div>
                                 @endforeach
+
                             </select>
 
                         </div>
@@ -45,7 +44,7 @@
                               <textarea id="comment" name="comment" rows="8" required class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">{{ old('comment') }}</textarea>
                             </div>
                         </div>
-                        <div class="p-0 flex">
+                        <div class="p-0 md:flex">
                         <div class="relative">
                             <label for="image1" class="leading-7 text-sm text-gray-600">画像1</label>
                             <input type="file" id="image1" name="image1" multiple accept=“image/png,image/jpeg,image/jpg” class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">

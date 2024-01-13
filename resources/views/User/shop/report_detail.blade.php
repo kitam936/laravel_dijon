@@ -1,17 +1,17 @@
 <x-app-layout>
     <x-slot name="header">
 
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight mb-2">
+        <h2 class="font-semibold text-xl  text-gray-800 dark:text-gray-200 leading-tight">
         <div>
             店舗Report詳細
         </div>
         </h2>
         <div class="flex ml-8">
         <div class="ml-2 ">
-            <button type="button" onclick="location.href='{{ route('user.shop.report_list') }}'" class="w-32 text-center text-sm text-gray-900 bg-gray-200 border-0 py-1 px-2 focus:outline-none hover:bg-gray-300 rounded ">店舗Report一覧</button>
+            <button type="button" onclick="location.href='{{ route('user.shop.report_list') }}'" class="w-32 text-center text-sm text-white bg-indigo-400 border-0 py-1 px-2 focus:outline-none hover:bg-indigo-600 rounded ">店舗Report一覧</button>
         </div>
         <div class="ml-2 ">
-            <button type="button" onclick="location.href='{{ route('user.shop.index') }}'" class="w-32 text-center text-sm text-gray-900 bg-gray-200 border-0 py-1 px-2 focus:outline-none hover:bg-gray-300 rounded ">店舗一覧</button>
+            <button type="button" onclick="location.href='{{ route('user.shop.index') }}'" class="w-32 text-center text-sm text-white bg-indigo-400 border-0 py-1 px-2 focus:outline-none hover:bg-indigo-600 rounded ">店舗一覧</button>
         </div>
 
         @foreach ($reports as $report)
@@ -36,17 +36,17 @@
 
                                 <div class="p-2 w-full mx-auto">
                                     <div class="relative">
-                                        <label for="date" class="leading-7 text- text-gray-600">date</label>
+                                        <label for="date" class="leading-7 text-sm  text-gray-800 dark:text-gray-200 leading-tight">date</label>
                                         <div  id="date" name="date" value="{{$report->created_at}}" class="h-10 text-lg w-full bg-gray-100 bg-opacity-50 rounded focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">{{$report->created_at}}
                                     </div>
                                     <div class="relative">
-                                        <label for="name" class="leading-7 text- text-gray-600">店名</label>
+                                        <label for="name" class="leading-7 text-sm  text-gray-800 dark:text-gray-200 leading-tight">店名</label>
                                         <div  id="name" name="name" value="{{$report->shop_name}}" class="h-10 text-lg w-full bg-gray-100 bg-opacity-50 rounded focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">{{$report->shop_name}}
                                     </div>
                                     </div>
                                     <div class="p-2 mx-auto mb-1">
                                         <div class="relative">
-                                            <label for="information" class="leading-7 text-sm text-gray-600">コメント</label>
+                                            <label for="information" class="leading-7 text-sm  text-gray-800 dark:text-gray-200 leading-tight">コメント</label>
                                             <div id="information" name="information" rows="10" class="w-full bg-gray-100 bg-opacity-50 rounded focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">{{$report->comment}}</div>
                                         </div>
                                     </div>

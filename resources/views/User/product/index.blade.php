@@ -10,15 +10,15 @@
 
             <div class="lg:flex">
                 <div class="md:flex">
-                    <label for="year_code" class="items-center text-sm mt-2" >年度CD：</label>
-                    <select class="w-24 h-8 text-sm pt-1 mr-2 mb-2" id="year_code" name="year_code" type="number" class="border">
+                    <label for="year_code" class="items-center text-sm mt-2 text-gray-800 dark:text-gray-200 leading-tight" >年度CD：</label>
+                    <select class="w-24 h-8 rounded text-sm pt-1 mr-2 mb-2" id="year_code" name="year_code" type="number" class="border">
                     <option value="" @if(\Request::get('year_code') == '999') selected @endif >指定なし</option>
                     @foreach ($years as $year)
                         <option value="{{ $year->year_code }}" @if(\Request::get('year_code') == $year->year_code ) selected @endif >{{ $year->year_code  }}</option>
                     @endforeach
                     </select>
-                    <label for="brand_code" class="items-center text-sm mt-2 " >Brand：</label>
-                    <select class="w-24 h-8 text-sm pt-1 border mb-2 mr-4 " id="brand_code" name="brand_code" type="number" >
+                    <label for="brand_code" class="items-center text-sm mt-2  text-gray-800 dark:text-gray-200 leading-tight" >Brand：</label>
+                    <select class="w-24 h-8 rounded text-sm pt-1 border mb-2 mr-4 " id="brand_code" name="brand_code" type="number" >
                     <option value="" @if(\Request::get('brand_code') == '0') selected @endif >指定なし</option>
                     @foreach ($brands as $brand)
                         <option value="{{ $brand->id }}" @if(\Request::get('brand_code') == $brand->id ) selected @endif >{{ $brand->id  }}</option>
@@ -26,15 +26,15 @@
                     </select>
                 </div>
                 <div class="md:flex">
-                    <label for="season_code" class="items-center text-sm mt-2" >季節CD：</label>
-                    <select class="w-24 h-8 text-sm pt-1 mr-4 mb-2 border " id="season_code" name="season_code" type="number" >
+                    <label for="season_code" class="items-center text-sm mt-2 text-gray-800 dark:text-gray-200 leading-tight" >季節CD：</label>
+                    <select class="w-24 h-8 rounded text-sm pt-1 mr-4 mb-2 border " id="season_code" name="season_code" type="number" >
                     <option value="" @if(\Request::get('season_code') == '999') selected @endif >指定なし</option>
                     @foreach ($seasons as $season)
                         <option value="{{ $season->season_id }}" @if(\Request::get('season_code') == $season->season_id ) selected @endif >{{ $season->season_name  }}</option>
                     @endforeach
                     </select>
-                    <label for="unit_code" class="items-center text-sm mt-2 " >Unit：</label>
-                    <select class="w-24 h-8 text-sm pt-1 mr-4 mb-2 border " id="unit_code" name="unit_code" type="number" >
+                    <label for="unit_code" class="items-center text-sm mt-2  text-gray-800 dark:text-gray-200 leading-tight" >Unit：</label>
+                    <select class="w-24 h-8 rounded text-sm pt-1 mr-4 mb-2 border " id="unit_code" name="unit_code" type="number" >
                     <option value="" @if(\Request::get('unit_code') == '0') selected @endif >指定なし</option>
                     @foreach ($units as $unit)
                         <option value="{{ $unit->id }}" @if(\Request::get('unit_code') == $unit->id ) selected @endif >{{ $unit->id  }}</option>
@@ -42,8 +42,8 @@
                     </select>
                 </div>
                 <div class="flex">
-                    <label for="hinban_code" class="items-center text-sm mt-2 mr-1" >品番CD：</label>
-                    <input class="w-44 h-8 text-sm pt-1" id="hinban_code" placeholder="品番入力（一部でも可）" name="hinban_code" type="number" class="border">
+                    <label for="hinban_code" class="items-center text-sm mt-2 mr-1 text-gray-800 dark:text-gray-200 leading-tight" >品番CD：</label>
+                    <input class="w-44 h-8 rounded text-sm pt-1" id="hinban_code" placeholder="品番入力（一部でも可）" name="hinban_code" type="number" class="border">
                     <div>
                     <button  type="button" class="w-24 h-8 ml-2 text-center text-gray-900 bg-gray-200 border-0 py-0 px-2 focus:outline-none hover:bg-gray-300 rounded">品番検索</button>
                     </div>

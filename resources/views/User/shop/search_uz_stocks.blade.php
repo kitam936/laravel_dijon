@@ -5,13 +5,13 @@
             店別Unit在庫<br>
         </h2>
 
-        <span class="items-center text-sm mt-2" >　※店舗を選択してください　　　</span>
+        <span class="items-center text-sm mt-2 text-gray-800 dark:text-gray-200 leading-tight" >　※店舗を選択してください　　　</span>
 
         <form method="get" action="{{ route('user.shop.s_search_uz_form')}}" class="mt-4">
             <div class="flex">
             <div class="flex mb-2">
                 {{-- <span class="items-center text-sm mt-2" >店舗： 　</span> --}}
-                <select class="w-40 h-8 text-sm items-center" id="sh_id" name="sh_id" type="number" class="border">
+                <select class="w-40 h-8 rounded text-sm items-center" id="sh_id" name="sh_id" type="number" class="border">
                     <option value="0" @if(\Request::get('sh_id') == '0') selected @endif >全社</option>
                     @foreach ($companies as $company)
                         <optgroup  label = "{{ $company->co_name }}" class="text-indigo-700 font-weight:bold">

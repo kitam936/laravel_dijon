@@ -5,13 +5,13 @@
             社別Season在庫<br>
         </h2>
 
-        <span class="items-center text-sm mt-1" >　※会社を選択してください　　　</span>
+        <span class="items-center text-sm mt-1 text-gray-800 dark:text-gray-200 leading-tight" >　※会社を選択してください　　　</span>
 
         <form method="get" action="{{ route('user.company.search_sz_form')}}" class="mt-2">
             <div class="flex">
                 <div class="flex mb-2">
-                    <span class="items-center text-sm mt-1" >会社： 　</span>
-                        <select class="w-32 h-8 text-sm pt-1" id="co_id" name="co_id"  class="border">
+
+                        <select class="w-32 h-8 rounded text-sm pt-1" id="co_id" name="co_id"  class="border">
                         <option value="" @if(\Request::get('co_id') == '0') selected @endif >全社</option>
                         @foreach ($companies as $company)
                             <option value="{{ $company->id }}" @if(\Request::get('co_id') == $company->id) selected @endif >{{ $company->co_name }}</option>

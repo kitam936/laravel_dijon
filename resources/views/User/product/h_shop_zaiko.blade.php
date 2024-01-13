@@ -10,7 +10,7 @@
         @endforeach --}}
         <div class="flex mt-4">
         <div calss="">　品番　：　{{ $hinbans->hinban_id }}</div>
-        <button type="button" onclick="location.href='{{ route('user.product.index') }}'" class="ml-10 mb-2 text-right text-black bg-gray-300 border-0 py-0 px-2 focus:outline-none hover:bg-gray-400 rounded ">戻る</button>
+        <button type="button" onclick="location.href='{{ route('user.product.index') }}'" class="ml-10 mb-2 text-right text-white bg-indigo-400 border-0 py-0 px-2 focus:outline-none hover:bg-indigo-600 rounded ">戻る</button>
         </div>
 
     </x-slot>
@@ -35,10 +35,10 @@
                 <tbody>
                     @foreach ($h_shop_stocks as $stock)
                     <tr>
-                        <td class="w-2/12 md:px-4 py-1"> {{ $stock->ar_name }} </td>
-                        <td class="w-4/12 md:px-4 py-1">{{ $stock->co_name }}</td>
-                        <td class="w-4/12 md:px-4 py-1"> {{ $stock->shop_name }}</td>
-                        <td class="w-2/12 pr-4 md:px-4 py-1 text-right">{{ number_format($stock->pcs )}}</td>
+                        <td class="w-2/12 text-sm md:px-4 py-1"> {{ $stock->ar_name }} </td>
+                        <td class="w-4/12 text-sm md:px-4 py-1">{{ $stock->co_name }}</td>
+                        <td class="w-4/12 text-sm md:px-4 py-1"> {{ $stock->shop_name }}</td>
+                        <td class="w-2/12 text-sm pr-4 md:px-4 py-1 text-right">{{ number_format($stock->pcs )}}</td>
 
                     </tr>
                     @endforeach

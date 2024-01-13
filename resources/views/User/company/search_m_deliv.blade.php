@@ -7,11 +7,11 @@
             社別月別納品<br>
         </h2>
 
-        <span class="items-center text-sm mt-2" >　※会社を選択してください　　　</span>
+        <span class="items-center text-sm mt-2 text-gray-800 dark:text-gray-200 leading-tight" >　※会社を選択してください　　　</span>
 
         <form method="get" action="{{ route('user.company.search_md_form')}}" class="mt-4">
         <div class="flex">
-        <select class="w-40 h-8 text-sm" id="co_id" name="co_id" type="text" class="border">
+        <select class="w-40 h-8 rounded text-sm" id="co_id" name="co_id" type="text" class="border">
         <option value="" @if(\Request::get('co_id') == '0') selected @endif >全社</option>
         @foreach ($companies as $company)
             <option value="{{ $company->id }}" @if(\Request::get('co_id') == $company->id) selected @endif >{{ $company->co_name }}</option>
