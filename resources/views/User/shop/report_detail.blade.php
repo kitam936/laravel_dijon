@@ -6,16 +6,16 @@
             店舗Report詳細
         </div>
         </h2>
-        <div class="flex ml-8">
-        <div class="ml-2 ">
+        <div class="md:flex ml-8 ">
+        <div class="ml-2 mb-2 md:mb-0">
             <button type="button" onclick="location.href='{{ route('user.shop.report_list') }}'" class="w-32 text-center text-sm text-white bg-indigo-400 border-0 py-1 px-2 focus:outline-none hover:bg-indigo-600 rounded ">店舗Report一覧</button>
         </div>
-        <div class="ml-2 ">
+        <div class="ml-2 mb-2 md:mb-0">
             <button type="button" onclick="location.href='{{ route('user.shop.index') }}'" class="w-32 text-center text-sm text-white bg-indigo-400 border-0 py-1 px-2 focus:outline-none hover:bg-indigo-600 rounded ">店舗一覧</button>
         </div>
 
         @foreach ($reports as $report)
-        <div class="ml-2 ">
+        <div class="ml-2 mb-2 md:mb-0">
             <button type="button" onclick="location.href='{{ route('user.shop.report_edit',['report'=>$report->id])}}'" class="w-32 text-center text-sm text-white bg-indigo-500 border-0 py-1 px-2 focus:outline-none hover:bg-indigo-600 rounded ">編集</button>
         </div>
         @endforeach
