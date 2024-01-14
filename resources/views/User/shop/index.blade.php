@@ -1,9 +1,9 @@
 
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
+        <h2 class="font-semibold mb-2 text-xl text-gray-800 dark:text-gray-200 leading-tight">
             SHOP一覧
-            {{-- <button type="button" onclick="location.href='{{ route('user.company.index') }}'" class="mb-2 ml-2 text-right text-black bg-indigo-300 border-0 py-0 px-2 focus:outline-none hover:bg-indigo-300 rounded ">戻る</button> --}}
+
         </h2>
         <div class=" p-1 text-gray-900 dark:text-gray-100 md:flex-auto ">
             <button type="button" class="w-32 flex-auto p-0 text-sm text-white dark:text-white bg-indigo-400 hover:bg-indigo-600 rounded" onclick="location.href='{{ route('user.shop.s_search_m_form') }}'" >月別売上推移</button>
@@ -30,16 +30,16 @@
         <form method="get" action="{{ route('user.shop.index')}}" class="mt-4">
 
             <div class="md:flex">
-                <div class="mb-2 md:flex mb-4">
+                <div class="mb-2 ml-2 md:flex mb-4">
                     <label class="items-center text-sm mt-2 text-gray-800 dark:text-gray-200 leading-tight" >エリア　</label>
-                        <select class="w-32 h-8 rounded text-sm pt-1" id="ar_id" name="ar_id"  class="border">
-                        <option value="" @if(\Request::get('ar_id') == '0') selected @endif >指定なし</option>
-                        @foreach ($areas as $area)
-                            <option value="{{ $area->id }}" @if(\Request::get('ar_id') == $area->id) selected @endif >{{ $area->ar_name }}</option>
-                        @endforeach
+                    <select class="w-32 h-8 rounded text-sm pt-1" id="ar_id" name="ar_id"  class="border">
+                    <option value="" @if(\Request::get('ar_id') == '0') selected @endif >指定なし</option>
+                    @foreach ($areas as $area)
+                        <option value="{{ $area->id }}" @if(\Request::get('ar_id') == $area->id) selected @endif >{{ $area->ar_name }}</option>
+                    @endforeach
                          </select>
                 </div>
-                <div class="flex mb-2 md:flex mb-4">
+                <div class="flex ml-2 mb-2 md:flex mb-4">
                     <label class="pr-1 items-center text-sm mt-2 md:ml-4 text-gray-800 dark:text-gray-200 leading-tight" >会  社　</label>
                         <select class="w-32 h-8 rounded text-sm pt-1 " id="co_id" name="co_id"  class="border">
                         <option value="" @if(\Request::get('co_id') == '0') selected @endif >指定なし</option>
@@ -47,13 +47,15 @@
                             <option value="{{ $company->id }}" @if(\Request::get('co_id') == $company->id) selected @endif >{{ $company->co_name }}</option>
                         @endforeach
                         </select><br>
-                        <label class="items-center text-sm mt-2 ml-4 text-gray-800 dark:text-gray-200 leading-tight" >ワード検索</label>
-                        <input class="w-44 h-8 text-sm pt-1" id="info" placeholder="キーワード入力" name="info"  class="border">
                 </div>
-                <div class="ml-80 md:ml-4">
+                <div class="flex mb-2 md:flex mb-4">
+                        <label class="items-center ml-2 text-sm mt-2 text-gray-800 dark:text-gray-200 leading-tight" >検索</label>
+                        <input class="w-44 h-8 ml-5 rounded text-sm pt-1" id="info" placeholder="キーワード入力" name="info"  class="border">
+
+                <div class="ml-4 md:ml-4">
                     <button type="button" class="w-20 h-8 bg-indigo-500 text-white ml-2 hover:bg-indigo-600 rounded" onclick="location.href='{{ route('user.shop.index') }}'" class="mb-2 ml-2 text-right text-black bg-indigo-300 border-0 py-0 px-2 focus:outline-none hover:bg-indigo-300 rounded ">全表示</button>
                 </div>
-
+            </div>
             </div>
         </form>
     </x-slot>

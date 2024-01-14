@@ -14,7 +14,7 @@
             </div>
             <div class="flex pl-0 mt-0 md:ml-2">
 
-                <div class="pl-0 w-32 h-6 items-center bg-gray-100 border" name="ar_id" value="">{{ $shop->shop_name }}</div>
+                <div class="pl-0 ml-2 w-32 h-6 items-center bg-gray-100 border" name="ar_id" value="">{{ $shop->shop_name }}</div>
             </div>
             <div>
                 <button type="button" class="w-20 h-6 bg-indigo-500 text-white ml-2 hover:bg-indigo-600 rounded" onclick="location.href='{{ route('user.shop.show',['shop'=>$shop->id]) }}'" >戻る</button>
