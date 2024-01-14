@@ -3,7 +3,7 @@
     <x-slot name="header">
         <h2 class="font-semibold mb-2 text-xl text-gray-800 dark:text-gray-200 leading-tight">
             SHOP一覧
-            {{-- <button type="button" onclick="location.href='{{ route('user.company.index') }}'" class="mb-2 ml-2 text-right text-black bg-indigo-300 border-0 py-0 px-2 focus:outline-none hover:bg-indigo-300 rounded ">戻る</button> --}}
+
         </h2>
         <div class=" p-1 text-gray-900 dark:text-gray-100 md:flex-auto ">
             <button type="button" class="w-32 flex-auto p-0 text-sm text-white dark:text-white bg-indigo-400 hover:bg-indigo-600 rounded" onclick="location.href='{{ route('user.shop.s_search_m_form') }}'" >月別売上推移</button>
