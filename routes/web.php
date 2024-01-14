@@ -22,11 +22,11 @@ use App\Http\Controllers\Shop\ReportController;
 //
 
 Route::get('/', function () {
-    return view('user.auth.login');
+    return view('User.auth.login');
 });
 
 Route::get('/dashboard', function () {
-    return view('user.dashboard');
+    return view('User.dashboard');
 })->middleware(['auth:users', 'verified'])->name('dashboard');
 
 

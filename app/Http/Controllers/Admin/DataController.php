@@ -424,6 +424,7 @@ class DataController extends Controller
     public function hinban_upsert(Request $request)
     {
 
+        set_time_limit(150);
         setlocale(LC_ALL, 'ja_JP.UTF-8');
         // dd($request);
 		$file = $request->file('hinban_data');
