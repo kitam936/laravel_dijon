@@ -10,7 +10,7 @@
             <div class="flex">
             <div class="flex pl-0 mt-0">
 
-                <div class="pl-0  ml-0 md:ml-2 w-32 h-6 items-center bg-gray-100 border" name="co_id"  value="">{{ $shop->co_name }}</div>
+                <div class="pl-0  ml-0 w-32 h-6 items-center bg-gray-100 border" name="co_id"  value="">{{ $shop->co_name }}</div>
             </div>
             <div class="flex pl-0 mt-0">
 
