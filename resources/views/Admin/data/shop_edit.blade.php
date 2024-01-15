@@ -8,7 +8,7 @@
             </h2>
             <div class="flex">
             <div class="ml-20">
-                <button type="button" onclick="location.href='{{ route('admin.data.shop_index') }}'" class="w-36 ml-2 text-center text-gray-900 bg-gray-300 border-0 py-0 px-2 focus:outline-none hover:bg-gray-400 rounded ">店舗データ一覧</button>
+                <button type="button" onclick="location.href='{{ route('admin.data.shop_index') }}'" class="text-white bg-indigo-400 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-ml">店舗データ一覧</button>
             </div>
 
             </div>

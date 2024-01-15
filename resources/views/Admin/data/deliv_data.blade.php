@@ -7,7 +7,7 @@
             納品データ
             </div>
             <div class="w-40 ml-60 text-sm items-right mb-0">
-                <button onclick="location.href='{{ route('admin.data.data_index') }}'" class="text-black bg-gray-200 border-0 py-2 px-8 focus:outline-none hover:bg-gray-300 rounded text-ml">戻る</button>
+                <button onclick="location.href='{{ route('admin.data.data_index') }}'" class="text-white bg-indigo-400 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-ml">戻る</button>
             </div>
             </div>
         </h2>
