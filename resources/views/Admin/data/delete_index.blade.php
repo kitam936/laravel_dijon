@@ -42,7 +42,7 @@
                                     @endforeach
                                 </select>
                                 <span class="items-center text-sm mt-2" >　週　　</span>
-                                <button type="submit" class="text-white bg-red-500 border-0 py-1 px-4 focus:outline-none hover:bg-red-600 rounded">売上データ削除</button>
+                                <button type="submit" class="ml-5 text-white bg-red-500 border-0 py-1 px-4 focus:outline-none hover:bg-red-600 rounded">売上データ削除</button>
                             </form>
 
                             <form method="POST" action="{{ route('admin.data.deliv_destroy') }}" class=" p-1" >
@@ -62,14 +62,14 @@
                                     @endforeach
                                 </select>
                                 <span class="items-center text-sm mt-2" >　週　　</span>
-                                <button type="submit" class="text-white bg-red-500 border-0 py-1 px-4 focus:outline-none hover:bg-red-600 rounded">納品データ削除</button>
+                                <button type="submit" class="ml-5 text-white bg-red-500 border-0 py-1 px-4 focus:outline-none hover:bg-red-600 rounded">納品データ削除</button>
                             </form>
 
                             <form method="POST" action="{{ route('admin.data.stock_destroy') }}" class=" ml-0 p-1 items-right " >
                                 @csrf
                                 @method('delete')
                                <span class="items-center mt-2 mr-20" >在庫データの全削除～</span>
-                                <button type="submit" class="ml-60 text-white bg-red-500 border-0 py-1 px-4 focus:outline-none hover:bg-red-600 rounded">在庫データ削除</button>
+                                <button type="submit" class="ml-44 text-white bg-red-500 border-0 py-1 px-4 focus:outline-none hover:bg-red-600 rounded">在庫データ削除</button>
                             </form>
 
                         </div>

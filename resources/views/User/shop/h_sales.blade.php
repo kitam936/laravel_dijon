@@ -25,7 +25,7 @@
 
 
         <form method="get" action="{{ route('user.shop.s_h_form',['shop'=>$shop->id])}}" class="mt-4">
-
+            <span class="items-center text-sm mt-2 text-gray-800 dark:text-gray-200 leading-tight" >※期間を選択してください</span>
             <div class="flex ml-0">
                      {{-- <span class="items-center text-sm mt-2" >期間： 　</span> --}}
                      <select class="w-32 h-8 rounded text-sm pt-1" id="YW1" name="YW1" type="number" class="border">
