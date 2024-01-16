@@ -49,16 +49,16 @@
                                 @csrf
                                 @method('delete')
                                 <select class="w-32 h-8 text-sm items-center pt-1" id="YW3" name="YW3" type="number" class="border">
-                                    <option value="" @if(\Request::get('YW3') == '0') selected @endif >{{ $max_YW }}</option>
-                                    @foreach ($YWs as $YW)
-                                        <option value="{{ $YW->YW }}" @if(\Request::get('YW3') == $YW->YW) selected @endif >{{ floor(($YW->YM)/100)%100 }}年{{ ($YW->YM)%100 }}月{{ ($YW->YW)%100 }}週</option>
+                                    <option value="" @if(\Request::get('YW3') == '0') selected @endif >{{ $max_YWd }}</option>
+                                    @foreach ($YWds as $YWd)
+                                        <option value="{{ $YWd->YW }}" @if(\Request::get('YW3') == $YWd->YW) selected @endif >{{ floor(($YWd->YM)/100)%100 }}年{{ ($YWd->YM)%100 }}月{{ ($YWd->YW)%100 }}週</option>
                                     @endforeach
                                 </select>
                                 <span class="items-center text-sm mt-2" >　週　～</span>
                                 <select class="w-32 h-8 text-sm items-center pt-1" id="YW4" name="YW4" type="number" class="border">
-                                    <option value="" @if(\Request::get('YW4') == '0') selected @endif >{{ $max_YW }}</option>
-                                    @foreach ($YWs as $YW)
-                                        <option value="{{ $YW->YW }}" @if(\Request::get('YW4') == $YW->YW) selected @endif >{{ floor(($YW->YM)/100)%100 }}年{{ ($YW->YM)%100 }}月{{ ($YW->YW)%100 }}週</option>
+                                    <option value="" @if(\Request::get('YW4') == '0') selected @endif >{{ $max_YWd }}</option>
+                                    @foreach ($YWds as $YWd)
+                                        <option value="{{ $YWd->YW }}" @if(\Request::get('YW4') == $YWd->YW) selected @endif >{{ floor(($YWd->YM)/100)%100 }}年{{ ($YWd->YM)%100 }}月{{ ($YWd->YW)%100 }}週</option>
                                     @endforeach
                                 </select>
                                 <span class="items-center text-sm mt-2" >　週　　</span>

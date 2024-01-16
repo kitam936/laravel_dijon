@@ -161,7 +161,16 @@ class DataController extends Controller
         $max_YM=Sale::max('YM');
         $max_YW=Sale::max('YW');
 
-        return view('admin.data.delete_index',compact('max_YM','max_YW','YWs'));
+        $YWds=DB::table('deliveries')
+        ->select(['YW','YM'])
+        ->groupBy(['YW','YM'])
+        ->orderBy('YM','desc')
+        ->orderBy('YW','desc')
+        ->get();
+        $max_YMd=Delivery::max('YM');
+        $max_YWd=Delivery::max('YW');
+
+        return view('admin.data.delete_index',compact('max_YM','max_YW','YWs','max_YMd','max_YWd','YWds'));
     }
 
     public function shop_edit($id)
@@ -224,7 +233,7 @@ class DataController extends Controller
     public function stock_upload(Request $request)
     {
         // タイムアウト対応？
-        set_time_limit(150);
+        ini_set('max_execution_time',180);
 
         setlocale(LC_ALL, 'ja_JP.UTF-8');
         // dd($request);
@@ -292,6 +301,8 @@ class DataController extends Controller
 
     public function sales_upload(Request $request)
     {
+        // タイムアウト対応？
+        ini_set('max_execution_time',180);
 
         setlocale(LC_ALL, 'ja_JP.UTF-8');
         // dd($request);
@@ -357,6 +368,8 @@ class DataController extends Controller
 
     public function hinban_upload(Request $request)
     {
+        // タイムアウト対応？
+        ini_set('max_execution_time',180);
 
         setlocale(LC_ALL, 'ja_JP.UTF-8');
         // dd($request);
@@ -423,6 +436,8 @@ class DataController extends Controller
 
     public function hinban_upsert(Request $request)
     {
+        // タイムアウト対応？
+        ini_set('max_execution_time',180);
 
         set_time_limit(150);
         setlocale(LC_ALL, 'ja_JP.UTF-8');
@@ -788,6 +803,8 @@ class DataController extends Controller
 
     public function delivery_upload(Request $request)
     {
+        // タイムアウト対応？
+        ini_set('max_execution_time',180);
 
         setlocale(LC_ALL, 'ja_JP.UTF-8');
         // dd($request);

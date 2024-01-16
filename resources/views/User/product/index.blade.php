@@ -49,7 +49,7 @@
                     </div>
 
                 </div>
-                <div class="pl-2 mt-2 md:ml-0 ml-14 md:ml-0">
+                <div class="pl-2 mt-2 md:mt-0 md:ml-0 ml-14 md:ml-0">
                     <button type="button" class="w-20 h-8 bg-indigo-500 text-white ml-0 hover:bg-indigo-600 rounded lg:ml-2 " onclick="location.href='{{ route('user.product.index') }}'" >全表示</button>
                 </div>
 
