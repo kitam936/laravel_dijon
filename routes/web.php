@@ -86,6 +86,8 @@ Route::
     Route::get('s_uz_form/{shop}', [ShopController::class, 's_form_uz_stocks'])->name('shop.s_uz_form');
     Route::get('s_sz_form/{shop}', [ShopController::class, 's_form_sz_stocks'])->name('shop.s_sz_form');
     Route::get('s_hz_form/{shop}', [ShopController::class, 's_form_hz_stocks'])->name('shop.s_hz_form');
+    Route::get('c_sales_rank_form', [CompanyController::class, 'c_sales_rank'])->name('company.c_sales_rank');
+    Route::get('s_sales_rank_form', [ShopController::class, 's_sales_rank'])->name('shop.s_sales_rank');
 });
 
 Route::resource('shop', ShopController::class)
