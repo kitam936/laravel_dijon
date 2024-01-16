@@ -11,6 +11,7 @@
             <button type="button" class="w-32 flex-auto p-0 text-sm text-white dark:text-white bg-indigo-400 hover:bg-indigo-600 rounded" onclick="location.href='{{ route('user.shop.s_search_u_form') }}'" >Unit別売上</button>
             <button type="button" class="w-32 flex-auto p-0 text-sm text-white dark:text-white bg-indigo-400 hover:bg-indigo-600 rounded" onclick="location.href='{{ route('user.shop.s_search_s_form') }}'" >Season別売上</button>
             <button type="button" class="w-32 flex-auto p-0 text-sm text-white dark:text-white bg-indigo-400 hover:bg-indigo-600 rounded" onclick="location.href='{{ route('user.shop.s_search_h_form') }}'" >品番別売上</button>
+            <button type="button" class="w-32 flex-auto p-0 text-sm text-white dark:text-white bg-indigo-400  hover:bg-indigo-600 rounded" onclick="location.href='{{ route('user.shop.s_sales_rank') }}'" >期間売上</button>
         </div>
         <div class=" p-1 text-gray-900 dark:text-gray-100 md:flex-auto ">
             <button type="button" class="w-32 flex-auto p-0 text-sm text-white dark:text-white bg-indigo-400 hover:bg-indigo-600 rounded" onclick="location.href='{{ route('user.shop.s_search_md_form') }}'" >月別納品推移</button>
@@ -25,6 +26,7 @@
             <button type="button" class="w-32 flex-auto p-0 text-sm text-white dark:text-white bg-indigo-400 hover:bg-indigo-600 rounded" onclick="location.href='{{ route('user.shop.s_search_uz_form') }}'" >Unit別在庫</button>
             <button type="button" class="w-32 flex-auto p-0 text-sm text-white dark:text-white bg-indigo-400 hover:bg-indigo-600 rounded" onclick="location.href='{{ route('user.shop.s_search_sz_form') }}'" >Season別在庫</button>
             <button type="button" class="w-32 flex-auto p-0 text-sm text-white dark:text-white bg-indigo-400 hover:bg-indigo-600 rounded" onclick="location.href='{{ route('user.shop.s_search_hz_form') }}'" >品番別在庫</button>
+
         </div>
 
         <form method="get" action="{{ route('user.shop.index')}}" class="mt-4">

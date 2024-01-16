@@ -650,6 +650,35 @@ class CompanyController extends Controller
         return view('User.company.search_h_deliv',compact('companies','h_delivs_all','h_delivs','max_YM','min_YW','max_YW','YWs'));
     }
 
+    public function c_sales_rank(Request $request)
+    {
+        $c_ranks = DB::table('sales')
+        ->join('shops','sales.shop_id','=','shops.id')
+        ->join('companies','shops.company_id','=','companies.id')
+        ->where('sales.shop_id','>',1000)->where('sales.shop_id','<',4000)
+        ->where('sales.YW','>=',($request->YW1 ?? Sale::max('YW')))
+        ->where('sales.YW','<=',($request->YW2 ?? Sale::max('YW')))
+        ->select(['shops.company_id','companies.co_name'])
+        ->selectRaw('SUM(pcs) as pcs')
+        ->selectRaw('SUM(kingaku) as kingaku')
+        ->groupBy(['shops.company_id','companies.co_name'])
+        ->orderBy('kingaku','desc')
+        ->get();
+
+        $YWs=DB::table('sales')
+        ->select(['YW','YM'])
+        ->groupBy(['YW','YM'])
+        ->orderBy('YM','desc')
+        ->orderBy('YW','desc')
+        ->get();
+
+        $max_YM=Sale::max('YM');
+        $max_YW=Sale::max('YW');
+        $min_YW=Sale::max('YW');
+        // dd($c_ranks,$YMWs,$max_YM,$max_YW,$YMs,$YWs);
+        return view('User.company.c_sales_rank',compact('c_ranks','max_YM','max_YW','YWs','min_YW'));
+    }
+
 
 
 }
