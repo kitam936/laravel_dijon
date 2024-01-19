@@ -41,7 +41,7 @@
             <div class=" w-full  sm:px-0 lg:px-0 border mt-4 ml-0">
                 <div class='border bg-gray-100 h-6'>
                     @foreach ($c_stocks as $c_stock)
-                    　現在庫　：　{{ number_format(round($c_stock->zaikogaku)/1000) }}千円　　{{ number_format($c_stock->pcs) }}枚　
+                    　現在庫　：　{{ number_format($c_stock->pcs) }}枚　　　　{{ number_format(round($c_stock->zaikogaku)/1000) }}千円　
                     @endforeach
                 </div>
             </div>

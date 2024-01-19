@@ -41,8 +41,6 @@
                     </select>
                     <span class="items-center text-sm mt-2" >　</span>
 
-
-
             </div>
             </form>
 
@@ -80,6 +78,7 @@
                 {{-- @endforeach --}}
                 </tbody>
             </table>
+            {{  $h_delivs_all->links()}}
         </div>
 
     @else
@@ -113,6 +112,7 @@
                 {{-- @endforeach --}}
                 </tbody>
             </table>
+            {{  $h_delivs->links()}}
         </div>
 
         @endif

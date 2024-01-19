@@ -23,7 +23,7 @@
         </div> --}}
         <div>
             <button type="button" class="w-20 h-8 bg-indigo-500 text-white ml-2 hover:bg-indigo-600 rounded " onclick="location.href='{{ route('user.company.index') }}'" class="mb-2 ml-2 text-right text-black bg-indigo-300 border-0 py-0 px-2 focus:outline-none hover:bg-indigo-300 rounded ">会社一覧</button>
-            </div>
+        </div>
         </div>
         </form>
 
@@ -45,7 +45,7 @@
                 <div class=" w-full  sm:px-0 lg:px-0 border mt-4 ml-0">
                 <div class='border bg-gray-100 h-6'>
                     @foreach ($c_stocks as $c_stock)
-                    　現在庫　：　{{ number_format(round($c_stock->zaikogaku)/1000) }}千円　　{{ number_format($c_stock->pcs) }}枚　
+                    　現在庫　：　{{ number_format($c_stock->pcs) }}枚　　　　{{ number_format(round($c_stock->zaikogaku)/1000) }}千円　
                     @endforeach
                 </div>
             </div>
