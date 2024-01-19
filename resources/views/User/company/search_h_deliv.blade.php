@@ -78,6 +78,7 @@
 
                 </tbody>
             </table>
+            {{  $h_delivs_all->links()}}
         </div>
 
     @else
@@ -111,6 +112,7 @@
 
                 </tbody>
             </table>
+            {{  $h_delivs->links()}}
         </div>
 
         @endif

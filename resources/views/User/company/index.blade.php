@@ -18,6 +18,7 @@
             <button type="button" class="w-32 flex-auto p-0 text-sm text-white dark:text-white bg-indigo-400  hover:bg-indigo-600 rounded" onclick="location.href='{{ route('user.company.search_ud_form') }}'" >Unit別納品</button>
             <button type="button" class="w-32 flex-auto p-0 text-sm text-white dark:text-white bg-indigo-400  hover:bg-indigo-600 rounded" onclick="location.href='{{ route('user.company.search_sd_form') }}'" >Season別納品</button>
             <button type="button" class="w-32 flex-auto p-0 text-sm text-white dark:text-white bg-indigo-400  hover:bg-indigo-600 rounded" onclick="location.href='{{ route('user.company.search_hd_form') }}'" >品番別納品</button>
+            <button type="button" class="w-32 flex-auto p-0 text-sm text-white dark:text-white bg-indigo-400  hover:bg-indigo-600 rounded" onclick="location.href='{{ route('user.company.c_delivs_rank') }}'" >期間納品</button>
         </div>
         <div class="md:flex-auto p-1 text-gray-900 dark:text-gray-100  ">
             <button type="button" class="w-32 flex-auto p-0 text-sm text-white dark:text-white bg-indigo-400  hover:bg-indigo-600 rounded" onclick="location.href='{{ route('user.company.search_uz_form') }}'" >Unit別在庫</button>

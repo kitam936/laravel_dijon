@@ -3,13 +3,13 @@
     <x-slot name="header">
         <div class="">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            店別期間売上
+            店別期間納品
         </h2>
 
         <span class="items-center text-sm mt-2 text-gray-800 dark:text-gray-200 leading-tight" >　※期間を選択してください</span>
 
         </div>
-        <form method="get" action="{{ route('user.shop.s_sales_rank')}}" class="mt-4">
+        <form method="get" action="{{ route('user.shop.s_delivs_rank')}}" class="mt-4">
 
             <div class="flex">
                      {{-- <label for="YW1" class="items-center text-sm mt-2 " >期間： 　</label> --}}
@@ -26,9 +26,9 @@
                             <option value="{{ $YW->YW }}" @if(\Request::get('YW2') == $YW->YW) selected @endif >{{ floor(($YW->YM)/100)%100 }}年{{ ($YW->YM)%100 }}月{{ ($YW->YW)%100 }}週</option>
                         @endforeach
                     </select>
-                    <span class="items-center text-sm mt-2" ></span>
-                    <div class="ml-2" >
-                        <button type="button" class="w-20 h-8 bg-indigo-500 text-white ml-2 hover:bg-indigo-600 rounded " onclick="location.href='{{ route('user.shop.index') }}'" >SHOP一覧</button>
+                    <span class="items-center text-sm mt-2" >　</span>
+                    <div class="ml-0" >
+                        <button type="button" class="w-20 h-8 ml-2 bg-indigo-500 text-white ml-0 hover:bg-indigo-600 rounded " onclick="location.href='{{ route('user.shop.index') }}'" >SHOP一覧</button>
                     </div>
             </div>
         </form>
@@ -44,8 +44,8 @@
                 <tr>
                     <th class="w-2/8 md:px-4 py-1 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">社名</th>
                     <th class="w-2/8 md:px-4 py-1 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">店名</th>
-                    <th class="w-2/8 md:px-4 py-1 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">売上数</th>
-                    <th class="w-2/8 md:px-4 py-1 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">売上額(千円)</th>
+                    <th class="w-2/8 md:px-4 py-1 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">納品数</th>
+                    <th class="w-2/8 md:px-4 py-1 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">納品額(千円)</th>
                 </tr>
                 </thead>
 
@@ -54,10 +54,10 @@
 
 
                 <tr>
-                    <td class="w-2/8 text-sm md:px-4 py-1">{{ $s_rank->co_name }}</td>
-                    <td class="w-2/8 text-sm md:px-4 py-1">{{ $s_rank->shop_name }}</td>
-                    <td class="w-2/8 text-sm pr-4 md:px-4 py-1 text-right">{{ number_format($s_rank->pcs)}}</td>
-                    <td class="w-2/8 text-sm pr-4 md:px-4 py-1 text-right">{{ number_format(round($s_rank->kingaku)/1000)}}</td>
+                    <td class="w-2/8 text-xs md:px-4 py-1">{{ $s_rank->co_name }}</td>
+                    <td class="w-2/8 text-xs md:px-4 py-1">{{ $s_rank->shop_name }}</td>
+                    <td class="w-2/8 text-xs pr-6 md:px-4 py-1 text-right">{{ number_format($s_rank->pcs)}}</td>
+                    <td class="w-2/8 text-xs pr-10 md:px-4 py-1 text-right">{{ number_format(round($s_rank->kingaku)/1000)}}</td>
                 </tr>
                 @endforeach
 

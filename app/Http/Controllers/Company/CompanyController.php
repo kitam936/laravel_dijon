@@ -291,7 +291,7 @@ class CompanyController extends Controller
         ->selectRaw('SUM(kingaku) as kingaku')
         ->groupBy(['hinbans.year_code','hinbans.unit_id','sales.hinban_id','hinbans.hinmei'])
         ->orderBy('pcs','desc')
-        ->get();
+        ->paginate(20);
 
         $h_sales = DB::table('sales')
         ->join('shops','sales.shop_id','=','shops.id')
@@ -305,7 +305,7 @@ class CompanyController extends Controller
         ->selectRaw('SUM(kingaku) as kingaku')
         ->groupBy(['hinbans.year_code','hinbans.unit_id','sales.hinban_id','hinbans.hinmei'])
         ->orderBy('pcs','desc')
-        ->get();
+        ->paginate(20);
 
         $c_stocks = Stock::whereHas('shop',function($q)use($request){$q->where('company_id','LIKE','%'.$request->co_id.'%');})
         ->selectRaw('SUM(zaikogaku) as zaikogaku')
@@ -617,7 +617,7 @@ class CompanyController extends Controller
         ->selectRaw('SUM(kingaku) as kingaku')
         ->groupBy(['hinbans.year_code','hinbans.unit_id','deliveries.hinban_id','hinbans.hinmei'])
         ->orderBy('pcs','desc')
-        ->get();
+        ->paginate(20);
 
         $h_delivs = DB::table('deliveries')
         ->join('shops','deliveries.shop_id','=','shops.id')
@@ -631,7 +631,7 @@ class CompanyController extends Controller
         ->selectRaw('SUM(kingaku) as kingaku')
         ->groupBy(['hinbans.year_code','hinbans.unit_id','deliveries.hinban_id','hinbans.hinmei'])
         ->orderBy('pcs','desc')
-        ->get();
+        ->paginate(20);
 
 
         $YWs=DB::table('deliveries')
@@ -677,6 +677,35 @@ class CompanyController extends Controller
         $min_YW=Sale::max('YW');
         // dd($c_ranks,$YMWs,$max_YM,$max_YW,$YMs,$YWs);
         return view('User.company.c_sales_rank',compact('c_ranks','max_YM','max_YW','YWs','min_YW'));
+    }
+
+    public function c_delivs_rank(Request $request)
+    {
+        $c_ranks = DB::table('deliveries')
+        ->join('shops','deliveries.shop_id','=','shops.id')
+        ->join('companies','shops.company_id','=','companies.id')
+        ->where('deliveries.shop_id','>',1000)->where('deliveries.shop_id','<',4000)
+        ->where('deliveries.YW','>=',($request->YW1 ?? Sale::max('YW')))
+        ->where('deliveries.YW','<=',($request->YW2 ?? Sale::max('YW')))
+        ->select(['shops.company_id','companies.co_name'])
+        ->selectRaw('SUM(pcs) as pcs')
+        ->selectRaw('SUM(kingaku) as kingaku')
+        ->groupBy(['shops.company_id','companies.co_name'])
+        ->orderBy('kingaku','desc')
+        ->get();
+
+        $YWs=DB::table('deliveries')
+        ->select(['YW','YM'])
+        ->groupBy(['YW','YM'])
+        ->orderBy('YM','desc')
+        ->orderBy('YW','desc')
+        ->get();
+
+        $max_YM=Delivery::max('YM');
+        $max_YW=Delivery::max('YW');
+        $min_YW=Delivery::max('YW');
+        // dd($c_ranks,$YMWs,$max_YM,$max_YW,$YMs,$YWs);
+        return view('User.company.c_delivs_rank',compact('c_ranks','max_YM','max_YW','YWs','min_YW'));
     }
 
 
