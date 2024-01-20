@@ -9,7 +9,10 @@
     git clone ブランチを指定してダウンロードする場合
     git clone -b ブランチ名 https://github.com/kitam936/laravel_dijon.git
 
+
     もしくはSSHでpullしてください
+
+    git clone git@github.com:kitam936/laravel_dijon.git
  
 
     cd lalavel_dijon
