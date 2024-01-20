@@ -53,9 +53,6 @@
 
     と入力してキーを生成
 
-    php artisan strage:link
-    
-    画像管理はstorage/app/public/public/reportsを設定
     
 
 
