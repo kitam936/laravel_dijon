@@ -15,7 +15,7 @@
     cd lalavel_dijon
     composer install
     npm install
-    npm run dev
+    npm run build
 
     .env.exampleをコピーして.envファイルを作成
 
