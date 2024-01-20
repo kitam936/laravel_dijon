@@ -111,10 +111,10 @@ class ShopController extends Controller
 
         // $companies = DB::table('companies')
         // ->join('shops','companies.id','=','shops.company_id')
-        // ->select(['companies.id,','companies.co_naame','shops.id','shops.shop_name','is_selling','YM','YW'])
+        // ->select(['shops.company_id,','companies.co_name','shops.id','shops.shop_name','is_selling'])
         // ->where('shops.is_selling','=',1)
-        // ->where('companies.id','>',1000)
-        // ->where('companies.id','<',4000)->get();
+        // ->where('shops.company_id','>',1000)
+        // ->where('shops.company_id','<',4000)->get();
 
         $m_sales = Sale::where('shop_id','LIKE','%'.($request->sh_id).'%')
         ->select('YM')
