@@ -21,20 +21,23 @@
 
     .envファイルの中の下記をご利用の環境に合わせて変更してください
 
-      APP_NAME=Dijon_Web
-　    APP_ENV=production　　　　
-　    APP_KEY=
-　    APP_DEBUG=false
-　    APP_URL=https://dijon1988.net
+    APP_NAME=Dijon_Web
+    APP_ENV=production
+    APP_KEY=
+    APP_DEBUG=false
+    APP_URL=https://dijon1988.net
 
-　    DB_CONNECTION=mysql
-　    DB_HOST=127.0.0.1
-　    DB_PORT=3306
-　    DB_DATABASE=xs877338_dijon
-　    DB_USERNAME=xs877338_kitam
-　    DB_PASSWORD=mito145147
+    DB_CONNECTION=mysql
+    DB_HOST=127.0.0.1
+    DB_PORT=3306
+    DB_DATABASE=xs877338_dijon
+    DB_USERNAME=xs877338_kitam
+    DB_PASSWORD=mito145147
 
-　    FILESYSTEM_DISK=public
+    FILESYSTEM_DISK=public
+
+
+
 
     XAMPP/MAMPまたは他の開発環境でDBを起動した後に
 
@@ -50,18 +53,12 @@
 
     と入力してキーを生成
 
-    php artisan strage:link
-    
-    画像管理はstorage/app/public/public/reportsを設定
     
 
 
 ##　インストール後の実施事項
 
-画像のダミーデータは
-public/imagesフォルダに
-sample1.jpg ～　sample6.jpg として
-保存しています。
+画像のデータ
 
 php artisan storage:link で
 storageフォルダにリンク後
