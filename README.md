@@ -61,10 +61,7 @@
 
 ##　インストール後の実施事項
 
-画像のダミーデータは
-public/imagesフォルダに
-sample1.jpg ～　sample6.jpg として
-保存しています。
+画像のデータ
 
 php artisan storage:link で
 storageフォルダにリンク後
