@@ -40,25 +40,25 @@
 
                         <div class="p-2 mx-auto">
                             <div class="relative">
-                              <label for="comment" class="leading-7 text-sm text-gray-600">comment※必須</label>
+                              <label for="comment" class="leading-7  text-sm mt-2 text-gray-800 dark:text-gray-200 leading-tight">comment※必須</label>
                               <textarea id="comment" name="comment" rows="8" required class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">{{ old('comment') }}</textarea>
                             </div>
                         </div>
                         <div class="p-0 md:flex">
                         <div class="relative">
-                            <label for="image1" class="leading-7 text-sm text-gray-600">画像1</label>
+                            <label for="image1" class="leading-7  text-sm mt-2 text-gray-800 dark:text-gray-200 leading-tight">画像1</label>
                             <input type="file" id="image1" name="image1" multiple accept=“image/png,image/jpeg,image/jpg” class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
                         </div>
                         <div class="relative">
-                            <label for="image2" class="leading-7 text-sm text-gray-600">画像2</label>
+                            <label for="image2" class="leading-7  text-sm mt-2 text-gray-800 dark:text-gray-200 leading-tight">画像2</label>
                             <input type="file" id="image2" name="image2" multiple accept=“image/png,image/jpeg,image/jpg” class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
                         </div>
                         <div class="relative">
-                            <label for="image3" class="leading-7 text-sm text-gray-600">画像3</label>
+                            <label for="image3" class="leading-7  text-sm mt-2 text-gray-800 dark:text-gray-200 leading-tight">画像3</label>
                             <input type="file" id="image3" name="image3" multiple accept=“image/png,image/jpeg,image/jpg” class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
                         </div>
                         <div class="relative">
-                            <label for="image4" class="leading-7 text-sm text-gray-600">画像4</label>
+                            <label for="image4" class="leading-7  text-sm mt-2 text-gray-800 dark:text-gray-200 leading-tight">画像4</label>
                             <input type="file" id="image4" name="image4" multiple accept=“image/png,image/jpeg,image/jpg” class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
                         </div>
                         </div>
