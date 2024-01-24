@@ -65,8 +65,8 @@
                 <<thead>
                     <tr>
                     <th class="w-1/12 md:px-4 py-1 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">UNIT</th>
-                    <th class="w-1/12 md:px-4 py-1 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">品番</th>
-                    <th class="w-5/12 md:px-4 py-1 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">品名</th>
+                    <th class="w-2/12 md:px-4 py-1 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">品番</th>
+                    <th class="w-4/12 md:px-4 py-1 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">品名</th>
                     <th class="w-2/12 md:px-4 py-1 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">在庫数</th>
                     <th class="w-3/12 md:px-4 py-1 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">在庫額(千円)</th>
                     </tr>
@@ -77,9 +77,9 @@
                     <tr>
                         <td class="w-1/12 text-sm md:px-4 py-1">{{ $h_stock->unit_id }}</td>
                         <td class="w-2/12 text-sm md:px-4 py-1">{{ $h_stock->hinban_id }}</td>
-                        <td class="w-6/12 text-xs md:px-4 py-1 text-left">{{ $h_stock->hinmei }}</td>
-                        <td class="w-1/12 text-sm pr-6 md:px-4 py-1 text-right">{{ number_format($h_stock->pcs)}}</td>
-                        <td class="w-2/12 text-sm md:px-4 py-1 text-right">{{ number_format(round($h_stock->zaikogaku)/1000)}}</td>
+                        <td class="w-4/12 text-xs md:px-4 py-1 text-left">{{ Str::limit($h_stock->hinmei,24) }}</td>
+                        <td class="w-2/12 text-sm pr-6 md:px-4 py-1 text-right">{{ number_format($h_stock->pcs)}}</td>
+                        <td class="w-3/12 text-sm md:px-4 py-1 text-right">{{ number_format(round($h_stock->zaikogaku)/1000)}}</td>
                     </tr>
                     @endforeach
                 </tbody>
@@ -94,8 +94,8 @@
                 <thead>
                 <tr>
                     <th class="w-1/12 md:px-4 py-1 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">UNIT</th>
-                    <th class="w-1/12 md:px-4 py-1 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">品番</th>
-                    <th class="w-5/12 md:px-4 py-1 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">品名</th>
+                    <th class="w-2/12 md:px-4 py-1 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">品番</th>
+                    <th class="w-4/12 md:px-4 py-1 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">品名</th>
                     <th class="w-2/12 md:px-4 py-1 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">在庫数</th>
                     <th class="w-3/12 md:px-4 py-1 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">在庫額(千円)</th>
                 </tr>
@@ -106,9 +106,9 @@
                 <tr>
                     <td class="w-1/12 text-sm md:px-4 py-1">{{ $h_stock->unit_id }}</td>
                     <td class="w-2/12 text-sm md:px-4 py-1">{{ $h_stock->hinban_id }}</td>
-                    <td class="w-6/12 text-xs md:px-4 py-1 text-left">{{ $h_stock->hinmei }}</td>
-                    <td class="w-1/12 text-sm pr-6 md:px-4 py-1 text-right">{{ number_format($h_stock->pcs)}}</td>
-                    <td class="w-2/12 text-sm  md:px-4 py-1 text-right">{{ number_format(round($h_stock->zaikogaku)/1000)}}</td>
+                    <td class="w-4/12 text-xs md:px-4 py-1 text-left">{{ Str::limit($h_stock->hinmei,24) }}</td>
+                    <td class="w-2/12 text-sm pr-6 md:px-4 py-1 text-right">{{ number_format($h_stock->pcs)}}</td>
+                    <td class="w-3/12 text-sm  md:px-4 py-1 text-right">{{ number_format(round($h_stock->zaikogaku)/1000)}}</td>
                 </tr>
                 @endforeach
             </tbody>

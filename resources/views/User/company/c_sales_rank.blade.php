@@ -6,10 +6,25 @@
             社別期間売上
         </h2>
 
-        <span class="items-center text-sm mt-2 text-gray-800 dark:text-gray-200 leading-tight" >　※期間を選択してください</span>
+        <span class="items-center text-sm mt-2 text-gray-800 dark:text-gray-200 leading-tight" >　※Brand・期間を選択してください</span>
 
         </div>
         <form method="get" action="{{ route('user.company.c_sales_rank')}}" class="mt-4">
+
+            <div class="flex mb-4">
+                {{-- <label for="co_id" class="items-center text-sm mt-2" >会社： 　</label> --}}
+                {{-- <label for="brand_code" class="items-center text-sm mt-2  text-gray-800 dark:text-gray-200 leading-tight" >Brand：</label> --}}
+                <select class="w-32 h-8 rounded text-sm pt-1 border mb-2 mr-4 " id="brand_code" name="brand_code" type="number" >
+                <option value="" @if(\Request::get('brand_code') == '0') selected @endif >全ブランド</option>
+                @foreach ($brands as $brand)
+                    <option value="{{ $brand->id }}" @if(\Request::get('brand_code') == $brand->id ) selected @endif >{{ $brand->br_name  }}</option>
+                @endforeach
+                </select>
+
+                <div>
+                    <button type="button" class="w-20 h-8 bg-indigo-500 text-white ml-2 md:ml-2 hover:bg-indigo-600 rounded " onclick="location.href='{{ route('user.company.index') }}'" >会社一覧</button>
+                </div>
+            </div>
 
             <div class="flex">
                      {{-- <label for="YW1" class="items-center text-sm mt-2 " >期間： 　</label> --}}
@@ -28,9 +43,7 @@
                     </select>
                     <span class="items-center text-sm mt-2" ></span>
 
-            <div>
-                <button type="button" class="w-20 h-8 bg-indigo-500 text-white ml-2 md:ml-2 hover:bg-indigo-600 rounded " onclick="location.href='{{ route('user.company.index') }}'" >会社一覧</button>
-            </div>
+
         </div>
 
         </form>
@@ -70,6 +83,11 @@
 
 
         <script>
+
+            const brand = document.getElementById('brand_code')
+            brand.addEventListener('change', function(){
+            this.form.submit()
+            })
 
             const YW1 = document.getElementById('YW1')
             YW1.addEventListener('change', function(){
