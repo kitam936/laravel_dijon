@@ -66,13 +66,13 @@
     <div class="py-0 border">
         <div class=" mx-auto sm:px-4 lg:px-4 border ">
             <table class="md:w-full bg-white table-auto w-full text-center whitespace-no-wrap">
-               <thead>
+                <thead>
                     <tr>
-                        <th class="w-2/12 md:px-4 py-1 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">エリア</th>
-                        <th class="w-2/12 md:px-4 py-1 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">社名</th>
-                        <th class="w-2/12 md:px-4 py-1 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">店名</th>
-                        <th class="w-4/12 md:px-4 py-1 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">info</th>
-                        <th class="w-2/12 md:px-4 py-1 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">詳細</th>
+                        <th class="w-2/12 md:1/12 md:px-4 py-1 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">エリア</th>
+                        <th class="w-3/12 md:2/12 md:px-4 py-1 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">社名</th>
+                        <th class="w-3/12 md:2/12 md:px-4 py-1 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">店名</th>
+                        <th class="w-2/12 md:5/12 md:px-4 py-1 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">info</th>
+                        <th class="w-2/12 md:2/12 md:px-4 py-1 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">詳細</th>
 
                     </tr>
                 </thead>
@@ -80,15 +80,16 @@
                 <tbody>
                     @foreach ($shops as $shop)
                     <tr>
-                        <td class="w-2/12 text-sm md:px-4 py-1 text-left"> {{ $shop->ar_name }} </td>
-                        <td class="w-2/12 text-sm md:px-4 py-1 text-left">{{ $shop->co_name }}</td>
-                        <td class="w-2/12 text-sm md:px-4 py-1 text-left">{{ $shop->shop_name }}</td>
-                        <td class="w-4/12 text-xs md:px-4 py-1 text-left">{{ $shop->shop_info }}</td>
-                        <td class="w-2/12 text-sm md:px-4 py-1 text-center"><a href="{{ route('user.shop.show',['shop'=>$shop->id]) }}" class="w-20 h-8 text-indigo-500 ml-2 "  >店舗詳細</a></td>
+                        <td class="w-2/12 md:1/12 text-sm md:px-4 py-1 text-left"> {{ $shop->ar_name }} </td>
+                        <td class="w-3/12 md:2/12 text-sm md:px-4 py-1 text-left">{{ Str::limit($shop->co_name,10) }}</td>
+                        <td class="w-3/12 md:2/12 text-sm md:px-4 py-1 text-left">{{ Str::limit($shop->shop_name,10) }}</td>
+                        <td class="w-2/12 md:5/12 text-xs md:px-4 py-1 text-left">{{ Str::limit($shop->shop_info,8) }}</td>
+                        <td class="w-2/12 md:2/12 text-sm md:px-4 py-1 text-center"><a href="{{ route('user.shop.show',['shop'=>$shop->id]) }}" class="w-20 h-8 text-indigo-500 ml-2 "  >詳細</a></td>
                     </tr>
                     @endforeach
 
                 </tbody>
+
 
             </table>
             {{  $shops->appends([

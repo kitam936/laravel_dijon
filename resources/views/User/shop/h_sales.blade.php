@@ -88,7 +88,7 @@
                     <th class="w-2/8 md:px-4 py-1 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">UNIT</th>
                     <th class="w-2/8 md:px-4 py-1 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">品番</th>
                     <th class="w-2/8 md:px-4 py-1 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">品名</th>
-                    <th class="w-2/8 pr-10 md:px-4 py-1 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">売上数</th>
+                    <th class="w-2/8 pr-10 md:px-4 py-1 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">売数</th>
 
                 </tr>
                 </thead>
@@ -102,7 +102,7 @@
                     <td class="w-2/8 mtext-sm d:px-4 py-1">{{ $h_sale->unit_id }}</td>
                     <td class="w-2/8 text-sm md:px-4 py-1">{{ $h_sale->hinban_id }}</td>
                     <td class="w-2/8 text-xs pl-4 md:px-4 py-1 text-left">{{ $h_sale->hinmei }}</td>
-                    <td class="w-2/8 text-sm pr-10 md:px-4 py-1 text-right">{{ number_format($h_sale->pcs)}}</td>
+                    <td class="w-2/8 text-sm pr-6 md:px-4 py-1 text-right">{{ number_format($h_sale->pcs)}}</td>
 
                 </tr>
                 @endforeach
@@ -122,7 +122,7 @@
                     <th class="w-2/8 md:px-4 py-1 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">UNIT</th>
                     <th class="w-2/8 md:px-4 py-1 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">品番</th>
                     <th class="w-2/8 md:px-4 py-1 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">品名</th>
-                    <th class="w-2/8 pr-10 md:px-4 py-1 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">売上数</th>
+                    <th class="w-2/8 pr-10 md:px-4 py-1 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">売数</th>
                 </tr>
                 </thead>
 
@@ -135,7 +135,7 @@
                     <td class="w-2/8 text-sm md:px-4 py-1">{{ $h_sale->unit_id }}</td>
                     <td class="w-2/8 text-sm md:px-4 py-1">{{ $h_sale->hinban_id }}</td>
                     <td class="w-2/8 text-xs pl-4 md:px-4 py-1 text-left">{{ $h_sale->hinmei }}</td>
-                    <td class="w-2/8 text-sm pr-10 md:px-4 py-1 text-right">{{ number_format($h_sale->pcs)}}</td>
+                    <td class="w-2/8 text-sm pr-6 md:px-4 py-1 text-right">{{ number_format($h_sale->pcs)}}</td>
 
                 </tr>
                 @endforeach

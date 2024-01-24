@@ -11,7 +11,7 @@
             <div class="flex mb-4">
                 {{-- <span class="items-center text-sm mt-2" >店舗： 　</span> --}}
                 <select class="w-40 h-8 rounded text-sm items-center pt-1" id="sh_id" name="sh_id" type="number" class="border">
-                    <option value="0" @if(\Request::get('sh_id') == '0') selected @endif >全社</option>
+                    <option value="0" @if(\Request::get('sh_id') == '0') selected @endif >全店</option>
                     @foreach ($companies as $company)
                         <optgroup  label = "{{ $company->co_name }}" class="text-indigo-700 font-weight:bold">
                             @foreach ($company->shop as $shop )
@@ -86,7 +86,7 @@
                     <th class="w-2/8 md:px-4 py-1 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">UNIT</th>
                     <th class="w-2/8 md:px-4 py-1 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">品番</th>
                     <th class="w-2/8 md:px-4 py-1 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">品名</th>
-                    <th class="w-2/8 pr-10 md:px-4 py-1 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">売上数</th>
+                    <th class="w-2/8 pr-10 md:px-4 py-1 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">売数</th>
 
                 </tr>
                 </thead>
@@ -107,7 +107,11 @@
                 {{-- @endforeach --}}
                 </tbody>
             </table>
-            {{  $h_sales_all->links()}}
+            {{  $h_sales_all->appends([
+                'sh_id'=>\Request::get('sh_id'),
+                'YW1'=>\Request::get('YW1'),
+                'YW2'=>\Request::get('YW2'),
+            ])->links()}}
         </div>
 
     @else
@@ -121,7 +125,7 @@
                     <th class="w-2/8 md:px-4 py-1 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">UNIT</th>
                     <th class="w-2/8 md:px-4 py-1 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">品番</th>
                     <th class="w-2/8 md:px-4 py-1 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">品名</th>
-                    <th class="w-2/8 pr-10 md:px-4 py-1 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">売上数</th>
+                    <th class="w-2/8 pr-10 md:px-4 py-1 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">売数</th>
                 </tr>
                 </thead>
 
@@ -141,7 +145,11 @@
                 {{-- @endforeach --}}
                 </tbody>
             </table>
-            {{  $h_sales->links()}}
+            {{  $h_sales_all->appends([
+                'sh_id'=>\Request::get('sh_id'),
+                'YW1'=>\Request::get('YW1'),
+                'YW2'=>\Request::get('YW2'),
+            ])->links()}}
         </div>
 
         @endif

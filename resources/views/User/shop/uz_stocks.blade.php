@@ -70,8 +70,8 @@
                     <tr>
                         <td class="w-1/12 md:px-4 py-1">{{ $u_stock->unit_id }}</td>
                         <td class="w-1/12 md:px-4 py-1">{{ $u_stock->season_name }}</td>
-                        <td class="w-1/12 pr-6 md:px-4 py-1 text-right">{{ number_format($u_stock->pcs)}}</td>
-                        <td class="w-3/12 pr-12 md:px-4 py-1 text-right">{{ number_format(round($u_stock->zaikogaku)/1000)}}</td>
+                        <td class="w-1/12 pr-2 md:px-4 py-1 text-right">{{ number_format($u_stock->pcs)}}</td>
+                        <td class="w-3/12 pr-10s md:px-4 py-1 text-right">{{ number_format(round($u_stock->zaikogaku)/1000)}}</td>
                     </tr>
                 @endforeach
                 {{-- @endforeach --}}
@@ -100,8 +100,8 @@
                 <tr>
                     <td class="w-1/12 md:px-4 py-1">{{ $u_stock->unit_id }}</td>
                     <td class="w-1/12 md:px-4 py-1">{{ $u_stock->season_name }}</td>
-                    <td class="w-1/12 pr-6 md:px-4 py-1 text-right">{{ number_format($u_stock->pcs)}}</td>
-                    <td class="w-3/12 pr-12 md:px-4 py-1 text-right">{{ number_format(round($u_stock->zaikogaku)/1000)}}</td>
+                    <td class="w-1/12 pr-2 md:px-4 py-1 text-right">{{ number_format($u_stock->pcs)}}</td>
+                    <td class="w-3/12 pr-10 md:px-4 py-1 text-right">{{ number_format(round($u_stock->zaikogaku)/1000)}}</td>
                 </tr>
                 @endforeach
                 {{-- @endforeach --}}

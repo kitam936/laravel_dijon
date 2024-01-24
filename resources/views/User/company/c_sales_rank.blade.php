@@ -57,7 +57,7 @@
 
                 <tr>
                     {{-- <td class="w-2/8 md:px-4 py-1">{{ $c_rank->company_id }}</td> --}}
-                    <td class="w-4/8 text-sm md:px-4 py-1">{{ $c_rank->co_name }}</td>
+                    <td class="w-4/8 text-sm md:px-4 py-1 text-left">{{ $c_rank->co_name }}</td>
                     <td class="w-2/8 text-sm pr-6 md:px-4 py-1 text-right">{{ number_format($c_rank->pcs)}}</td>
                     <td class="w-2/8 text-sm pr-10 md:px-4 py-1 text-right">{{ number_format(round($c_rank->kingaku)/1000)}}</td>
                 </tr>

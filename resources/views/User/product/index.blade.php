@@ -90,7 +90,7 @@
                         <td class="w-1/15 md:px-4 py-1">{{ $product->season_name }}</td>
                         <td class="w-1/15 md:px-4 py-1"> {{ $product->unit_id }}</td>
                         <td class="w-2/15 md:px-4 py-1"> {{ $product->hinabn_id }}</td>
-                        <td class="w-4/15 md:px-4 py-1 text-left">{{ $product->hinmei }}</td>
+                        <td class="w-4/15 md:px-4 py-1 text-left">{{ Str::limit($product->hinmei,12) }}</td>
                         <td class="w-1/15 md:px-4 py-1 text-right">{{ number_format($product->m_price )}}</td>
                         <td class="w-1/15 md:px-4 py-1 text-right">{{ number_format($product->price )}}</td>
                         <td class="w-1/15 md:px-4 py-1 text-right"><a href="{{ route('user.product.h_shop_zaiko',['hinban'=>$product->id]) }}" class="w-20 h-8 bg-indigo-500 text-white ml-2 hover:bg-indigo-600 rounded"  >在庫確認</a></td>
@@ -135,7 +135,7 @@
                         <td class="w-3/15 h-2 text-sm md:px-2 py-0 md:text-ml">{{ $product->season_name }}</td>
                         <td class="w-1/15 h-2 md:px-2 py-0"> {{ $product->unit_id }}</td>
                         <td class="w-1/15 h-2 md:px-2 py-0"> {{ $product->id }}</td>
-                        <td class="w-4/15 h-2 pl-2 text-sm md:px-2 py-0 text-left ">{{ $product->hinmei }}</td>
+                        <td class="w-4/15 h-2 pl-2 text-sm md:px-2 py-0 text-left ">{{ Str::limit($product->hinmei,12) }}</td>
                         <td class="w-1/15 h-2 px-2 md:px-2 py-0 text-right">{{ number_format($product->m_price )}}</td>
                         <td class="w-1/15 h-2 px-2 md:px-2 py-0 text-right">{{ number_format($product->price )}}</td>
                         {{-- <td type="button" class="w-20 h-6 bg-indigo-500 text-white ml-2 hover:bg-indigo-600 rounded"  >在庫確認</button> --}}

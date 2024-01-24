@@ -128,8 +128,8 @@
                     <td class="w-2/8 md:px-4 py-1">{{ $u_sale->year_code }}</td>
                     <td class="w-2/8 md:px-4 py-1">{{ $u_sale->unit_id }}</td>
                     <td class="w-2/8 md:px-4 py-1">{{ $u_sale->season_name }}</td>
-                    <td class="w-2/8 pr-6 md:px-4 py-1 text-right">{{ number_format($u_sale->pcs)}}</td>
-                    <td class="w-2/8 pr-10 md:px-4 py-1 text-right">{{ number_format(round($u_sale->kingaku)/1000)}}</td>
+                    <td class="w-2/8 pr-2 md:px-4 py-1 text-right">{{ number_format($u_sale->pcs)}}</td>
+                    <td class="w-2/8 pr-6 md:px-4 py-1 text-right">{{ number_format(round($u_sale->kingaku)/1000)}}</td>
                 </tr>
                 @endforeach
 

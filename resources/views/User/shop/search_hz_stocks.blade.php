@@ -12,7 +12,7 @@
             <div class="flex mb-2">
                 {{-- <span class="items-center text-sm mt-2" >店舗： 　</span> --}}
                 <select class="w-40 h-8 rounded text-sm items-center pt-1" id="sh_id" name="sh_id" type="number" class="border">
-                    <option value="" @if(\Request::get('sh_id') == '0') selected @endif >全社</option>
+                    <option value="" @if(\Request::get('sh_id') == '0') selected @endif >全店</option>
                     @foreach ($companies as $company)
                         <optgroup  label = "{{ $company->co_name }}" class="text-indigo-700 font-weight:bold">
                             @foreach ($company->shop as $shop )
@@ -21,7 +21,7 @@
                     @endforeach
                 </select>
 
-                <div class="ml-8">
+                <div class="ml-4">
                     <button type="button" class="w-20 h-8 bg-indigo-500 text-white ml-2 hover:bg-indigo-600 rounded" onclick="location.href='{{ route('user.shop.index') }}'" class="mb-2 ml-2 text-right text-black bg-indigo-300 border-0 py-0 px-2 focus:outline-none hover:bg-indigo-300 rounded ">SHOP一覧</button>
                 </div>
             </div>
@@ -84,7 +84,7 @@
                         <td class="w-2/12 text-sm md:px-4 py-1">{{ $h_stock->hinban_id }}</td>
                         <td class="w-6/12 text-xs md:px-4 py-1 text-left">{{ $h_stock->hinmei }}</td>
                         <td class="w-1/12 text-sm pr-4 md:px-4 py-1 text-right">{{ number_format($h_stock->pcs)}}</td>
-                        <td class="w-2/12 text-sm md:px-4 py-1 text-right">{{ number_format(round($h_stock->zaikogaku)/1000)}}</td>
+                        <td class="w-2/12 text-sm pr-4 md:px-4 py-1 text-right">{{ number_format(round($h_stock->zaikogaku)/1000)}}</td>
                     </tr>
                     @endforeach
                 </tbody>
@@ -113,7 +113,7 @@
                     <td class="w-1/12 text-sm md:px-4 py-1">{{ $h_stock->hinban_id }}</td>
                     <td class="w-5/12 text-xs md:px-4 py-1 text-left">{{ $h_stock->hinmei }}</td>
                     <td class="w-2/12 text-sm pr-4 md:px-4 py-1 text-right">{{ number_format($h_stock->pcs)}}</td>
-                    <td class="w-3/12 text-sm md:px-4 py-1 text-right">{{ number_format(round($h_stock->zaikogaku)/1000)}}</td>
+                    <td class="w-3/12 text-sm pr-4 md:px-4 py-1 text-right">{{ number_format(round($h_stock->zaikogaku)/1000)}}</td>
                 </tr>
                 @endforeach
             </tbody>

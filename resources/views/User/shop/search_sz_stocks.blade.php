@@ -12,7 +12,7 @@
             <div class="flex mb-2">
                 {{-- <span class="items-center text-sm mt-2" >店舗： 　</span> --}}
                 <select class="w-40 h-8 rounded text-sm items-center" id="sh_id" name="sh_id" type="number" class="border">
-                    <option value="0" @if(\Request::get('sh_id') == '0') selected @endif >全社</option>
+                    <option value="0" @if(\Request::get('sh_id') == '0') selected @endif >全店</option>
                     @foreach ($companies as $company)
                         <optgroup  label = "{{ $company->co_name }}" class="text-indigo-700 font-weight:bold">
                             @foreach ($company->shop as $shop )
@@ -21,7 +21,7 @@
                     @endforeach
                 </select>
 
-                <div class="ml-2">
+                <div class="ml-4">
                     <button type="button" class="w-20 h-8 bg-indigo-500 text-white ml-2 hover:bg-indigo-600 rounded " onclick="location.href='{{ route('user.shop.index') }}'" class="mb-2 ml-2 text-right text-black bg-indigo-300 border-0 py-0 px-2 focus:outline-none hover:bg-indigo-300 rounded ">SHOP一覧</button>
                 </div>
             </div>

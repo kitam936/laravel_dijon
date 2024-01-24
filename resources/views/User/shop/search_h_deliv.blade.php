@@ -78,7 +78,11 @@
                 {{-- @endforeach --}}
                 </tbody>
             </table>
-            {{  $h_delivs_all->links()}}
+            {{  $h_delivs_all->appends([
+                'sh_id'=>\Request::get('sh_id'),
+                'YW1'=>\Request::get('YW1'),
+                'YW2'=>\Request::get('YW2'),
+            ])->links()}}
         </div>
 
     @else
@@ -112,7 +116,11 @@
                 {{-- @endforeach --}}
                 </tbody>
             </table>
-            {{  $h_delivs->links()}}
+            {{  $h_delivs_all->appends([
+                'sh_id'=>\Request::get('sh_id'),
+                'YW1'=>\Request::get('YW1'),
+                'YW2'=>\Request::get('YW2'),
+            ])->links()}}
         </div>
 
         @endif
