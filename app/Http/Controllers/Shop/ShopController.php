@@ -1213,11 +1213,13 @@ class ShopController extends Controller
         $s_ranks = DB::table('sales')
         ->join('shops','sales.shop_id','=','shops.id')
         ->join('companies','shops.company_id','=','companies.id')
+        ->join('hinbans','sales.hinban_id','=','hinbans.id')
         ->where('sales.shop_id','>',1000)->where('sales.shop_id','<',4000)
         ->where('sales.YW','>=',($request->YW1 ?? Sale::max('YW')))
         ->where('sales.YW','<=',($request->YW2 ?? Sale::max('YW')))
         ->where('shops.company_id','LIKE','%'.($request->co_id).'%')
         ->where('shops.area_id','LIKE','%'.($request->ar_id).'%')
+        ->where('hinbans.brand_id','LIKE','%'.($request->brand_code).'%')
         ->select(['shops.company_id','companies.co_name','shops.id','shops.shop_name'])
         ->selectRaw('SUM(pcs) as pcs')
         ->selectRaw('SUM(kingaku) as kingaku')
@@ -1225,6 +1227,12 @@ class ShopController extends Controller
         ->orderBy('kingaku','desc')
         // ->get();
         ->paginate(20);
+
+        $brands=DB::table('brands')
+        ->select(['id','br_name'])
+        ->groupBy(['id','br_name'])
+        ->orderBy('id','asc')
+        ->get();
 
         $areas = DB::table('areas')
         ->select(['areas.id','areas.ar_name'])
@@ -1248,7 +1256,7 @@ class ShopController extends Controller
         $max_YW=Sale::max('YW');
         $min_YW=Sale::max('YW');
         // dd($companies,$u_sales,$u_sales_all,$c_stocks,$all_stocks,$YMWs,$max_YM,$max_YW,$YMs,$YWs);
-        return view('User.shop.s_sales_rank',compact('companies','s_ranks','max_YM','max_YW','YWs','min_YW','areas'));
+        return view('User.shop.s_sales_rank',compact('companies','s_ranks','max_YM','max_YW','YWs','min_YW','areas','brands'));
     }
 
     public function s_delivs_rank(Request $request)
