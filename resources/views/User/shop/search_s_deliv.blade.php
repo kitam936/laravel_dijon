@@ -67,8 +67,8 @@
                 <tr>
                     <td class="w-2/8 md:px-4 py-1">{{ $s_deliv->year_code }}</td>
                     <td class="w-2/8 md:px-4 py-1">{{ $s_deliv->season_name }}</td>
-                    <td class="w-2/8 pr-12 md:px-4 py-1 text-right">{{ number_format($s_deliv->pcs)}}</td>
-                    <td class="w-2/8 pr-14 md:px-4 py-1 text-right">{{ number_format(round($s_deliv->kingaku)/1000)}}</td>
+                    <td class="w-2/8 pr-6 md:px-4 py-1 text-right">{{ number_format($s_deliv->pcs)}}</td>
+                    <td class="w-2/8 pr-8 md:px-4 py-1 text-right">{{ number_format(round($s_deliv->kingaku)/1000)}}</td>
                 </tr>
                 @endforeach
                 {{-- @endforeach --}}
@@ -97,8 +97,8 @@
                 <tr>
                     <td class="w-2/8 md:px-4 py-1">{{ $s_deliv->year_code }}</td>
                     <td class="w-2/8 md:px-4 py-1">{{ $s_deliv->season_name }}</td>
-                    <td class="w-2/8 pr-12 md:px-4 py-1 text-right">{{ number_format($s_deliv->pcs)}}</td>
-                    <td class="w-2/8 pr-14 md:px-4 py-1 text-right">{{ number_format(round($s_deliv->kingaku)/1000)}}</td>
+                    <td class="w-2/8 pr-6 md:px-4 py-1 text-right">{{ number_format($s_deliv->pcs)}}</td>
+                    <td class="w-2/8 pr-8 md:px-4 py-1 text-right">{{ number_format(round($s_deliv->kingaku)/1000)}}</td>
                 </tr>
                 @endforeach
                 {{-- @endforeach --}}

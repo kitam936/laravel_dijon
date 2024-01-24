@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Shop;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
 use App\Http\Requests\UploadImageRequest;
@@ -11,6 +12,7 @@ use App\Services\ImageService;
 use InterventionImage;
 use App\Models\Report;
 use App\Models\Shop;
+use App\Models\User;
 use App\Models\Company;
 use App\Models\Area;
 
@@ -67,17 +69,20 @@ class ReportController extends Controller
 
     public function report_detail($id)
     {
-        $reports=DB::table('reports')
+        $report=DB::table('reports')
         ->join('shops','shops.id','=','reports.shop_id')
         ->join('companies','companies.id','=','shops.company_id')
         ->join('areas','areas.id','=','shops.area_id')
-        ->select(['reports.id','shops.company_id','companies.co_name','reports.shop_id','shops.shop_name','areas.ar_name','shops.shop_info','reports.comment','reports.image1','reports.image2','reports.image3','reports.image4','reports.created_at'])
+        ->join('users','reports.user_id','=','reports.user_id')
+        ->select(['reports.id','reports.user_id','users.name','shops.company_id','companies.co_name','reports.shop_id','shops.shop_name','areas.ar_name','shops.shop_info','reports.comment','reports.image1','reports.image2','reports.image3','reports.image4','reports.created_at'])
         ->where('reports.id',$id)
-        ->get();
+        ->first();
+
+        $login_user=Auth::id();
 
         // dd($reports);
 
-        return view('User.shop.report_detail',compact('reports'));
+        return view('User.shop.report_detail',compact('report','login_user'));
     }
 
     public function report_create($id)
@@ -151,6 +156,8 @@ class ReportController extends Controller
     {
 
         // dd($request->sh_id,$request->image1->extension(),$request->comment,$request->image2,$request->image3,$request->image4);
+
+        $user = User::findOrFail(Auth::id());
         $folderName='reports';
         if(!is_null($request->file('image1'))){
             $fileName1 = uniqid(rand().'_');
@@ -194,6 +201,7 @@ class ReportController extends Controller
 
         // dd($request->sh_id,$request->comment);
         Report::create([
+            'user_id' => $user->id,
             'shop_id' => $request->sh_id2,
             'image1' => $fileNameToStore1,
             'image2' => $fileNameToStore2,
@@ -213,7 +221,7 @@ class ReportController extends Controller
         $report=DB::table('reports')
         ->join('shops','shops.id','=','reports.shop_id')
         ->join('companies','companies.id','=','shops.company_id')
-        ->select(['reports.id','shops.company_id','companies.co_name','reports.shop_id','shops.shop_name','reports.comment','reports.image1','reports.image2','reports.image3','reports.image4','reports.created_at'])
+        ->select(['reports.id','reports.user_id','shops.company_id','companies.co_name','reports.shop_id','shops.shop_name','reports.comment','reports.image1','reports.image2','reports.image3','reports.image4','reports.created_at'])
         ->where('reports.id',$id)
         ->first();
         // dd($report);
@@ -276,6 +284,8 @@ class ReportController extends Controller
     public function report_update_rs(Request $request, $id)
     {
         $report=Report::findOrFail($id);
+
+        $user = User::findOrFail(Auth::id());
 
         if(!is_null($request->file('image1'))){
             $fileName1 = uniqid(rand().'_');

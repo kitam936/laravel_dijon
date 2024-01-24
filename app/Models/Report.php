@@ -13,6 +13,7 @@ class Report extends Model
     protected $fillable = [
         'id',
         'shop_id',
+        'user_id',
         'image1',
         'image2',
         'image3',

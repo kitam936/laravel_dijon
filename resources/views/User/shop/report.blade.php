@@ -67,10 +67,10 @@
                     @foreach ($reports as $report)
                     <tr>
                         {{-- <td class="w-2/12 md:px-4 py-1 text-left">  {{ $report->id }} </td> --}}
-                        <td class="w-3/15 text-sm md:px-4 py-1 text-left">  {{ $report->created_at }} </td>
-                        <td class="w-2/15 pr-2 text-sm md:px-4 py-1 text-left">  {{ $report->ar_name }} </td>
-                        <td class="w-4/15 text-sm md:px-4 py-1 text-left">  {{ $report->co_name }} </td>
-                        <td class="w-4/15 pl-2 text-sm md:px-4 py-1 text-left">  {{ $report->shop_name }} </td>
+                        <td class="w-3/15 text-sm md:px-4 py-1 text-left">  {{ Str::limit($report->created_at,10) }} </td>
+                        <td class="w-2/15 pr-2 text-sm md:px-4 py-1 text-left">  {{ Str::limit($report->ar_name,8) }} </td>
+                        <td class="w-4/15 text-sm md:px-4 py-1 text-left">  {{ Str::limit($report->co_name,10) }} </td>
+                        <td class="w-4/15 pl-2 text-sm md:px-4 py-1 text-left">  {{ Str::limit($report->shop_name,12) }} </td>
                         <td class="w-2/15 text-sm md:px-4 py-1 text-center"><a href="{{ route('user.shop.report_detail',['id'=>$report->id]) }}" class="w-20 h-8 text-indigo-500 ml-2 "  >詳細</a></td>
                     </tr>
                     @endforeach

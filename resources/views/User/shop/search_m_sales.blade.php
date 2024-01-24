@@ -10,7 +10,7 @@
         <form method="get" action="{{ route('user.shop.s_search_m_form')}}" class="mt-4">
         <div class="flex">
         <select class="w-40 h-8 rounded text-sm items-center" id="sh_id" name="sh_id" type="number" class="border">
-        <option value="0" @if(\Request::get('sh_id') == '0') selected @endif >全社</option>
+        <option value="0" @if(\Request::get('sh_id') == '0') selected @endif >全店</option>
         @foreach ($companies as $company)
             <optgroup  label = "{{ $company->co_name }}" class="text-indigo-700 font-weight:bold">
                 @foreach ($company->shop as $shop )

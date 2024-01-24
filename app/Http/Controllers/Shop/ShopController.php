@@ -1216,6 +1216,8 @@ class ShopController extends Controller
         ->where('sales.shop_id','>',1000)->where('sales.shop_id','<',4000)
         ->where('sales.YW','>=',($request->YW1 ?? Sale::max('YW')))
         ->where('sales.YW','<=',($request->YW2 ?? Sale::max('YW')))
+        ->where('shops.company_id','LIKE','%'.($request->co_id).'%')
+        ->where('shops.area_id','LIKE','%'.($request->ar_id).'%')
         ->select(['shops.company_id','companies.co_name','shops.id','shops.shop_name'])
         ->selectRaw('SUM(pcs) as pcs')
         ->selectRaw('SUM(kingaku) as kingaku')
@@ -1223,6 +1225,16 @@ class ShopController extends Controller
         ->orderBy('kingaku','desc')
         // ->get();
         ->paginate(20);
+
+        $areas = DB::table('areas')
+        ->select(['areas.id','areas.ar_name'])
+        ->get();
+
+        $companies = Company::with('shop')
+        ->whereHas('shop',function($q){$q->where('is_selling','=',1);})
+        ->where('id','>',1000)
+        ->where('id','<',4000)->get();
+
 
         $YWs=DB::table('sales')
         ->select(['YW','YM'])
@@ -1236,7 +1248,7 @@ class ShopController extends Controller
         $max_YW=Sale::max('YW');
         $min_YW=Sale::max('YW');
         // dd($companies,$u_sales,$u_sales_all,$c_stocks,$all_stocks,$YMWs,$max_YM,$max_YW,$YMs,$YWs);
-        return view('User.shop.s_sales_rank',compact('s_ranks','max_YM','max_YW','YWs','min_YW'));
+        return view('User.shop.s_sales_rank',compact('companies','s_ranks','max_YM','max_YW','YWs','min_YW','areas'));
     }
 
     public function s_delivs_rank(Request $request)
@@ -1247,6 +1259,8 @@ class ShopController extends Controller
         ->where('deliveries.shop_id','>',1000)->where('deliveries.shop_id','<',4000)
         ->where('deliveries.YW','>=',($request->YW1 ?? Sale::max('YW')))
         ->where('deliveries.YW','<=',($request->YW2 ?? Sale::max('YW')))
+        ->where('shops.company_id','LIKE','%'.($request->co_id).'%')
+        ->where('shops.area_id','LIKE','%'.($request->ar_id).'%')
         ->select(['shops.company_id','companies.co_name','shops.id','shops.shop_name'])
         ->selectRaw('SUM(pcs) as pcs')
         ->selectRaw('SUM(kingaku) as kingaku')
@@ -1254,6 +1268,15 @@ class ShopController extends Controller
         ->orderBy('kingaku','desc')
         // ->get();
         ->paginate(20);
+
+        $areas = DB::table('areas')
+        ->select(['areas.id','areas.ar_name'])
+        ->get();
+
+        $companies = Company::with('shop')
+        ->whereHas('shop',function($q){$q->where('is_selling','=',1);})
+        ->where('id','>',1000)
+        ->where('id','<',4000)->get();
 
         $YWs=DB::table('deliveries')
         ->select(['YW','YM'])
@@ -1266,7 +1289,7 @@ class ShopController extends Controller
         $max_YW=Delivery::max('YW');
         $min_YW=Delivery::max('YW');
         // dd($companies,$u_sales,$u_sales_all,$c_stocks,$all_stocks,$YMWs,$max_YM,$max_YW,$YMs,$YWs);
-        return view('User.shop.s_delivs_rank',compact('s_ranks','max_YM','max_YW','YWs','min_YW'));
+        return view('User.shop.s_delivs_rank',compact('s_ranks','max_YM','max_YW','YWs','min_YW','companies','areas'));
     }
 
 

@@ -14,11 +14,13 @@
             <button type="button" onclick="location.href='{{ route('user.shop.index') }}'" class="w-32 text-center text-sm text-white bg-indigo-400 border-0 py-1 px-2 focus:outline-none hover:bg-indigo-600 rounded ">店舗一覧</button>
         </div>
 
-        @foreach ($reports as $report)
+        {{--  @foreach ($reports as $report)  --}}
+        @if($login_user == $report->user_id)
         <div class="ml-2 mb-2 md:mb-0">
             <button type="button" onclick="location.href='{{ route('user.shop.report_edit',['report'=>$report->id])}}'" class="w-32 text-center text-sm text-white bg-indigo-500 border-0 py-1 px-2 focus:outline-none hover:bg-indigo-600 rounded ">編集</button>
         </div>
-        @endforeach
+        @endif
+        {{--  @endforeach  --}}
         </div>
 
     </x-slot>
@@ -32,7 +34,7 @@
 
                         <div class="-m-2">
                             <div class="p-2 mx-auto">
-                                @foreach ($reports as $report)
+                                {{-- @foreach ($reports as $report) --}}
 
                                 <div class="p-2 w-full mx-auto">
                                     <div class="relative">
@@ -40,8 +42,12 @@
                                         <div  id="date" name="date" value="{{$report->created_at}}" class="h-10 text-lg w-full bg-gray-100 bg-opacity-50 border rounded focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">{{$report->created_at}}
                                     </div>
                                     <div class="relative">
-                                        <label for="name" class="leading-7 text-sm  text-gray-800 dark:text-gray-200 leading-tight">店名</label>
-                                        <div  id="name" name="name" value="{{$report->shop_name}}" class="h-10 text-lg w-full bg-gray-100 bg-opacity-50 border rounded focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">{{$report->shop_name}}
+                                        <label for="user_name" class="leading-7 text-sm  text-gray-800 dark:text-gray-200 leading-tight">投稿者</label>
+                                        <div  id="user_name" name="user_name" value="{{$report->name}}" class="h-10 text-lg w-full bg-gray-100 bg-opacity-50 border rounded focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">{{$report->name}}
+                                    </div>
+                                    <div class="relative">
+                                        <label for="sh_name" class="leading-7 text-sm  text-gray-800 dark:text-gray-200 leading-tight">店名</label>
+                                        <div  id="sh_name" name="sh_name" value="{{$report->shop_name}}" class="h-10 text-lg w-full bg-gray-100 bg-opacity-50 border rounded focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">{{$report->shop_name}}
                                     </div>
                                     </div>
                                     <div class="mx-auto mb-1">
@@ -50,22 +56,7 @@
                                             <div id="information" name="information" rows="10" class="w-full bg-gray-100 bg-opacity-50 border rounded focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">{{$report->comment}}</div>
                                         </div>
                                     </div>
-                                {{-- <div class="px-2 md:w-2/1 mx-auto">
-                                    <div class="relative flex">
-                                    <div class="w-40 ml-2">
-                                        <x-report-thumbnail :filename="$report->image1" />
-                                    </div>
-                                    <div class="w-40 ml-2">
-                                        <x-report-thumbnail :filename="$report->image2" />
-                                    </div>
-                                    <div class="w-40 ml-2">
-                                        <x-report-thumbnail :filename="$report->image3" />
-                                    </div>
-                                    <div class="w-40 ml-2">
-                                        <x-report-thumbnail :filename="$report->image4" />
-                                    </div>
-                                    </div>
-                                </div> --}}
+
 
                                 <div class="px-2 md:w-2/3 mx-auto">
 
@@ -96,7 +87,7 @@
 
                                 </div>
 
-                                @endforeach
+                                {{-- @endforeach --}}
                             </div>
 
                         </div>

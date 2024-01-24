@@ -11,7 +11,7 @@
             <div class="flex mb-4">
                 {{-- <span class="items-center text-sm mt-2" >店舗： 　</span> --}}
                 <select class="w-40 h-8 rounded text-sm items-center pt-1" id="sh_id" name="sh_id" type="number" class="border">
-                    <option value="0" @if(\Request::get('sh_id') == '0') selected @endif >全社</option>
+                    <option value="0" @if(\Request::get('sh_id') == '0') selected @endif >全店</option>
                     @foreach ($companies as $company)
                         <optgroup  label = "{{ $company->co_name }}" class="text-indigo-700 font-weight:bold">
                             @foreach ($company->shop as $shop )
@@ -96,8 +96,8 @@
                 <tr>
                     <td class="w-2/8 md:px-4 py-1">{{ $s_sale->year_code }}</td>
                     <td class="w-2/8 md:px-4 py-1">{{ $s_sale->season_name }}</td>
-                    <td class="w-2/8 pr-12 md:px-4 py-1 text-right">{{ number_format($s_sale->pcs)}}</td>
-                    <td class="w-2/8 pr-14 md:px-4 py-1 text-right">{{ number_format(round($s_sale->kingaku)/1000)}}</td>
+                    <td class="w-2/8 pr-6 md:px-4 py-1 text-right">{{ number_format($s_sale->pcs)}}</td>
+                    <td class="w-2/8 pr-8 md:px-4 py-1 text-right">{{ number_format(round($s_sale->kingaku)/1000)}}</td>
                 </tr>
                 @endforeach
                 {{-- @endforeach --}}
@@ -126,8 +126,8 @@
                 <tr>
                     <td class="w-2/8 md:px-4 py-1">{{ $s_sale->year_code }}</td>
                     <td class="w-2/8 md:px-4 py-1">{{ $s_sale->season_name }}</td>
-                    <td class="w-2/8 pr-12 md:px-4 py-1 text-right">{{ number_format($s_sale->pcs)}}</td>
-                    <td class="w-2/8 pr-14 md:px-4 py-1 text-right">{{ number_format(round($s_sale->kingaku)/1000)}}</td>
+                    <td class="w-2/8 pr-6 md:px-4 py-1 text-right">{{ number_format($s_sale->pcs)}}</td>
+                    <td class="w-2/8 pr-8 md:px-4 py-1 text-right">{{ number_format(round($s_sale->kingaku)/1000)}}</td>
                 </tr>
                 @endforeach
                 {{-- @endforeach --}}
