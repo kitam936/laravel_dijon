@@ -44,8 +44,8 @@
                 <tbody>
                     @foreach ($companies as $company)
                     <tr>
-                        <td class="w-1/2 pl-4 md:px-4 py-1 text-center"> {{ $company->id }} </td>
-                        <td class="w-1/2 pl-4 md:px-4 py-1 text-center">{{ $company->co_name }}</td>
+                        <td class="w-1/2 pl-4 md:px-4 py-1 text-left"> {{ $company->id }} </td>
+                        <td class="w-1/2 pl-4 md:px-4 py-1 text-left">{{ $company->co_name }}</td>
                         {{-- <td class="w-3/12 md:px-4 py-1 text-center"><a href="" class="w-20 h-8 text-indigo-500 ml-2 "  >詳細を見る</a></td> --}}
                     </tr>
                     @endforeach

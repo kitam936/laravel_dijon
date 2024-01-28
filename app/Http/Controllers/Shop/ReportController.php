@@ -30,14 +30,14 @@ class ReportController extends Controller
         ->join('shops','shops.id','=','reports.shop_id')
         ->join('companies','companies.id','=','shops.company_id')
         ->join('areas','areas.id','=','shops.area_id')
-        ->select(['reports.id','shops.company_id','companies.co_name','reports.shop_id','shops.shop_name','areas.ar_name','shops.shop_info','reports.comment','reports.image1','reports.created_at'])
+        ->select(['reports.id','shops.company_id','companies.co_name','reports.shop_id','shops.shop_name','areas.ar_name','shops.shop_info','reports.comment','reports.image1','reports.created_at','reports.updated_at'])
         ->where('shops.company_id','>','1000')
         ->where('shops.company_id','<','4000')
         ->where('shops.is_selling','=',1)
         ->where('shops.company_id','LIKE','%'.($request->co_id).'%')
         ->where('shops.area_id','LIKE','%'.($request->ar_id).'%')
         ->where('shops.shop_name','LIKE','%'.($request->sh_name).'%')
-        ->orderBy('created_at','desc')
+        ->orderBy('updated_at','desc')
         ->paginate(15);
 
 

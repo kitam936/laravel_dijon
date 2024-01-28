@@ -5,22 +5,28 @@
             社別週別売上<br>
         </h2>
 
-        <span class="items-center text-sm mt-2 text-gray-800 dark:text-gray-200 leading-tight" >　※会社を選択してください　　　</span>
+        <span class="items-center text-sm mt-2 text-gray-800 dark:text-gray-200 leading-tight" >　※Brand・会社を選択してください　　　</span>
 
         <form method="get" action="{{ route('user.company.search_w_form')}}" class="mt-4">
         <div class="flex">
-        <select class="w-40 h-8 rounded text-sm" id= "co_id" name="co_id" type="text" class="border">
-        <option value="" @if(\Request::get('co_id') == '0') selected @endif >全社</option>
-        @foreach ($companies as $company)
-            <option value="{{ $company->id }}" @if(\Request::get('co_id') == $company->id) selected @endif >{{ $company->co_name }}</option>
-        @endforeach
+        <select class="w-32 h-8 rounded text-sm pt-1 border mb-2 mr-2 " id="brand_code" name="brand_code" type="number" >
+            <option value="" @if(\Request::get('brand_code') == '0') selected @endif >全ブランド</option>
+            @foreach ($brands as $brand)
+                <option value="{{ $brand->id }}" @if(\Request::get('brand_code') == $brand->id ) selected @endif >{{ $brand->br_name  }}</option>
+            @endforeach
+        </select>
+        <select class="w-32 h-8 rounded text-sm pt-1" id= "co_id" name="co_id" type="text" class="border">
+            <option value="" @if(\Request::get('co_id') == '0') selected @endif >全社</option>
+            @foreach ($companies as $company)
+                <option value="{{ $company->id }}" @if(\Request::get('co_id') == $company->id) selected @endif >{{ $company->co_name }}</option>
+            @endforeach
          </select>
 
          {{-- <div>
             <button  class="w-24 h-8 ml-2 text-center text-black bg-gray-300 border-0 py-0 px-2 focus:outline-none hover:bg-gray-400 rounded ">検索</button>
         </div> --}}
         <div>
-            <button type="button" class="w-20 h-8 bg-indigo-500 text-white ml-2 hover:bg-indigo-600 rounded" onclick="location.href='{{ route('user.company.index') }}'" class="mb-2 ml-2 text-right text-black bg-indigo-300 border-0 py-0 px-2 focus:outline-none hover:bg-indigo-300 rounded ">会社一覧</button>
+            <button type="button" class="w-20 h-8 bg-indigo-500 text-white ml-0 hover:bg-indigo-600 rounded" onclick="location.href='{{ route('user.company.index') }}'" >会社一覧</button>
         </div>
         </div>
         </form>
@@ -106,6 +112,11 @@
     <script>
         const company = document.getElementById('co_id')
         company.addEventListener('change', function(){
+        this.form.submit()
+        })
+
+        const brand = document.getElementById('brand_code')
+        brand.addEventListener('change', function(){
         this.form.submit()
         })
 
