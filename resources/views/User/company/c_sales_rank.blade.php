@@ -9,9 +9,10 @@
         <span class="items-center text-sm mt-2 text-gray-800 dark:text-gray-200 leading-tight" >　※Brand・期間を選択してください</span>
 
         </div>
-        <form method="get" action="{{ route('user.company.c_sales_rank')}}" class="mt-4">
 
-            <div class="flex mb-4">
+        <form method="get" action="{{ route('user.company.c_sales_rank')}}" class="md:flex mt-4">
+
+            <div class="flex mb-2">
                 {{-- <label for="co_id" class="items-center text-sm mt-2" >会社： 　</label> --}}
                 {{-- <label for="brand_code" class="items-center text-sm mt-2  text-gray-800 dark:text-gray-200 leading-tight" >Brand：</label> --}}
                 <select class="w-32 h-8 rounded text-sm pt-1 border mb-2 mr-4 " id="brand_code" name="brand_code" type="number" >
@@ -21,27 +22,30 @@
                 @endforeach
                 </select>
 
-                <div>
-                    <button type="button" class="w-20 h-8 bg-indigo-500 text-white ml-2 md:ml-2 hover:bg-indigo-600 rounded " onclick="location.href='{{ route('user.company.index') }}'" >会社一覧</button>
-                </div>
+
             </div>
+
 
             <div class="flex">
                      {{-- <label for="YW1" class="items-center text-sm mt-2 " >期間： 　</label> --}}
-                     <select class="w-32 h-8 rounded text-sm items-center pt-1" id="YW1" name="YW1" type="number" >
-                        <option value="" @if(\Request::get('YW1') == '0') selected @endif >{{ $max_YW }}直近週</option>
-                        @foreach ($YWs as $YW)
-                            <option value="{{ $YW->YW }}" @if(\Request::get('YW1') == $YW->YW) selected @endif >{{ floor(($YW->YM)/100)%100 }}年{{ ($YW->YM)%100 }}月{{ ($YW->YW)%100 }}週</option>
-                        @endforeach
-                    </select>
-                    <label for="YW2" class="items-center text-sm mt-2 ml-2 text-gray-800 dark:text-gray-200 leading-tight" >～</label>
-                    <select class="w-32 h-8 ml-2 rounded text-sm items-center pt-1" id="YW2" name="YW2" type="number" class="border">
-                        <option value="" @if(\Request::get('YW2') == '0') selected @endif >{{ $max_YW }}直近週</option>
-                        @foreach ($YWs as $YW)
-                            <option value="{{ $YW->YW }}" @if(\Request::get('YW2') == $YW->YW) selected @endif >{{ floor(($YW->YM)/100)%100 }}年{{ ($YW->YM)%100 }}月{{ ($YW->YW)%100 }}週</option>
-                        @endforeach
-                    </select>
-                    <span class="items-center text-sm mt-2" ></span>
+                    <select class="w-32 h-8 rounded text-sm items-center pt-1" id="YW1" name="YW1" type="number" >
+                    <option value="" @if(\Request::get('YW1') == '0') selected @endif >{{ $max_YW }}直近週</option>
+                    @foreach ($YWs as $YW)
+                        <option value="{{ $YW->YW }}" @if(\Request::get('YW1') == $YW->YW) selected @endif >{{ floor(($YW->YM)/100)%100 }}年{{ ($YW->YM)%100 }}月{{ ($YW->YW)%100 }}週</option>
+                    @endforeach
+                </select>
+                <label for="YW2" class="items-center text-sm mt-2 ml-2 text-gray-800 dark:text-gray-200 leading-tight" >～</label>
+                <select class="w-32 h-8 ml-2 rounded text-sm items-center pt-1" id="YW2" name="YW2" type="number" class="border">
+                    <option value="" @if(\Request::get('YW2') == '0') selected @endif >{{ $max_YW }}直近週</option>
+                    @foreach ($YWs as $YW)
+                        <option value="{{ $YW->YW }}" @if(\Request::get('YW2') == $YW->YW) selected @endif >{{ floor(($YW->YM)/100)%100 }}年{{ ($YW->YM)%100 }}月{{ ($YW->YW)%100 }}週</option>
+                    @endforeach
+                </select>
+                <span class="items-center text-sm mt-2" ></span>
+
+                 <div>
+                    <button type="button" class="w-20 h-8 bg-indigo-500 text-white ml-2 md:ml-4 hover:bg-indigo-600 rounded " onclick="location.href='{{ route('user.company.index') }}'" >会社一覧</button>
+                </div>
 
 
         </div>

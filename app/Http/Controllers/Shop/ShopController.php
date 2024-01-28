@@ -109,33 +109,53 @@ class ShopController extends Controller
         ->where('id','>',1000)
         ->where('id','<',4000)->get();
 
-        // $companies = DB::table('companies')
-        // ->join('shops','companies.id','=','shops.company_id')
-        // ->select(['shops.company_id,','companies.co_name','shops.id','shops.shop_name','is_selling'])
-        // ->where('shops.is_selling','=',1)
-        // ->where('shops.company_id','>',1000)
-        // ->where('shops.company_id','<',4000)->get();
+        $brands=DB::table('brands')
+        ->select(['id','br_name'])
+        ->groupBy(['id','br_name'])
+        ->orderBy('id','asc')
+        ->get();
 
-        $m_sales = Sale::where('shop_id','LIKE','%'.($request->sh_id).'%')
+        // $m_sales = Sale::where('shop_id','LIKE','%'.($request->sh_id).'%')
+        // ->select('YM')
+        // ->selectRaw('SUM(kingaku) as kingaku')
+        // ->groupBy('YM')
+        // ->orderBy('YM','desc')
+        // ->get();
+
+        $m_sales = DB::table('sales')
+        ->join('shops','sales.shop_id','=','shops.id')
+        ->join('hinbans','sales.hinban_id','=','hinbans.id')
+        ->where('shops.id','LIKE','%'.$request->sh_id.'%')
+        ->where('hinbans.brand_id','LIKE','%'.($request->brand_code).'%')
         ->select('YM')
         ->selectRaw('SUM(kingaku) as kingaku')
         ->groupBy('YM')
         ->orderBy('YM','desc')
         ->get();
 
-        $s_stocks = Stock::where('shop_id','LIKE','%'.($request->sh_id).'%')
+        // $s_stocks = Stock::where('shop_id','LIKE','%'.($request->sh_id).'%')
+        // ->selectRaw('SUM(zaikogaku) as zaikogaku')
+        // ->selectRaw('SUM(pcs) as pcs')
+        // ->get();
+
+        $s_stocks = DB::table('stocks')
+        ->join('shops','stocks.shop_id','=','shops.id')
+        ->join('hinbans','stocks.hinban_id','=','hinbans.id')
+        ->where('shops.id','LIKE','%'.$request->sh_id.'%')
+        ->where('hinbans.brand_id','LIKE','%'.($request->brand_code).'%')
         ->selectRaw('SUM(zaikogaku) as zaikogaku')
         ->selectRaw('SUM(pcs) as pcs')
         ->get();
 
         $all_stocks = DB::table('stocks')
-        // ->where('shop_id','>',1000)->where('shop_id','<',4000)
+        ->join('hinbans','stocks.hinban_id','=','hinbans.id')
+        ->where('hinbans.brand_id','LIKE','%'.($request->brand_code).'%')
         ->selectRaw('SUM(zaikogaku) as zaikogaku')
         ->selectRaw('SUM(pcs) as pcs')
         ->get();
 
         // dd($m_sales,$s_stocks,$shops);
-        return view('User.shop.search_m_sales',compact('m_sales','s_stocks','companies','all_stocks'));
+        return view('User.shop.search_m_sales',compact('m_sales','s_stocks','companies','all_stocks','brands'));
     }
 
     public function s_search_form_w_sales(Request $request)
@@ -144,26 +164,50 @@ class ShopController extends Controller
         ->where('id','>',1000)
         ->where('id','<',4000)->get();
 
-        $w_sales = Sale::where('shop_id','LIKE','%'.($request->sh_id).'%')
+        $brands=DB::table('brands')
+        ->select(['id','br_name'])
+        ->groupBy(['id','br_name'])
+        ->orderBy('id','asc')
+        ->get();
+
+        // $w_sales = Sale::where('shop_id','LIKE','%'.($request->sh_id).'%')
+        // ->select('YW','YM')
+        // ->selectRaw('SUM(kingaku) as kingaku')
+        // ->groupBy('YW','YM')
+        // ->orderBy('YW','desc')
+        // ->orderBy('YM','desc')
+        // ->get();
+
+        $w_sales = DB::table('sales')
+        ->join('shops','sales.shop_id','=','shops.id')
+        ->join('hinbans','sales.hinban_id','=','hinbans.id')
+        ->where('shops.id','LIKE','%'.$request->sh_id.'%')
+        ->where('hinbans.brand_id','LIKE','%'.($request->brand_code).'%')
         ->select('YW','YM')
         ->selectRaw('SUM(kingaku) as kingaku')
         ->groupBy('YW','YM')
         ->orderBy('YW','desc')
         ->orderBy('YM','desc')
         ->get();
-        $s_stocks = Stock::where('shop_id','LIKE','%'.($request->sh_id).'%')
+
+        $s_stocks = DB::table('stocks')
+        ->join('shops','stocks.shop_id','=','shops.id')
+        ->join('hinbans','stocks.hinban_id','=','hinbans.id')
+        ->where('shops.id','LIKE','%'.$request->sh_id.'%')
+        ->where('hinbans.brand_id','LIKE','%'.($request->brand_code).'%')
         ->selectRaw('SUM(zaikogaku) as zaikogaku')
         ->selectRaw('SUM(pcs) as pcs')
         ->get();
 
         $all_stocks = DB::table('stocks')
-        // ->where('shop_id','>',1000)->where('shop_id','<',4000)
+        ->join('hinbans','stocks.hinban_id','=','hinbans.id')
+        ->where('hinbans.brand_id','LIKE','%'.($request->brand_code).'%')
         ->selectRaw('SUM(zaikogaku) as zaikogaku')
         ->selectRaw('SUM(pcs) as pcs')
         ->get();
 
         // dd($companies,$m_sales,$m_sales_all);
-        return view('User.shop.search_w_sales',compact('w_sales','s_stocks','companies','all_stocks'));
+        return view('User.shop.search_w_sales',compact('w_sales','s_stocks','companies','all_stocks','brands'));
     }
 
     public function s_search_form_u_sales(Request $request)
@@ -173,6 +217,12 @@ class ShopController extends Controller
         ->where('id','<',4000)
         ->get();
 
+        $brands=DB::table('brands')
+        ->select(['id','br_name'])
+        ->groupBy(['id','br_name'])
+        ->orderBy('id','asc')
+        ->get();
+
         $u_sales_all = DB::table('sales')
         ->join('shops','sales.shop_id','=','shops.id')
         ->join('hinbans','sales.hinban_id','=','hinbans.id')
@@ -180,6 +230,7 @@ class ShopController extends Controller
         ->select(['hinbans.year_code','hinbans.unit_id','units.season_name'])
         ->where('sales.YW','>=',($request->YW1 ?? Sale::max('YW')))
         ->where('sales.YW','<=',($request->YW2 ?? Sale::max('YW')))
+        ->where('hinbans.brand_id','LIKE','%'.($request->brand_code).'%')
         ->selectRaw('SUM(pcs) as pcs')
         ->selectRaw('SUM(kingaku) as kingaku')
         ->groupBy(['hinbans.year_code','hinbans.unit_id','units.season_name'])
@@ -191,6 +242,7 @@ class ShopController extends Controller
         ->join('hinbans','sales.hinban_id','=','hinbans.id')
         ->join('units','hinbans.unit_id','=','units.id')
         ->where('shops.id','LIKE','%'.($request->sh_id).'%')
+        ->where('hinbans.brand_id','LIKE','%'.($request->brand_code).'%')
         ->where('sales.YW','>=',($request->YW1 ?? Sale::max('YW')))
         ->where('sales.YW','<=',($request->YW2 ?? Sale::max('YW')))
         ->select(['hinbans.year_code','hinbans.unit_id','units.season_name'])
@@ -199,12 +251,18 @@ class ShopController extends Controller
         ->groupBy(['hinbans.year_code','hinbans.unit_id','units.season_name'])
         ->orderBy('pcs','desc')
         ->get();
-        $s_stocks = Stock::where('shop_id','LIKE','%'.($request->sh_id).'%')
+        $s_stocks = DB::table('stocks')
+        ->join('shops','stocks.shop_id','=','shops.id')
+        ->join('hinbans','stocks.hinban_id','=','hinbans.id')
+        ->where('shops.id','LIKE','%'.$request->sh_id.'%')
+        ->where('hinbans.brand_id','LIKE','%'.($request->brand_code).'%')
         ->selectRaw('SUM(zaikogaku) as zaikogaku')
         ->selectRaw('SUM(pcs) as pcs')
         ->get();
+
         $all_stocks = DB::table('stocks')
-        // ->where('shop_id','>',1000)->where('shop_id','<',4000)
+        ->join('hinbans','stocks.hinban_id','=','hinbans.id')
+        ->where('hinbans.brand_id','LIKE','%'.($request->brand_code).'%')
         ->selectRaw('SUM(zaikogaku) as zaikogaku')
         ->selectRaw('SUM(pcs) as pcs')
         ->get();
@@ -219,7 +277,7 @@ class ShopController extends Controller
         $max_YM=Sale::max('YM');
         $min_YW=Sale::max('YW');
         // dd($companies,$u_sales,$u_sales_all,$c_stocks,$all_stocks,$max_YW,$max_YW,$YWs,$YWs);
-        return view('User.shop.search_u_sales',compact('companies','u_sales_all','u_sales','s_stocks','all_stocks','max_YW','min_YW','YWs'));
+        return view('User.shop.search_u_sales',compact('companies','u_sales_all','u_sales','s_stocks','all_stocks','max_YW','min_YW','YWs','brands'));
 
     }
 
@@ -230,6 +288,12 @@ class ShopController extends Controller
         ->where('id','<',4000)
         ->get();
 
+        $brands=DB::table('brands')
+        ->select(['id','br_name'])
+        ->groupBy(['id','br_name'])
+        ->orderBy('id','asc')
+        ->get();
+
         $s_sales_all = DB::table('sales')
         ->join('shops','sales.shop_id','=','shops.id')
         ->join('hinbans','sales.hinban_id','=','hinbans.id')
@@ -237,16 +301,19 @@ class ShopController extends Controller
         ->select(['hinbans.year_code','units.season_id','units.season_name'])
         ->where('sales.YW','>=',($request->YW1 ?? Sale::max('YW')))
         ->where('sales.YW','<=',($request->YW2 ?? Sale::max('YW')))
+        ->where('hinbans.brand_id','LIKE','%'.($request->brand_code).'%')
         ->selectRaw('SUM(pcs) as pcs')
         ->selectRaw('SUM(kingaku) as kingaku')
         ->groupBy(['hinbans.year_code','units.season_id','units.season_name'])
         ->orderBy('pcs','desc')
         ->get();
+
         $s_sales = DB::table('sales')
         ->join('shops','sales.shop_id','=','shops.id')
         ->join('hinbans','sales.hinban_id','=','hinbans.id')
         ->join('units','hinbans.unit_id','=','units.id')
         ->where('shops.id','LIKE','%'.($request->sh_id).'%')
+        ->where('hinbans.brand_id','LIKE','%'.($request->brand_code).'%')
         ->where('sales.YW','>=',($request->YW1 ?? Sale::max('YW')))
         ->where('sales.YW','<=',($request->YW2 ?? Sale::max('YW')))
         ->select(['hinbans.year_code','units.season_id','units.season_name'])
@@ -255,12 +322,19 @@ class ShopController extends Controller
         ->groupBy(['hinbans.year_code','units.season_id','units.season_name'])
         ->orderBy('pcs','desc')
         ->get();
-        $s_stocks = Stock::where('shop_id','LIKE','%'.($request->sh_id).'%')
+
+       $s_stocks = DB::table('stocks')
+        ->join('shops','stocks.shop_id','=','shops.id')
+        ->join('hinbans','stocks.hinban_id','=','hinbans.id')
+        ->where('shops.id','LIKE','%'.$request->sh_id.'%')
+        ->where('hinbans.brand_id','LIKE','%'.($request->brand_code).'%')
         ->selectRaw('SUM(zaikogaku) as zaikogaku')
         ->selectRaw('SUM(pcs) as pcs')
         ->get();
+
         $all_stocks = DB::table('stocks')
-        // ->where('shop_id','>',1000)->where('shop_id','<',4000)
+        ->join('hinbans','stocks.hinban_id','=','hinbans.id')
+        ->where('hinbans.brand_id','LIKE','%'.($request->brand_code).'%')
         ->selectRaw('SUM(zaikogaku) as zaikogaku')
         ->selectRaw('SUM(pcs) as pcs')
         ->get();
@@ -275,7 +349,8 @@ class ShopController extends Controller
         $max_YM=Sale::max('YM');
         $min_YW=Sale::max('YW');
         // dd($companies,$s_sales,$s_sales_all,$c_stocks,$all_stocks,$YWWs,$max_YW,$max_YW,$YWs,$YWs);
-        return view('User.shop.search_s_sales',compact('companies','s_sales_all','s_sales','s_stocks','all_stocks','max_YW','min_YW','YWs'));
+        return view('User.shop.search_s_sales',
+        compact('companies','s_sales_all','s_sales','s_stocks','all_stocks','max_YW','min_YW','YWs','brands'));
     }
 
     public function s_search_form_h_sales(Request $request)
@@ -285,6 +360,12 @@ class ShopController extends Controller
         ->where('id','>',1000)
         ->where('id','<',4000)->get();
 
+        $brands=DB::table('brands')
+        ->select(['id','br_name'])
+        ->groupBy(['id','br_name'])
+        ->orderBy('id','asc')
+        ->get();
+
         $h_sales_all = DB::table('sales')
         ->join('shops','sales.shop_id','=','shops.id')
         ->join('hinbans','sales.hinban_id','=','hinbans.id')
@@ -292,6 +373,7 @@ class ShopController extends Controller
         ->select(['hinbans.year_code','hinbans.unit_id','sales.hinban_id','hinbans.hinmei'])
         ->where('sales.YW','>=',($request->YW1 ?? Sale::max('YW')))
         ->where('sales.YW','<=',($request->YW2 ?? Sale::max('YW')))
+        ->where('hinbans.brand_id','LIKE','%'.($request->brand_code).'%')
         ->selectRaw('SUM(pcs) as pcs')
         ->selectRaw('SUM(kingaku) as kingaku')
         ->groupBy(['hinbans.year_code','hinbans.unit_id','sales.hinban_id','hinbans.hinmei'])
@@ -303,6 +385,7 @@ class ShopController extends Controller
         ->join('hinbans','sales.hinban_id','=','hinbans.id')
         ->join('units','hinbans.unit_id','=','units.id')
         ->where('shops.id','LIKE','%'.($request->sh_id).'%')
+        ->where('hinbans.brand_id','LIKE','%'.($request->brand_code).'%')
         ->where('sales.YW','>=',($request->YW1 ?? Sale::max('YW')))
         ->where('sales.YW','<=',($request->YW2 ?? Sale::max('YW')))
         ->select(['hinbans.year_code','hinbans.unit_id','sales.hinban_id','hinbans.hinmei'])
@@ -311,12 +394,18 @@ class ShopController extends Controller
         ->orderBy('pcs','desc')
         ->paginate(20);
 
-        $s_stocks = Stock::where('shop_id','LIKE','%'.($request->sh_id).'%')
+        $s_stocks = DB::table('stocks')
+        ->join('shops','stocks.shop_id','=','shops.id')
+        ->join('hinbans','stocks.hinban_id','=','hinbans.id')
+        ->where('shops.id','LIKE','%'.$request->sh_id.'%')
+        ->where('hinbans.brand_id','LIKE','%'.($request->brand_code).'%')
         ->selectRaw('SUM(zaikogaku) as zaikogaku')
         ->selectRaw('SUM(pcs) as pcs')
         ->get();
+
         $all_stocks = DB::table('stocks')
-        // ->where('shop_id','>',1000)->where('shop_id','<',4000)
+        ->join('hinbans','stocks.hinban_id','=','hinbans.id')
+        ->where('hinbans.brand_id','LIKE','%'.($request->brand_code).'%')
         ->selectRaw('SUM(zaikogaku) as zaikogaku')
         ->selectRaw('SUM(pcs) as pcs')
         ->get();
@@ -336,7 +425,8 @@ class ShopController extends Controller
         $max_YW=Sale::max('YW');
         $min_YW=Sale::max('YW');
         // dd($h_sales,$h_sales_all);
-        return view('User.shop.search_h_sales',compact('companies','h_sales_all','h_sales','s_stocks','all_stocks','max_YW','min_YW','YWs'));
+        return view('User.shop.search_h_sales',
+        compact('companies','h_sales_all','h_sales','s_stocks','all_stocks','max_YW','min_YW','YWs','brands'));
     }
 
     public function s_search_form_hz_stocks(Request $request)
@@ -346,11 +436,18 @@ class ShopController extends Controller
         ->where('id','>',1000)
         ->where('id','<',4000)->get();
 
+        $brands=DB::table('brands')
+        ->select(['id','br_name'])
+        ->groupBy(['id','br_name'])
+        ->orderBy('id','asc')
+        ->get();
+
         $h_stocks = DB::table('stocks')
         ->join('shops','stocks.shop_id','=','shops.id')
         ->join('hinbans','stocks.hinban_id','=','hinbans.id')
         ->join('units','hinbans.unit_id','=','units.id')
         ->where('shops.id','LIKE','%'.($request->sh_id).'%')
+        ->where('hinbans.brand_id','LIKE','%'.($request->brand_code).'%')
         ->select('stocks.hinban_id','hinbans.hinmei','hinbans.unit_id')
         ->selectRaw('SUM(pcs) as pcs')
         ->selectRaw('SUM(zaikogaku) as zaikogaku')
@@ -363,6 +460,7 @@ class ShopController extends Controller
         ->join('hinbans','stocks.hinban_id','=','hinbans.id')
         ->join('units','hinbans.unit_id','=','units.id')
         ->where('shop_id','>',1000)->where('shop_id','<',4000)
+        ->where('hinbans.brand_id','LIKE','%'.($request->brand_code).'%')
         ->select('stocks.hinban_id','hinbans.hinmei','hinbans.unit_id')
         ->selectRaw('SUM(pcs) as pcs')
         ->selectRaw('SUM(zaikogaku) as zaikogaku')
@@ -370,30 +468,42 @@ class ShopController extends Controller
         ->orderBy('pcs','desc')
         ->get(['stocks.hinban_id','hinbans.hinmei','stocks.pcs','stocks.zaikogaku','hinbans.unit_id']);
 
-        $s_stocks = Stock::where('shop_id','LIKE','%'.($request->sh_id).'%')
+        $s_stocks = DB::table('stocks')
+        ->join('shops','stocks.shop_id','=','shops.id')
+        ->join('hinbans','stocks.hinban_id','=','hinbans.id')
+        ->where('shops.id','LIKE','%'.$request->sh_id.'%')
+        ->where('hinbans.brand_id','LIKE','%'.($request->brand_code).'%')
         ->selectRaw('SUM(zaikogaku) as zaikogaku')
         ->selectRaw('SUM(pcs) as pcs')
         ->get();
 
         $all_stocks = DB::table('stocks')
-        // ->where('shop_id','>',1000)->where('shop_id','<',4000)
+        ->join('hinbans','stocks.hinban_id','=','hinbans.id')
+        ->where('hinbans.brand_id','LIKE','%'.($request->brand_code).'%')
         ->selectRaw('SUM(zaikogaku) as zaikogaku')
         ->selectRaw('SUM(pcs) as pcs')
         ->get();
-
         // dd($h_stocks,$h_stocks_all,$all_stocks,$c_stocks);
-        return view('User.shop.search_hz_stocks',compact('companies','h_stocks','all_stocks','h_stocks_all','s_stocks'));
+        return view('User.shop.search_hz_stocks',
+        compact('companies','h_stocks','all_stocks','h_stocks_all','s_stocks','brands'));
     }
 
     public function s_search_form_uz_stocks(Request $request)
     {
         $companies = Company::where('id','>',1000)->where('id','<',4000)->select('id','co_name')->get();
 
+        $brands=DB::table('brands')
+        ->select(['id','br_name'])
+        ->groupBy(['id','br_name'])
+        ->orderBy('id','asc')
+        ->get();
+
         $u_stocks = DB::table('stocks')
         ->join('shops','stocks.shop_id','=','shops.id')
         ->join('hinbans','stocks.hinban_id','=','hinbans.id')
         ->join('units','hinbans.unit_id','=','units.id')
         ->where('shops.id','LIKE','%'.($request->sh_id).'%')
+        ->where('hinbans.brand_id','LIKE','%'.($request->brand_code).'%')
         ->select(['hinbans.unit_id','units.season_name'])
         ->selectRaw('SUM(pcs) as pcs')
         ->selectRaw('SUM(zaikogaku) as zaikogaku')
@@ -405,37 +515,51 @@ class ShopController extends Controller
         ->join('hinbans','stocks.hinban_id','=','hinbans.id')
         ->join('units','hinbans.unit_id','=','units.id')
         ->where('shop_id','>',1000)->where('shop_id','<',4000)
+        ->where('hinbans.brand_id','LIKE','%'.($request->brand_code).'%')
         ->select(['hinbans.unit_id','units.season_name'])
         ->selectRaw('SUM(pcs) as pcs')
         ->selectRaw('SUM(zaikogaku) as zaikogaku')
         ->groupBy(['hinbans.unit_id','units.season_name'])
         ->get();
 
-        $s_stocks = Stock::where('shop_id','LIKE','%'.($request->sh_id).'%')
+        $s_stocks = DB::table('stocks')
+        ->join('shops','stocks.shop_id','=','shops.id')
+        ->join('hinbans','stocks.hinban_id','=','hinbans.id')
+        ->where('shops.id','LIKE','%'.$request->sh_id.'%')
+        ->where('hinbans.brand_id','LIKE','%'.($request->brand_code).'%')
         ->selectRaw('SUM(zaikogaku) as zaikogaku')
         ->selectRaw('SUM(pcs) as pcs')
         ->get();
 
-
         $all_stocks = DB::table('stocks')
-        // ->where('shop_id','>',1000)->where('shop_id','<',4000)
+        ->join('hinbans','stocks.hinban_id','=','hinbans.id')
+        ->where('hinbans.brand_id','LIKE','%'.($request->brand_code).'%')
         ->selectRaw('SUM(zaikogaku) as zaikogaku')
         ->selectRaw('SUM(pcs) as pcs')
         ->get();
 
         // dd($h_sales,$h_sales_all);
-        return view('User.shop.search_uz_stocks',compact('companies','s_stocks','all_stocks','u_stocks','u_stocks_all'));
+        return view('User.shop.search_uz_stocks',
+        compact('companies','s_stocks','all_stocks','u_stocks','u_stocks_all','brands'));
     }
 
     public function s_search_form_sz_stocks(Request $request)
     {
         $companies = Company::where('id','>',1000)->where('id','<',4000)->select('id','co_name')->get();
 
+        $brands=DB::table('brands')
+        ->select(['id','br_name'])
+        ->groupBy(['id','br_name'])
+        ->orderBy('id','asc')
+        ->get();
+
+
         $season_stocks = DB::table('stocks')
         ->join('shops','stocks.shop_id','=','shops.id')
         ->join('hinbans','stocks.hinban_id','=','hinbans.id')
         ->join('units','hinbans.unit_id','=','units.id')
         ->where('shops.id','LIKE','%'.($request->sh_id).'%')
+        ->where('hinbans.brand_id','LIKE','%'.($request->brand_code).'%')
         ->select(['units.season_id','units.season_name'])
         ->selectRaw('SUM(pcs) as pcs')
         ->selectRaw('SUM(zaikogaku) as zaikogaku')
@@ -447,26 +571,33 @@ class ShopController extends Controller
         ->join('hinbans','stocks.hinban_id','=','hinbans.id')
         ->join('units','hinbans.unit_id','=','units.id')
         ->where('shop_id','>',1000)->where('shop_id','<',4000)
+        ->where('hinbans.brand_id','LIKE','%'.($request->brand_code).'%')
         ->select(['units.season_id','units.season_name'])
         ->selectRaw('SUM(pcs) as pcs')
         ->selectRaw('SUM(zaikogaku) as zaikogaku')
         ->groupBy(['units.season_id','units.season_name'])
         ->get();
 
-        $s_stocks = Stock::where('shop_id','LIKE','%'.($request->sh_id).'%')
+        $s_stocks = DB::table('stocks')
+        ->join('shops','stocks.shop_id','=','shops.id')
+        ->join('hinbans','stocks.hinban_id','=','hinbans.id')
+        ->where('shops.id','LIKE','%'.$request->sh_id.'%')
+        ->where('hinbans.brand_id','LIKE','%'.($request->brand_code).'%')
         ->selectRaw('SUM(zaikogaku) as zaikogaku')
         ->selectRaw('SUM(pcs) as pcs')
         ->get();
-
 
         $all_stocks = DB::table('stocks')
-        // ->where('shop_id','>',1000)->where('shop_id','<',4000)
+        ->join('hinbans','stocks.hinban_id','=','hinbans.id')
+        ->where('hinbans.brand_id','LIKE','%'.($request->brand_code).'%')
         ->selectRaw('SUM(zaikogaku) as zaikogaku')
         ->selectRaw('SUM(pcs) as pcs')
         ->get();
 
+
         // dd($h_sales,$h_sales_all);
-        return view('User.shop.search_sz_stocks',compact('companies','season_stocks','all_stocks','season_stocks_all','s_stocks'));
+        return view('User.shop.search_sz_stocks',
+        compact('companies','season_stocks','all_stocks','season_stocks_all','s_stocks','brands'));
     }
 
     public function s_search_form_m_deliv(Request $request)
@@ -476,14 +607,32 @@ class ShopController extends Controller
         ->where('id','>',1000)
         ->where('id','<',4000)->get();
 
-        $m_delivs = Delivery::where('shop_id','LIKE','%'.($request->sh_id).'%')
+        $brands=DB::table('brands')
+        ->select(['id','br_name'])
+        ->groupBy(['id','br_name'])
+        ->orderBy('id','asc')
+        ->get();
+
+        // $m_delivs = Delivery::where('shop_id','LIKE','%'.($request->sh_id).'%')
+        // ->select('YM')
+        // ->selectRaw('SUM(kingaku) as kingaku')
+        // ->groupBy('YM')
+        // ->orderBy('YM','desc')
+        // ->get();
+
+        $m_delivs = DB::table('deliveries')
+        ->join('shops','deliveries.shop_id','=','shops.id')
+        ->join('hinbans','deliveries.hinban_id','=','hinbans.id')
+        ->where('shops.id','LIKE','%'.$request->sh_id.'%')
+        ->where('shops.company_id','LIKE','%'.$request->co_id.'%')
+        ->where('hinbans.brand_id','LIKE','%'.($request->brand_code).'%')
         ->select('YM')
         ->selectRaw('SUM(kingaku) as kingaku')
         ->groupBy('YM')
         ->orderBy('YM','desc')
         ->get();
 
-        return view('User.shop.search_m_deliv',compact('m_delivs','companies'));
+        return view('User.shop.search_m_deliv',compact('m_delivs','companies','brands'));
     }
 
     public function s_search_form_w_deliv(Request $request)
@@ -492,7 +641,27 @@ class ShopController extends Controller
         ->where('id','>',1000)
         ->where('id','<',4000)->get();
 
-        $w_delivs = Delivery::where('shop_id','LIKE','%'.($request->sh_id).'%')
+        $brands=DB::table('brands')
+        ->select(['id','br_name'])
+        ->groupBy(['id','br_name'])
+        ->orderBy('id','asc')
+        ->get();
+
+        // $w_delivs = Delivery::where('shop_id','LIKE','%'.($request->sh_id).'%')
+        // ->select('YW','YM','deliv_date')
+        // ->selectRaw('SUM(kingaku) as kingaku')
+        // ->groupBy('YW','YM','deliv_date')
+        // ->orderBy('deliv_date','desc')
+        // ->orderBy('YW','desc')
+        // ->orderBy('YM','desc')
+        // ->get();
+
+        $w_delivs = DB::table('deliveries')
+        ->join('shops','deliveries.shop_id','=','shops.id')
+        ->join('hinbans','deliveries.hinban_id','=','hinbans.id')
+        ->where('shops.id','LIKE','%'.$request->sh_id.'%')
+        ->where('shops.company_id','LIKE','%'.$request->co_id.'%')
+        ->where('hinbans.brand_id','LIKE','%'.($request->brand_code).'%')
         ->select('YW','YM','deliv_date')
         ->selectRaw('SUM(kingaku) as kingaku')
         ->groupBy('YW','YM','deliv_date')
@@ -501,7 +670,7 @@ class ShopController extends Controller
         ->orderBy('YM','desc')
         ->get();
 
-        return view('User.shop.search_w_deliv',compact('w_delivs','companies'));
+        return view('User.shop.search_w_deliv',compact('w_delivs','companies','brands'));
     }
 
     public function s_search_form_u_deliv(Request $request)
@@ -511,6 +680,12 @@ class ShopController extends Controller
         ->where('id','<',4000)
         ->get();
 
+        $brands=DB::table('brands')
+        ->select(['id','br_name'])
+        ->groupBy(['id','br_name'])
+        ->orderBy('id','asc')
+        ->get();
+
         $u_delivs_all = DB::table('deliveries')
         ->join('shops','deliveries.shop_id','=','shops.id')
         ->join('hinbans','deliveries.hinban_id','=','hinbans.id')
@@ -518,6 +693,7 @@ class ShopController extends Controller
         ->select(['hinbans.year_code','hinbans.unit_id','units.season_name'])
         ->where('deliveries.YW','>=',($request->YW1 ?? Delivery::max('YW')))
         ->where('deliveries.YW','<=',($request->YW2 ?? Delivery::max('YW')))
+        ->where('hinbans.brand_id','LIKE','%'.($request->brand_code).'%')
         ->selectRaw('SUM(pcs) as pcs')
         ->selectRaw('SUM(kingaku) as kingaku')
         ->groupBy(['hinbans.year_code','hinbans.unit_id','units.season_name'])
@@ -529,6 +705,7 @@ class ShopController extends Controller
         ->join('hinbans','deliveries.hinban_id','=','hinbans.id')
         ->join('units','hinbans.unit_id','=','units.id')
         ->where('shops.id','LIKE','%'.($request->sh_id).'%')
+        ->where('hinbans.brand_id','LIKE','%'.($request->brand_code).'%')
         ->where('deliveries.YW','>=',($request->YW1 ?? Delivery::max('YW')))
         ->where('deliveries.YW','<=',($request->YW2 ?? Delivery::max('YW')))
         ->select(['hinbans.year_code','hinbans.unit_id','units.season_name'])
@@ -549,7 +726,7 @@ class ShopController extends Controller
         $max_YM=Delivery::max('YM');
         $min_YW=Delivery::max('YW');
         // dd($companies,$u_sales,$u_sales_all,$c_stocks,$all_stocks,$max_YW,$max_YW,$YWs,$YWs);
-        return view('User.shop.search_u_deliv',compact('companies','u_delivs_all','u_delivs','max_YW','min_YW','YWs'));
+        return view('User.shop.search_u_deliv',compact('companies','u_delivs_all','u_delivs','max_YW','min_YW','YWs','brands'));
 
     }
 
@@ -560,6 +737,12 @@ class ShopController extends Controller
         ->where('id','<',4000)
         ->get();
 
+        $brands=DB::table('brands')
+        ->select(['id','br_name'])
+        ->groupBy(['id','br_name'])
+        ->orderBy('id','asc')
+        ->get();
+
         $s_delivs_all = DB::table('deliveries')
         ->join('shops','deliveries.shop_id','=','shops.id')
         ->join('hinbans','deliveries.hinban_id','=','hinbans.id')
@@ -567,16 +750,19 @@ class ShopController extends Controller
         ->select(['hinbans.year_code','units.season_id','units.season_name'])
         ->where('deliveries.YW','>=',($request->YW1 ?? Delivery::max('YW')))
         ->where('deliveries.YW','<=',($request->YW2 ?? Delivery::max('YW')))
+        ->where('hinbans.brand_id','LIKE','%'.($request->brand_code).'%')
         ->selectRaw('SUM(pcs) as pcs')
         ->selectRaw('SUM(kingaku) as kingaku')
         ->groupBy(['hinbans.year_code','units.season_id','units.season_name'])
         ->orderBy('pcs','desc')
         ->get();
+
         $s_delivs = DB::table('deliveries')
         ->join('shops','deliveries.shop_id','=','shops.id')
         ->join('hinbans','deliveries.hinban_id','=','hinbans.id')
         ->join('units','hinbans.unit_id','=','units.id')
         ->where('shops.id','LIKE','%'.($request->sh_id).'%')
+        ->where('hinbans.brand_id','LIKE','%'.($request->brand_code).'%')
         ->where('deliveries.YW','>=',($request->YW1 ?? Delivery::max('YW')))
         ->where('deliveries.YW','<=',($request->YW2 ?? Delivery::max('YW')))
         ->select(['hinbans.year_code','units.season_id','units.season_name'])
@@ -597,7 +783,7 @@ class ShopController extends Controller
         $max_YM=Delivery::max('YM');
         $min_YW=Delivery::max('YW');
         // dd($companies,$s_sales,$s_sales_all,$c_stocks,$all_stocks,$YWWs,$max_YW,$max_YW,$YWs,$YWs);
-        return view('User.shop.search_s_deliv',compact('companies','s_delivs_all','s_delivs','max_YW','min_YW','YWs'));
+        return view('User.shop.search_s_deliv',compact('companies','s_delivs_all','s_delivs','max_YW','min_YW','YWs','brands'));
     }
 
     public function s_search_form_h_deliv(Request $request)
@@ -607,6 +793,12 @@ class ShopController extends Controller
         ->where('id','>',1000)
         ->where('id','<',4000)->get();
 
+        $brands=DB::table('brands')
+        ->select(['id','br_name'])
+        ->groupBy(['id','br_name'])
+        ->orderBy('id','asc')
+        ->get();
+
         $h_delivs_all = DB::table('deliveries')
         ->join('shops','deliveries.shop_id','=','shops.id')
         ->join('hinbans','deliveries.hinban_id','=','hinbans.id')
@@ -614,6 +806,7 @@ class ShopController extends Controller
         ->select(['hinbans.year_code','hinbans.unit_id','deliveries.hinban_id','hinbans.hinmei'])
         ->where('deliveries.YW','>=',($request->YW1 ?? Delivery::max('YW')))
         ->where('deliveries.YW','<=',($request->YW2 ?? Delivery::max('YW')))
+        ->where('hinbans.brand_id','LIKE','%'.($request->brand_code).'%')
         ->selectRaw('SUM(pcs) as pcs')
         ->selectRaw('SUM(kingaku) as kingaku')
         ->groupBy(['hinbans.year_code','hinbans.unit_id','deliveries.hinban_id','hinbans.hinmei'])
@@ -625,6 +818,7 @@ class ShopController extends Controller
         ->join('hinbans','deliveries.hinban_id','=','hinbans.id')
         ->join('units','hinbans.unit_id','=','units.id')
         ->where('shops.id','LIKE','%'.($request->sh_id).'%')
+        ->where('hinbans.brand_id','LIKE','%'.($request->brand_code).'%')
         ->where('deliveries.YW','>=',($request->YW1 ?? Delivery::max('YW')))
         ->where('deliveries.YW','<=',($request->YW2 ?? Delivery::max('YW')))
         ->select(['hinbans.year_code','hinbans.unit_id','deliveries.hinban_id','hinbans.hinmei'])
@@ -645,7 +839,7 @@ class ShopController extends Controller
         $max_YW=Delivery::max('YW');
         $min_YW=Delivery::max('YW');
         // dd($h_sales,$h_sales_all);
-        return view('User.shop.search_h_deliv',compact('companies','h_delivs_all','h_delivs','max_YW','min_YW','YWs'));
+        return view('User.shop.search_h_deliv',compact('companies','h_delivs_all','h_delivs','max_YW','min_YW','YWs','brands'));
     }
 
 

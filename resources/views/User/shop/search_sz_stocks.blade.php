@@ -5,13 +5,19 @@
             店別Season在庫<br>
         </h2>
 
-        <span class="items-center text-sm mt-2 text-gray-800 dark:text-gray-200 leading-tight" >※店舗を選択してください　　　</span>
+        <span class="items-center text-sm mt-2 text-gray-800 dark:text-gray-200 leading-tight" >※Brand・店舗を選択してください　　　</span>
 
         <form method="get" action="{{ route('user.shop.s_search_sz_form')}}" class="mt-4">
             <div class="flex">
             <div class="flex mb-2">
-                {{-- <span class="items-center text-sm mt-2" >店舗： 　</span> --}}
-                <select class="w-40 h-8 rounded text-sm items-center" id="sh_id" name="sh_id" type="number" class="border">
+
+                <select class="w-28 h-8 rounded text-sm pt-1 border mb-2 mr-2 " id="brand_code" name="brand_code" type="number" >
+                    <option value="" @if(\Request::get('brand_code') == '0') selected @endif >全ブランド</option>
+                    @foreach ($brands as $brand)
+                        <option value="{{ $brand->id }}" @if(\Request::get('brand_code') == $brand->id ) selected @endif >{{ $brand->br_name  }}</option>
+                    @endforeach
+                </select>
+                <select class="w-28 h-8 rounded text-sm items-center pt-1" id="sh_id" name="sh_id" type="number" class="border">
                     <option value="0" @if(\Request::get('sh_id') == '0') selected @endif >全店</option>
                     @foreach ($companies as $company)
                         <optgroup  label = "{{ $company->co_name }}" class="text-indigo-700 font-weight:bold">
@@ -21,8 +27,8 @@
                     @endforeach
                 </select>
 
-                <div class="ml-4">
-                    <button type="button" class="w-20 h-8 bg-indigo-500 text-white ml-2 hover:bg-indigo-600 rounded " onclick="location.href='{{ route('user.shop.index') }}'" class="mb-2 ml-2 text-right text-black bg-indigo-300 border-0 py-0 px-2 focus:outline-none hover:bg-indigo-300 rounded ">SHOP一覧</button>
+                <div class="ml-2">
+                    <button type="button" class="w-20 h-8 bg-indigo-500 text-white ml-0 hover:bg-indigo-600 rounded " onclick="location.href='{{ route('user.shop.index') }}'" class="mb-2 ml-2 text-right text-black bg-indigo-300 border-0 py-0 px-2 focus:outline-none hover:bg-indigo-300 rounded ">SHOP一覧</button>
                 </div>
             </div>
             <div class="flex">
@@ -38,7 +44,7 @@
             @if(\Request::get('sh_id') =='0')
 
             {{-- <div class="ml-16 py-2 border"> --}}
-                <div class=" w-full  sm:px-0 lg:px-0 border mt-4 ml-0">
+                <div class=" w-full  sm:px-0 lg:px-0 border mt-0 ml-0">
                     <div class='border bg-gray-100 h-6'>
                         @foreach ($all_stocks as $all_stock)
                         　現在庫　：　{{ number_format($all_stock->pcs) }}枚　　　　{{ number_format(round($all_stock->zaikogaku)/1000) }}千円　
@@ -50,7 +56,7 @@
             @else
 
                 {{-- <div class="ml-16 py-2 border"> --}}
-                <div class=" w-full  sm:px-0 lg:px-0 border mt-4 ml-0">
+                <div class=" w-full  sm:px-0 lg:px-0 border mt-0 ml-0">
                     <div class='border bg-gray-100 h-6'>
                         @foreach ($s_stocks as $s_stock)
                         　現在庫　：　{{ number_format($s_stock->pcs) }}枚　　　　{{ number_format(round($s_stock->zaikogaku)/1000) }}千円　
@@ -119,13 +125,9 @@
             this.form.submit()
             })
 
-            const YW1 = document.getElementById('YW1')
-            YW1.addEventListener('change', function(){
-            this.form.submit()
-            })
 
-            const YW2 = document.getElementById('YW2')
-            YW2.addEventListener('change', function(){
+            const brand = document.getElementById('brand_code')
+            brand.addEventListener('change', function(){
             this.form.submit()
             })
 

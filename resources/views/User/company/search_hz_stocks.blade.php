@@ -5,18 +5,24 @@
             社別品番在庫<br>
         </h2>
 
-        <span class="items-center text-sm mt-2 text-gray-800 dark:text-gray-200 leading-tight" >　※会社を選択してください　　　</span>
+        <span class="items-center text-sm mt-2 text-gray-800 dark:text-gray-200 leading-tight" >　※Brand・会社を選択してください　　　</span>
 
         <form method="get" action="{{ route('user.company.search_hz_form')}}" class="mt-2">
             <div class="flex">
                 <div class="flex mb-2">
+                    <select class="w-32 h-8 rounded text-sm pt-1 border mb-2 mr-2 " id="brand_code" name="brand_code" type="number" >
+                        <option value="" @if(\Request::get('brand_code') == '0') selected @endif >全ブランド</option>
+                        @foreach ($brands as $brand)
+                            <option value="{{ $brand->id }}" @if(\Request::get('brand_code') == $brand->id ) selected @endif >{{ $brand->br_name  }}</option>
+                        @endforeach
+                    </select>
 
-                        <select class="w-32 h-8 rounded text-sm pt-1" id="co_id" name="co_id"  class="border">
+                    <select class="w-32 h-8 rounded text-sm pt-1" id="co_id" name="co_id"  class="border">
                         <option value="0" @if(\Request::get('co_id') == '0') selected @endif >全社</option>
                         @foreach ($companies as $company)
                             <option value="{{ $company->id }}" @if(\Request::get('co_id') == $company->id) selected @endif >{{ $company->co_name }}</option>
                         @endforeach
-                         </select>
+                    </select>
 
                 </div>
                 <div class="flex">
@@ -61,7 +67,7 @@
 
     <div class="py-6 border">
         <div class=" mx-auto sm:px-4 lg:px-4 border ">
-            <table class="w-3/4 bg-white table-auto md:w-2/3 text-center whitespace-no-wrap">
+            <table class="w-full md:w-3/4 bg-white table-auto text-center whitespace-no-wrap">
                 <<thead>
                     <tr>
                     <th class="w-1/12 md:px-4 py-1 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">UNIT</th>
@@ -79,7 +85,7 @@
                         <td class="w-2/12 text-sm md:px-4 py-1">{{ $h_stock->hinban_id }}</td>
                         <td class="w-4/12 text-xs md:px-4 py-1 text-left">{{ Str::limit($h_stock->hinmei,24) }}</td>
                         <td class="w-2/12 text-sm pr-6 md:px-4 py-1 text-right">{{ number_format($h_stock->pcs)}}</td>
-                        <td class="w-3/12 text-sm md:px-4 py-1 text-right">{{ number_format(round($h_stock->zaikogaku)/1000)}}</td>
+                        <td class="w-3/12 text-sm md:px-4 py-1 text-right pr-4">{{ number_format(round($h_stock->zaikogaku)/1000)}}</td>
                     </tr>
                     @endforeach
                 </tbody>
@@ -90,7 +96,7 @@
 
     <div class="py-6 border">
         <div class=" mx-auto sm:px-4 lg:px-4 border">
-            <table class="3/4 bg-white table-auto md:w-2/3 text-center whitespace-no-wrap">
+            <table class="w-full md:w-3/4 bg-white table-auto text-center whitespace-no-wrap">
                 <thead>
                 <tr>
                     <th class="w-1/12 md:px-4 py-1 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">UNIT</th>
@@ -108,7 +114,7 @@
                     <td class="w-2/12 text-sm md:px-4 py-1">{{ $h_stock->hinban_id }}</td>
                     <td class="w-4/12 text-xs md:px-4 py-1 text-left">{{ Str::limit($h_stock->hinmei,24) }}</td>
                     <td class="w-2/12 text-sm pr-6 md:px-4 py-1 text-right">{{ number_format($h_stock->pcs)}}</td>
-                    <td class="w-3/12 text-sm  md:px-4 py-1 text-right">{{ number_format(round($h_stock->zaikogaku)/1000)}}</td>
+                    <td class="w-3/12 text-sm  md:px-4 py-1 text-right pr-4">{{ number_format(round($h_stock->zaikogaku)/1000)}}</td>
                 </tr>
                 @endforeach
             </tbody>
@@ -119,6 +125,11 @@
         <script>
             const company = document.getElementById('co_id')
             company.addEventListener('change', function(){
+            this.form.submit()
+            })
+
+            const brand = document.getElementById('brand_code')
+            brand.addEventListener('change', function(){
             this.form.submit()
             })
 

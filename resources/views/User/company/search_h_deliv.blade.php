@@ -5,21 +5,27 @@
             社別品番納品<br>
         </h2>
 
-        <span class="items-center text-sm mt-2 text-gray-800 dark:text-gray-200 leading-tight" >　※会社・期間を選択してください</span>
+        <span class="items-center text-sm mt-2 text-gray-800 dark:text-gray-200 leading-tight" >　※Brand・会社・期間を選択してください</span>
 
         <form method="get" action="{{ route('user.company.search_hd_form')}}" class="mt-4">
-            <div class="flex mb-4">
-                {{-- <span class="items-center text-sm mt-2" >会社： 　</span> --}}
-                    <select class="w-32 h-8 rounded text-sm items-center pt-1" id="co_id" name="co_id"  class="border">
+            <div class="flex mb-2">
+
+                <select class="w-32 h-8 rounded text-sm pt-1 border mb-2 mr-2 " id="brand_code" name="brand_code" type="number" >
+                    <option value="" @if(\Request::get('brand_code') == '0') selected @endif >全ブランド</option>
+                    @foreach ($brands as $brand)
+                        <option value="{{ $brand->id }}" @if(\Request::get('brand_code') == $brand->id ) selected @endif >{{ $brand->br_name  }}</option>
+                    @endforeach
+                </select>
+                <select class="w-32 h-8 rounded text-sm items-center pt-1" id="co_id" name="co_id"  class="border">
                     <option value="" @if(\Request::get('co_id') == '0') selected @endif >全社</option>
                     @foreach ($companies as $company)
                         <option value="{{ $company->id }}" @if(\Request::get('co_id') == $company->id) selected @endif >{{ $company->co_name }}</option>
                     @endforeach
-                     </select>
+                </select>
 
-                     <div class="ml-8">
-                        <button type="button" class="w-20 h-8 bg-indigo-500 text-white ml-2 hover:bg-indigo-600 rounded" onclick="location.href='{{ route('user.company.index') }}'" class="mb-2 ml-2 text-right text-black bg-indigo-300 border-0 py-0 px-2 focus:outline-none hover:bg-indigo-300 rounded ">会社一覧</button>
-                    </div>
+                <div class="ml-2">
+                    <button type="button" class="w-20 h-8 bg-indigo-500 text-white ml-0 hover:bg-indigo-600 rounded" onclick="location.href='{{ route('user.company.index') }}'" class="mb-2 ml-2 text-right text-black bg-indigo-300 border-0 py-0 px-2 focus:outline-none hover:bg-indigo-300 rounded ">会社一覧</button>
+                </div>
             </div>
             <div class="flex">
                      {{-- <span class="items-center text-sm mt-2" >期間： 　</span> --}}
@@ -78,7 +84,12 @@
 
                 </tbody>
             </table>
-            {{  $h_delivs_all->links()}}
+            {{  $h_delivs_all->appends([
+                'brand_code'=>\Request::get('brand_code'),
+                'co_id'=>\Request::get('co_id'),
+                'YW1'=>\Request::get('YW1'),
+                'YW2'=>\Request::get('YW2'),
+            ])->links()}}
         </div>
 
     @else
@@ -112,7 +123,12 @@
 
                 </tbody>
             </table>
-            {{  $h_delivs->links()}}
+            {{  $h_delivs->appends([
+                'brand_code'=>\Request::get('brand_code'),
+                'co_id'=>\Request::get('co_id'),
+                'YW1'=>\Request::get('YW1'),
+                'YW2'=>\Request::get('YW2'),
+            ])->links()}}
         </div>
 
         @endif
@@ -120,6 +136,11 @@
         <script>
             const company = document.getElementById('co_id')
             company.addEventListener('change', function(){
+            this.form.submit()
+            })
+
+            const brand = document.getElementById('brand_code')
+            brand.addEventListener('change', function(){
             this.form.submit()
             })
 

@@ -7,15 +7,21 @@
             社別月別売上<br>
         </h2>
 
-        <span class="items-center text-sm mt-2 text-gray-800 dark:text-gray-200 leading-tight" >　※会社を選択してください　　　</span>
+        <span class="items-center text-sm mt-2 text-gray-800 dark:text-gray-200 leading-tight" >　※Brand・会社を選択してください　　　</span>
 
         <form method="get" action="{{ route('user.company.search_m_form')}}" class="mt-4">
         <div class="flex">
-        <select class="w-40 h-8 rounded text-sm" id="co_id" name="co_id" type="text" class="border">
-        <option value="" @if(\Request::get('co_id') == '0') selected @endif >全社</option>
-        @foreach ($companies as $company)
-            <option value="{{ $company->id }}" @if(\Request::get('co_id') == $company->id) selected @endif >{{ $company->co_name }}</option>
-        @endforeach
+        <select class="w-32 h-8 rounded text-sm pt-1 border mb-2 mr-2 " id="brand_code" name="brand_code" type="number" >
+            <option value="" @if(\Request::get('brand_code') == '0') selected @endif >全ブランド</option>
+            @foreach ($brands as $brand)
+                <option value="{{ $brand->id }}" @if(\Request::get('brand_code') == $brand->id ) selected @endif >{{ $brand->br_name  }}</option>
+            @endforeach
+        </select>
+        <select class="w-32 h-8 rounded text-sm pt-1" id="co_id" name="co_id" type="text" class="border">
+            <option value="" @if(\Request::get('co_id') == '0') selected @endif >全社</option>
+            @foreach ($companies as $company)
+                <option value="{{ $company->id }}" @if(\Request::get('co_id') == $company->id) selected @endif >{{ $company->co_name }}</option>
+            @endforeach
          </select>
 
          {{-- <div>
@@ -104,6 +110,11 @@
     <script>
         const company = document.getElementById('co_id')
         company.addEventListener('change', function(){
+        this.form.submit()
+        })
+
+        const brand = document.getElementById('brand_code')
+        brand.addEventListener('change', function(){
         this.form.submit()
         })
 

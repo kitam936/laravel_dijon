@@ -5,19 +5,25 @@
             店別月別納品<br>
         </h2>
 
-        <span class="items-center text-sm mt-2 text-gray-800 dark:text-gray-200 leading-tight" >　※店舗を選択してください　　　</span>
+        <span class="items-center text-sm mt-2 text-gray-800 dark:text-gray-200 leading-tight" >　※Brand・店舗を選択してください　　　</span>
 
         <form method="get" action="{{ route('user.shop.s_search_md_form')}}" class="mt-4">
         <div class="flex">
-        <select class="w-40 h-8 rounded text-sm items-center" id="sh_id" name="sh_id" type="number" class="border">
-        <option value="0" @if(\Request::get('sh_id') == '0') selected @endif >全店</option>
-        @foreach ($companies as $company)
-            <optgroup  label = "{{ $company->co_name }}" class="text-indigo-700 font-weight:bold">
-                @foreach ($company->shop as $shop )
-                <option  value="{{ $shop->id }}" @if(\Request::get('sh_id') == $shop->id) selected @endif >{{ $shop->shop_name }}</option>
+            <select class="w-32 h-8 rounded text-sm pt-1 border mb-2 mr-2 " id="brand_code" name="brand_code" type="number" >
+                <option value="" @if(\Request::get('brand_code') == '0') selected @endif >全ブランド</option>
+                @foreach ($brands as $brand)
+                    <option value="{{ $brand->id }}" @if(\Request::get('brand_code') == $brand->id ) selected @endif >{{ $brand->br_name  }}</option>
                 @endforeach
-        @endforeach
-         </select>
+            </select>
+            <select class="w-32 h-8 rounded text-sm items-center pt-1" id="sh_id" name="sh_id" type="number" class="border">
+            <option value="0" @if(\Request::get('sh_id') == '0') selected @endif >全店</option>
+            @foreach ($companies as $company)
+                <optgroup  label = "{{ $company->co_name }}" class="text-indigo-700 font-weight:bold">
+                    @foreach ($company->shop as $shop )
+                    <option  value="{{ $shop->id }}" @if(\Request::get('sh_id') == $shop->id) selected @endif >{{ $shop->shop_name }}</option>
+                    @endforeach
+            @endforeach
+            </select>
 
 
         <div>
@@ -59,6 +65,11 @@
     <script>
         const shop = document.getElementById('sh_id')
         shop.addEventListener('change', function(){
+        this.form.submit()
+        })
+
+        const brand = document.getElementById('brand_code')
+        brand.addEventListener('change', function(){
         this.form.submit()
         })
 
