@@ -2,7 +2,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            店別品番在庫<br>
+            店別品番在庫2<br>
         </h2>
 
         <div class="mt-4 md:flex">
@@ -23,10 +23,26 @@
             @endforeach
         </div>
 
+        <form method="get" action="{{ route('user.shop.s_hz_form',['shop'=>$shop->id])}}" class="mt-4">
+            <span class="items-center text-sm mt-2 text-gray-800 dark:text-gray-200 leading-tight" >※Brandを選択してください</span>
+
+        <div class="md:flex">
+            <div class="flex ml-0 md:ml-0 mb-0">
+                <select class="w-32 h-8 rounded text-sm pt-1 border mb-2 mr-2 md:mr-0" id="brand_code" name="brand_code" type="number" >
+                <option value="" @if(\Request::get('brand_code') == '0') selected @endif >全ブランド</option>
+                @foreach ($brands as $brand)
+                    <option value="{{ $brand->id }}" @if(\Request::get('brand_code') == $brand->id ) selected @endif >{{ $brand->br_name  }}</option>
+                @endforeach
+                </select>
+            </div>
+        </div>
+        </form>
+
+
             @if(\Request::get('sh_id') =='0')
 
             {{-- <div class="ml-16 py-2 border"> --}}
-                <div class="ml-0 w-full  sm:px-0 lg:px-0 border mt-4 ml-0">
+                <div class="ml-0 w-full  sm:px-0 lg:px-0 border mt-2 ml-0">
                     <div class='border bg-gray-100 h-6'>
                         @foreach ($all_stocks as $all_stock)
                         　現在庫　：　{{ number_format($all_stock->pcs) }}枚　　　　{{ number_format(round($all_stock->zaikogaku)/1000) }}千円　
@@ -38,7 +54,7 @@
             @else
 
                 {{-- <div class="ml-16 py-2 border"> --}}
-                <div class="ml-0 w-full  sm:px-0 lg:px-0 border mt-4 ml-0">
+                <div class="ml-0 w-full  sm:px-0 lg:px-0 border mt-2 ml-0">
                     <div class='border bg-gray-100 h-6'>
                         @foreach ($s_stocks as $s_stock)
                         　現在庫　：　{{ number_format($s_stock->pcs) }}枚　　　　{{ number_format(round($s_stock->zaikogaku)/1000) }}千円　
@@ -72,7 +88,7 @@
                         <td class="w-2/12 text-sm md:px-4 py-1">{{ $h_stock->hinban_id }}</td>
                         <td class="w-6/12 text-sm md:px-4 py-1 text-left">{{ $h_stock->hinmei }}</td>
                         <td class="w-1/12 text-xs pr-4 md:px-4 py-1 text-right">{{ number_format($h_stock->pcs)}}</td>
-                        <td class="w-2/12 text-sm md:px-4 py-1 text-right">{{ number_format(round($h_stock->zaikogaku)/1000)}}</td>
+                        <td class="w-2/12 text-sm pr-4 md:px-4 py-1 text-right">{{ number_format(round($h_stock->zaikogaku)/1000)}}</td>
                     </tr>
                     @endforeach
                 </tbody>
@@ -81,7 +97,7 @@
 
     @else
 
-    <div class="py-4 border">
+    <div class="py-2 border">
         <div class=" mx-auto sm:px-4 lg:px-4 border">
             <table class="w-full bg-white table-auto md:w-1/2 text-center whitespace-no-wrap">
                 <thead>
@@ -101,7 +117,7 @@
                     <td class="w-1/12 text-sm md:px-4 py-1">{{ $h_stock->hinban_id }}</td>
                     <td class="w-5/12 text-sm md:px-4 py-1 text-left">{{ $h_stock->hinmei }}</td>
                     <td class="w-2/12 pr-4 text-xs md:px-4 py-1 text-right">{{ number_format($h_stock->pcs)}}</td>
-                    <td class="w-3/12 text-sm md:px-4 py-1 text-right">{{ number_format(round($h_stock->zaikogaku)/1000)}}</td>
+                    <td class="w-3/12 text-sm pr-4 md:px-4 py-1 text-right">{{ number_format(round($h_stock->zaikogaku)/1000)}}</td>
                 </tr>
                 @endforeach
             </tbody>
@@ -110,6 +126,12 @@
         @endif
 
         <script>
+
+            const brand = document.getElementById('brand_code')
+            brand.addEventListener('change', function(){
+            this.form.submit()
+            })
+
             const shop = document.getElementById('sh_id')
             shop.addEventListener('change', function(){
             this.form.submit()

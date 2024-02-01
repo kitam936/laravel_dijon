@@ -2,7 +2,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            店別月別納品<br>
+            店別月別納品2<br>
         </h2>
 
         <div class="mt-4 md:flex">
@@ -23,15 +23,25 @@
             @endforeach
         </div>
 
+        <form method="get" action="{{ route('user.shop.s_md_form',['shop'=>$shop->id])}}" class="mt-4 ml-0">
+            <span class="items-center text-sm mt-2 text-gray-800 dark:text-gray-200 leading-tight" >※Brandを選択してください</span>
+            <div class="flex ml-0 md:ml-2 mb-2">
 
+                <select class="w-28 h-8 rounded text-sm pt-1 border mb-0 mr-2 md:mr-0" id="brand_code" name="brand_code" type="number" >
+                <option value="" @if(\Request::get('brand_code') == '0') selected @endif >全ブランド</option>
+                @foreach ($brands as $brand)
+                    <option value="{{ $brand->id }}" @if(\Request::get('brand_code') == $brand->id ) selected @endif >{{ $brand->br_name  }}</option>
+                @endforeach
+                </select>
 
-
+            </div>
+        </form>
 
     </x-slot>
 
 
 
-        <div class="py-6 border">
+        <div class="py-4 border">
         <div class="md:w-1/2 sm:px-4 lg:px-4 border">
             <table class="mx-auto table-auto bg-white table-auto w-full text-center whitespace-no-wrap">
                 <thead >
@@ -57,6 +67,12 @@
     {{-- @endif --}}
 
     <script>
+
+        const brand = document.getElementById('brand_code')
+        brand.addEventListener('change', function(){
+        this.form.submit()
+        })
+
         const shop = document.getElementById('sh_id')
         shop.addEventListener('change', function(){
         this.form.submit()

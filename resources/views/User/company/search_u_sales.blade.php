@@ -10,7 +10,7 @@
 
         </div>
         <form method="get" action="{{ route('user.company.search_u_form')}}" class="mt-4">
-            <div class="flex mb-4">
+            <div class="flex mb-2">
                 {{-- <label for="co_id" class="items-center text-sm mt-2" >会社： 　</label> --}}
                 <select class="w-32 h-8 rounded text-sm pt-1 border mb-2 mr-2 " id="brand_code" name="brand_code" type="number" >
                     <option value="" @if(\Request::get('brand_code') == '0') selected @endif >全ブランド</option>

@@ -28,27 +28,28 @@
                 <div class="flex">
                 <div class="flex pl-0 mt-0">
 
-                    <div class="pl-2 ml-0 md:ml-2 w-32 h-6 items-center bg-gray-100 border rounded" name="co_id"  value="">{{ $shop->co_name }}</div>
+                    <div class="pl-2 ml-0 md:ml-2 w-24 h-6 text-sm items-center bg-gray-100 border rounded" name="co_id"  value="">{{ $shop->co_name }}</div>
                 </div>
                 <div class="flex pl-2 mt-0">
 
-                    <div class="pl-2 w-32 h-6 items-center bg-gray-100 border rounded" name="ar_id" value="">{{ $shop->ar_name }}</div>
+                    <div class="pl-2 w-24 h-6 text-sm items-center bg-gray-100 border rounded" name="ar_id" value="">{{ $shop->ar_name }}</div>
+                </div>
+                <div class="flex pl-2 mt-0 md:mt-0 ">
+
+                    <div class="pl-2 w-32 h-6 text-sm items-center bg-gray-100 border rounded" name="sh_name" value="">{{ $shop->shop_name }}</div>
                 </div>
                 </div>
                 <div class="flex">
-                <div class="flex pl- mt-1 md:mt-0">
+                {{--  <div class="flex pl- mt-1 md:mt-0">
 
                     <div class="pl-2 w-32 h-6 items-center bg-gray-100 border rounded md:ml-2" name="sh_id" value="">{{ $shop->id }}</div>
-                </div>
-                <div class="flex pl-2 mt-1 md:mt-0 ">
+                </div>  --}}
 
-                    <div class="pl-2 w-32 h-6 items-center bg-gray-100 border rounded" name="sh_name" value="">{{ $shop->shop_name }}</div>
-                </div>
                 </div>
                 <div class="md:flex">
                 <div class="flex pl-0 mt-1 md:mt-0">
 
-                    <div class="pl-2 ml-0 md:ml-2 w-80 h-6 items-center bg-gray-100 border rounded" name="sh_info" value="">{{ $shop->shop_info }}</div>
+                    <div class="pl-2 ml-0 text-sm md:ml-2 w-80 h-6 items-center bg-gray-100 border rounded" name="sh_info" value="">{{ $shop->shop_info }}</div>
                 </div>
 
                 </div>
@@ -100,11 +101,11 @@
                 <tbody>
                     @foreach ($reports as $report)
                     <tr>
-                        <td class="w-2/12 md:px-4 py-1 text-left">  {{ Str::limit($report->created_at,10) }} </td>
-                        <td class="w-2/12 md:px-4 py-1 text-left">  {{ $report->ar_name }} </td>
-                        <td class="w-3/12 md:px-4 py-1 text-left">  {{ Str::limit($report->co_name,10) }} </td>
-                        <td class="w-3/12 md:px-4 py-1 text-left">  {{ Str::limit($report->shop_name,10) }} </td>
-                        <td class="w-2/12 md:px-4 py-1 text-center"><a href="{{ route('user.shop.report_detail',['id'=>$report->id]) }}" class="w-20 h-8 text-indigo-500 ml-2 "  >詳細</a></td>
+                        <td class="w-3/12 text-sm md:px-4 py-1 text-left">  {{ Str::limit($report->created_at,10) }} </td>
+                        <td class="w-2/12 text-sm md:px-4 py-1 text-left">  {{ $report->ar_name }} </td>
+                        <td class="w-2/12 text-sm md:px-4 py-1 text-left">  {{ Str::limit($report->co_name,10) }} </td>
+                        <td class="w-3/12 text-sm md:px-4 py-1 text-left">  {{ Str::limit($report->shop_name,10) }} </td>
+                        <td class="w-2/12 text-sm md:px-4 py-1 text-center text-indigo-500"><a href="{{ route('user.shop.report_detail',['id'=>$report->id]) }}"  >詳細</a></td>
                     </tr>
                     @endforeach
 
