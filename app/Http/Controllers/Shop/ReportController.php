@@ -73,7 +73,7 @@ class ReportController extends Controller
         ->join('shops','shops.id','=','reports.shop_id')
         ->join('companies','companies.id','=','shops.company_id')
         ->join('areas','areas.id','=','shops.area_id')
-        ->join('users','reports.user_id','=','reports.user_id')
+        ->join('users','users.id','=','reports.user_id')
         ->select(['reports.id','reports.user_id','users.name','shops.company_id','companies.co_name','reports.shop_id','shops.shop_name','areas.ar_name','shops.shop_info','reports.comment','reports.image1','reports.image2','reports.image3','reports.image4','reports.created_at'])
         ->where('reports.id',$id)
         ->first();

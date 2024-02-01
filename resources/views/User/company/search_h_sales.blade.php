@@ -10,13 +10,13 @@
         <form method="get" action="{{ route('user.company.search_h_form')}}" class="mt-4">
             <div class="flex mb-2">
                 {{-- <span class="items-center text-sm mt-2" >会社： 　</span> --}}
-                <select class="w-32 h-8 rounded text-sm pt-1 border mb-2 mr-4 " id="brand_code" name="brand_code" type="number" >
+                <select class="w-28 h-8 rounded text-sm pt-1 border mb-2 mr-4 " id="brand_code" name="brand_code" type="number" >
                     <option value="" @if(\Request::get('brand_code') == '0') selected @endif >全ブランド</option>
                     @foreach ($brands as $brand)
                         <option value="{{ $brand->id }}" @if(\Request::get('brand_code') == $brand->id ) selected @endif >{{ $brand->br_name  }}</option>
                     @endforeach
                 </select>
-                <select class="w-28 h-8 rounded text-sm items-center pt-1" id="co_id" name="co_id"  class="border">
+                <select class="w-32 h-8 rounded text-sm items-center pt-1" id="co_id" name="co_id"  class="border">
                     <option value="" @if(\Request::get('co_id') == '0') selected @endif >全社</option>
                     @foreach ($companies as $company)
                         <option value="{{ $company->id }}" @if(\Request::get('co_id') == $company->id) selected @endif >{{ $company->co_name }}</option>

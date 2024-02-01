@@ -34,8 +34,8 @@
 
 
         <div class="py-6 border">
-        <div class=" w-full  sm:px-4 md:w-2/3 px-4 border">
-            <table class="mx-auto table-auto bg-white table-auto w-full text-center whitespace-no-wrap">
+            <div class=" w-full  sm:px-4 lg:px-4 border">
+                <table class="md:w-1/2 table-auto bg-white table-auto w-full text-center whitespace-no-wrap">
                 <thead >
                 <tr>
                     <th class="w-1/4 md:px-4 py-1 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">年月</th>

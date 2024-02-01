@@ -8,42 +8,42 @@
         <x-flash-message status="session('status')"/>
 
         <form method="get" action="{{ route('user.shop.report_list')}}" class="mt-4">
-
-
+            <span class="items-center text-sm mt-2 text-gray-800 dark:text-gray-200 leading-tight" >※エリア・会社を選択してください　　　</span>
             <div class="md:flex">
-
-                <div class="flex mb-2">
-                    <span class="items-center text-sm mt-2 text-gray-800 dark:text-gray-200 leading-tight" >エリア　: </span>
-                        <select class="w-32 h-8 ml-2 rounded text-sm ml-1 md:ml-4" id="ar_id" name="ar_id"  class="border">
-                        <option value="" @if(\Request::get('ar_id') == '0') selected @endif >指定なし</option>
+                <div class="flex">
+                    <div class="mb-2 ml-00 md:flex mb-2">
+                        {{--  <label class="items-center text-sm mt-2 text-gray-800 dark:text-gray-200 leading-tight" >エリア　</label>  --}}
+                        <select class="w-32 h-8 rounded text-sm pt-1" id="ar_id" name="ar_id"  class="border">
+                        <option value="" @if(\Request::get('ar_id') == '0') selected @endif >全エリア</option>
                         @foreach ($areas as $area)
                             <option value="{{ $area->id }}" @if(\Request::get('ar_id') == $area->id) selected @endif >{{ $area->ar_name }}</option>
                         @endforeach
-                         </select>
-                </div>
-                <div class="mb-2 md:flex md:ml-4">
-                    <span class="items-center rounded text-sm mt-2 text-gray-800 dark:text-gray-200 leading-tight" >会社　: </span>
-                    <select class="w-32 h-8 mb-2 ml-2 rounded text-sm border mr-4 md:ml-4" id="co_id" name="co_id" >
-                    <option value="" @if(\Request::get('co_id') == '0') selected @endif >指定なし</option>
-                    @foreach ($companies as $company)
-                        <option value="{{ $company->id }}" @if(\Request::get('co_id') == $company->id) selected @endif >{{ $company->co_name }}</option>
-                    @endforeach
-                    </select>
-                    <div>
-                    <span class="items-center text-sm mt-2  text-gray-800 dark:text-gray-200 leading-tight" >店名　:</span>
-                     <input class="w-44 h-8 ml-2 rounded text-sm ml-0 md:ml-4" id="sh_name" placeholder="店名入力（一部でも可）" name="sh_name" >
+                            </select>
+                    </div>
+                    <div class="flex ml-2 mb-2 md:flex mb-2">
+                        {{--  <label class="pr-1 items-center text-sm mt-2 md:ml-4 text-gray-800 dark:text-gray-200 leading-tight" >会  社　</label>  --}}
+                            <select class="w-32 h-8 ml-2 rounded text-sm pt-1 " id="co_id" name="co_id"  class="border">
+                            <option value="" @if(\Request::get('co_id') == '0') selected @endif >全社</option>
+                            @foreach ($companies as $company)
+                                <option value="{{ $company->id }}" @if(\Request::get('co_id') == $company->id) selected @endif >{{ $company->co_name }}</option>
+                            @endforeach
+                            </select><br>
                     </div>
                 </div>
-                <div class="flex ml-10 md:ml-2">
-                <div class="ml-0 md:ml-2">
-                    <button type="button" class="w-20 h-8 ml-4 bg-indigo-400 text-white ml-2 hover:bg-indigo-600 rounded" onclick="location.href='{{ route('user.shop.report_list') }}'" class="mb-2 ml-2 text-right text-black bg-glay-300 border-0 py-0 px-2 focus:outline-none hover:bg-glay-00 rounded ">全表示</button>
-                </div>
-                {{-- <div class="m-0 md:ml-2">
-                    <button type="button" class="w-20 h-8 bg-indigo-500 text-white ml-2 hover:bg-indigo-600 rounded" onclick="location.href='{{ route('user.shop.report_create') }}'" class="mb-2 ml-2 text-right text-black bg-indigo-300 border-0 py-0 px-2 focus:outline-none hover:bg-indigo-300 rounded ">新規登録</button>
-                </div> --}}
+                <div class="flex">
+                    <div class="ml-0 md:ml-2">
+                        {{--  <span class="items-center text-sm mt-2  text-gray-800 dark:text-gray-200 leading-tight" >店名　:</span>  --}}
+                        <input class="w-52 h-8 ml-0 rounded text-sm md:ml-4" id="sh_name" placeholder="店名検索入力(一部でも)" name="sh_name" >
+                    </div>
+                    <div class="ml-2 md:ml-4">
+                        <button type="button" class="w-20 h-8 bg-indigo-500 text-white ml-2 hover:bg-indigo-600 rounded" onclick="location.href='{{ route('user.shop.index') }}'" class="mb-2 ml-2 text-right text-black bg-indigo-300 border-0 py-0 px-2 focus:outline-none hover:bg-indigo-300 rounded ">全表示</button>
+                    </div>
+
                 </div>
             </div>
         </form>
+
+
     </x-slot>
 
 
