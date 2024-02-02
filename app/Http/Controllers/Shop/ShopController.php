@@ -1573,7 +1573,6 @@ class ShopController extends Controller
         return view('User.shop.h_deliv',compact('shops','h_delivs_all','h_delivs','max_YW','min_YW','YWs','brands'));
     }
 
-
     public function s_sales_rank(Request $request)
     {
         $s_ranks = DB::table('sales')
