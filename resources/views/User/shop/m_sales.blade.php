@@ -87,7 +87,7 @@
                 <tr>
                     <td class="w-1/4 md:px-4 py-1">{{ $m_sale->YM }}</td>
 
-                    <td class="w-1/4 pr-24 md:px-4 py-1 text-right">{{ number_format(round($m_sale->kingaku)/1000)}}</td>
+                    <td class="w-1/4 pr-24 md:px-4 py-1 text-right"><span style="font-variant-numeric:tabular-nums"> {{ number_format(round($m_sale->kingaku)/1000)}}</span></td>
                 </tr>
                 @endforeach
                 </tbody>

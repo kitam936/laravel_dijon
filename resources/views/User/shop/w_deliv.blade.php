@@ -59,7 +59,7 @@
                     <td class="w-1/4 md:px-4 py-1">{{ $w_deliv->YM }}</td>
                     <td class="w-1/4 md:px-4 py-1">{{ $w_deliv->YW }}</td>
                     <td class="w-1/4 md:px-4 py-1">{{ $w_deliv->deliv_date }}</td>
-                    <td class="w-1/4 pr-10 md:pr-10 py-1 text-right">{{ number_format(round($w_deliv->kingaku)/1000)}}</td>
+                    <td class="w-1/4 pr-10 md:pr-10 py-1 text-right"><span style="font-variant-numeric:tabular-nums"> {{ number_format(round($w_deliv->kingaku)/1000)}}</span></td>
                 </tr>
                 @endforeach
                 </tbody>

@@ -53,9 +53,7 @@
                 </select>
                 <span class="items-center text-sm mt-2" >　</span>
 
-             {{-- <div>
-                <button  class="w-24 h-8 ml-2 text-center text-black bg-gray-300 border-0 py-0 px-2 focus:outline-none hover:bg-gray-400 rounded ">検索</button>
-            </div> --}}
+
             </div>
             </div>
             </form>
@@ -103,16 +101,15 @@
 
                 <tbody>
                 @foreach ($s_sales_all as $s_sale)
-                    {{-- @foreach ($h_stock->hinban as $hinban) --}}
 
                 <tr>
                     <td class="w-2/8 md:px-4 py-1">{{ $s_sale->year_code }}</td>
                     <td class="w-2/8 md:px-4 py-1">{{ $s_sale->season_name }}</td>
-                    <td class="w-2/8 pr-12 md:px-4 py-1 text-right">{{ number_format($s_sale->pcs)}}</td>
-                    <td class="w-2/8 pr-14 md:px-4 py-1 text-right">{{ number_format(round($s_sale->kingaku)/1000)}}</td>
+                    <td class="w-2/8 pr-12 md:px-4 py-1 text-right"><span style="font-variant-numeric:tabular-nums"> {{ number_format($s_sale->pcs)}}</span></td>
+                    <td class="w-2/8 pr-14 md:px-4 py-1 text-right"><span style="font-variant-numeric:tabular-nums"> {{ number_format(round($s_sale->kingaku)/1000)}}</span></td>
                 </tr>
                 @endforeach
-                {{-- @endforeach --}}
+
                 </tbody>
             </table>
         </div>
@@ -133,16 +130,15 @@
 
                 <tbody>
                 @foreach ($s_sales as $s_sale)
-                    {{-- @foreach ($h_stock->hinban as $hinban) --}}
 
                 <tr>
                     <td class="w-2/8 md:px-4 py-1">{{ $s_sale->year_code }}</td>
                     <td class="w-2/8 md:px-4 py-1">{{ $s_sale->season_name }}</td>
-                    <td class="w-2/8 pr-12 md:px-4 py-1 text-right">{{ number_format($s_sale->pcs)}}</td>
-                    <td class="w-2/8 pr-14 md:px-4 py-1 text-right">{{ number_format(round($s_sale->kingaku)/1000)}}</td>
+                    <td class="w-2/8 pr-12 md:px-4 py-1 text-right"><span style="font-variant-numeric:tabular-nums"> {{ number_format($s_sale->pcs)}}</span></td>
+                    <td class="w-2/8 pr-14 md:px-4 py-1 text-right"><span style="font-variant-numeric:tabular-nums"> {{ number_format(round($s_sale->kingaku)/1000)}}</span></td>
                 </tr>
                 @endforeach
-                {{-- @endforeach --}}
+
                 </tbody>
             </table>
         </div>

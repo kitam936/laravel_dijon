@@ -22,9 +22,9 @@
             @foreach ($companies as $company)
                 <option value="{{ $company->id }}" @if(\Request::get('co_id') == $company->id) selected @endif >{{ $company->co_name }}</option>
             @endforeach
-         </select>
+        </select>
 
-         {{-- <div>
+        {{-- <div>
             <button  class="w-24 h-8 ml-2 text-center text-black bg-gray-300 border-0 py-0 px-2 focus:outline-none hover:bg-gray-400 rounded ">検索</button>
         </div> --}}
         <div>
@@ -98,7 +98,7 @@
                     @foreach ($m_sales as $m_sale)
                 <tr>
                     <td class="md:px-4 py-1">{{ $m_sale->YM }}</td>
-                    <td class="pr-28 md:px-4 py-1 text-right">{{ number_format(round($m_sale->kingaku)/1000)}}</td>
+                    <td class="pr-16 md:px-4 py-1 text-right"><span style="font-variant-numeric:tabular-nums"> {{ number_format(round($m_sale->kingaku)/1000)}}</span></td>
                 </tr>
                 @endforeach
                 </tbody>

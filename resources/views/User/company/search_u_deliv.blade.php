@@ -77,8 +77,8 @@
                     <td class="w-2/8 md:px-4 py-1">{{ $u_deliv->year_code }}</td>
                     <td class="w-2/8 md:px-4 py-1">{{ $u_deliv->unit_id }}</td>
                     <td class="w-2/8 md:px-4 py-1">{{ $u_deliv->season_name }}</td>
-                    <td class="w-2/8 pr-2 md:px-4 py-1 text-right">{{ number_format($u_deliv->pcs)}}</td>
-                    <td class="w-2/8 pr-6 md:px-4 py-1 text-right">{{ number_format(round($u_deliv->kingaku)/1000)}}</td>
+                    <td class="w-2/8 pr-2 md:px-4 py-1 text-right"><span style="font-variant-numeric:tabular-nums"> {{ number_format($u_deliv->pcs)}}</span></td>
+                    <td class="w-2/8 pr-6 md:px-4 py-1 text-right"><span style="font-variant-numeric:tabular-nums"> {{ number_format(round($u_deliv->kingaku)/1000)}}</span></td>
                 </tr>
                 @endforeach
 

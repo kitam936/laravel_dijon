@@ -31,25 +31,21 @@
                 </div>
             </div>
             <div class="flex">
-                     {{-- <span class="items-center text-sm mt-2" >期間： 　</span> --}}
-                     <select class="w-32 h-8 rounded text-sm pt-1" id="YW1" name="YW1" type="number" class="border">
-                        <option value="" @if(\Request::get('YW1') == '0') selected @endif >{{ $max_YW }}直近週</option>
-                        @foreach ($YWs as $YW)
-                            <option value="{{ $YW->YW }}" @if(\Request::get('YW1') == $YW->YW) selected @endif >{{ floor(($YW->YM)/100)%100 }}年{{ ($YW->YM)%100 }}月{{ ($YW->YW)%100 }}週</option>
-                        @endforeach
-                    </select>
-                    <span class="items-center text-sm mt-2 text-gray-800 dark:text-gray-200 leading-tight" >　～　</span>
-                    <select class="w-32 h-8 rounded text-sm pt-1" id="YW2" name="YW2" type="number" class="border">
-                        <option value="" @if(\Request::get('YW2') == '0') selected @endif >{{ $max_YW }}直近週</option>
-                        @foreach ($YWs as $YW)
-                            <option value="{{ $YW->YW }}" @if(\Request::get('YW2') == $YW->YW) selected @endif >{{ floor(($YW->YM)/100)%100 }}年{{ ($YW->YM)%100 }}月{{ ($YW->YW)%100 }}週</option>
-                        @endforeach
-                    </select>
-                    <span class="items-center text-sm mt-2" >　</span>
-
-             {{-- <div>
-                <button  class="w-24 h-8 ml-2 text-center text-black bg-gray-300 border-0 py-0 px-2 focus:outline-none hover:bg-gray-400 rounded ">検索</button>
-            </div> --}}
+                {{-- <span class="items-center text-sm mt-2" >期間： 　</span> --}}
+                <select class="w-32 h-8 rounded text-sm pt-1" id="YW1" name="YW1" type="number" class="border">
+                    <option value="" @if(\Request::get('YW1') == '0') selected @endif >{{ $max_YW }}直近週</option>
+                    @foreach ($YWs as $YW)
+                        <option value="{{ $YW->YW }}" @if(\Request::get('YW1') == $YW->YW) selected @endif >{{ floor(($YW->YM)/100)%100 }}年{{ ($YW->YM)%100 }}月{{ ($YW->YW)%100 }}週</option>
+                    @endforeach
+                </select>
+                <span class="items-center text-sm mt-2 text-gray-800 dark:text-gray-200 leading-tight" >　～　</span>
+                <select class="w-32 h-8 rounded text-sm pt-1" id="YW2" name="YW2" type="number" class="border">
+                    <option value="" @if(\Request::get('YW2') == '0') selected @endif >{{ $max_YW }}直近週</option>
+                    @foreach ($YWs as $YW)
+                        <option value="{{ $YW->YW }}" @if(\Request::get('YW2') == $YW->YW) selected @endif >{{ floor(($YW->YM)/100)%100 }}年{{ ($YW->YM)%100 }}月{{ ($YW->YW)%100 }}週</option>
+                    @endforeach
+                </select>
+                <span class="items-center text-sm mt-2" >　</span>
 
             </div>
             </form>
@@ -97,16 +93,15 @@
 
                 <tbody>
                 @foreach ($s_sales_all as $s_sale)
-                    {{-- @foreach ($h_stock->hinban as $hinban) --}}
 
                 <tr>
                     <td class="w-2/8 md:px-4 py-1">{{ $s_sale->year_code }}</td>
                     <td class="w-2/8 md:px-4 py-1">{{ $s_sale->season_name }}</td>
-                    <td class="w-2/8 pr-6 md:px-4 py-1 text-right">{{ number_format($s_sale->pcs)}}</td>
-                    <td class="w-2/8 pr-8 md:px-4 py-1 text-right">{{ number_format(round($s_sale->kingaku)/1000)}}</td>
+                    <td class="w-2/8 pr-6 md:px-4 py-1 text-right"><span style="font-variant-numeric:tabular-nums"> {{ number_format($s_sale->pcs)}}</span></td>
+                    <td class="w-2/8 pr-8 md:px-4 py-1 text-right"><span style="font-variant-numeric:tabular-nums"> {{ number_format(round($s_sale->kingaku)/1000)}}</span></td>
                 </tr>
                 @endforeach
-                {{-- @endforeach --}}
+
                 </tbody>
             </table>
         </div>
@@ -127,16 +122,15 @@
 
                 <tbody>
                 @foreach ($s_sales as $s_sale)
-                    {{-- @foreach ($h_stock->hinban as $hinban) --}}
 
                 <tr>
                     <td class="w-2/8 md:px-4 py-1">{{ $s_sale->year_code }}</td>
                     <td class="w-2/8 md:px-4 py-1">{{ $s_sale->season_name }}</td>
-                    <td class="w-2/8 pr-6 md:px-4 py-1 text-right">{{ number_format($s_sale->pcs)}}</td>
-                    <td class="w-2/8 pr-8 md:px-4 py-1 text-right">{{ number_format(round($s_sale->kingaku)/1000)}}</td>
+                    <td class="w-2/8 pr-6 md:px-4 py-1 text-right"><span style="font-variant-numeric:tabular-nums"> {{ number_format($s_sale->pcs)}}</span></td>
+                    <td class="w-2/8 pr-8 md:px-4 py-1 text-right"><span style="font-variant-numeric:tabular-nums"> {{ number_format(round($s_sale->kingaku)/1000)}}</span></td>
                 </tr>
                 @endforeach
-                {{-- @endforeach --}}
+
                 </tbody>
             </table>
         </div>

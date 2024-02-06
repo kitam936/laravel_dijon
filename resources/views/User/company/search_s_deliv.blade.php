@@ -70,16 +70,16 @@
 
                 <tbody>
                 @foreach ($s_delivs_all as $s_deliv)
-                    {{-- @foreach ($h_stock->hinban as $hinban) --}}
+
 
                 <tr>
                     <td class="w-2/8 md:px-4 py-1">{{ $s_deliv->year_code }}</td>
                     <td class="w-2/8 md:px-4 py-1">{{ $s_deliv->season_name }}</td>
-                    <td class="w-1/8 md:px-4 py-1 text-right">{{ number_format($s_deliv->pcs)}}</td>
-                    <td class="w-3/8 md:px-4 py-1 text-right">{{ number_format(round($s_deliv->kingaku)/1000)}}</td>
+                    <td class="w-1/8 md:px-4 py-1 text-right"><span style="font-variant-numeric:tabular-nums"> {{ number_format($s_deliv->pcs)}}</span></td>
+                    <td class="w-3/8 md:px-4 py-1 text-right"><span style="font-variant-numeric:tabular-nums"> {{ number_format(round($s_deliv->kingaku)/1000)}}</span></td>
                 </tr>
                 @endforeach
-                {{-- @endforeach --}}
+
                 </tbody>
             </table>
         </div>
@@ -100,16 +100,16 @@
 
                 <tbody>
                 @foreach ($s_delivs as $s_deliv)
-                    {{-- @foreach ($h_stock->hinban as $hinban) --}}
+
 
                 <tr>
                     <td class="w-2/8 md:px-4 py-1">{{ $s_deliv->year_code }}</td>
                     <td class="w-2/8 md:px-4 py-1">{{ $s_deliv->season_name }}</td>
-                    <td class="w-1/8 pr-4 md:px-4 py-1 text-right">{{ number_format($s_deliv->pcs)}}</td>
-                    <td class="w-3/8 pr-12 md:px-4 py-1 text-right">{{ number_format(round($s_deliv->kingaku)/1000)}}</td>
+                    <td class="w-1/8 pr-4 md:px-4 py-1 text-right"><span style="font-variant-numeric:tabular-nums"> {{ number_format($s_deliv->pcs)}}</span></td>
+                    <td class="w-3/8 pr-12 md:px-4 py-1 text-right"><span style="font-variant-numeric:tabular-nums"> {{ number_format(round($s_deliv->kingaku)/1000)}}</span></td>
                 </tr>
                 @endforeach
-                {{-- @endforeach --}}
+
                 </tbody>
             </table>
         </div>
