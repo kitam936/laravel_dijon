@@ -77,7 +77,7 @@
                     <td class="w-1/8 text-sm md:px-4 py-1">{{ $h_deliv->unit_id }}</td>
                     <td class="w-3/8 text-sm md:px-4 py-1">{{ $h_deliv->hinban_id }}</td>
                     <td class="w-2/8 text-xs md:px-4 py-1 text-left">{{ $h_deliv->hinmei }}</td>
-                    <td class="w-2/8 text-sm pr-10 md:px-4 py-1 text-right">{{ number_format($h_deliv->pcs)}}</td>
+                    <td class="w-2/8 text-sm pr-10 md:px-4 py-1 text-right"><span style="font-variant-numeric:tabular-nums">{{ number_format($h_deliv->pcs)}}</span></td>
 
                 </tr>
                 @endforeach
@@ -116,7 +116,7 @@
                     <td class="w-1/8 text-sm md:px-4 py-1">{{ $h_deliv->unit_id }}</td>
                     <td class="w-3/8 text-sm md:px-4 py-1">{{ $h_deliv->hinban_id }}</td>
                     <td class="w-2/8 text-xs pl-4 md:px-4 py-1 text-left">{{ $h_deliv->hinmei }}</td>
-                    <td class="w-2/8 text-sm pr-10 md:px-4 py-1 text-right">{{ number_format($h_deliv->pcs)}}</td>
+                    <td class="w-2/8 text-sm pr-10 md:px-4 py-1 text-right"><span style="font-variant-numeric:tabular-nums">{{ number_format($h_deliv->pcs)}}</span></td>
 
                 </tr>
                 @endforeach

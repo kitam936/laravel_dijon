@@ -9,7 +9,7 @@
         <span class="items-center text-sm mt-2 text-gray-800 dark:text-gray-200 leading-tight" >　※Brand・エリア・会社・期間を選択してください</span>
 
         </div>
-          <form method="get" action="{{ route('user.shop.s_sales_rank')}}" class="mt-4">
+        <form method="get" action="{{ route('user.shop.s_delivs_rank')}}" class="mt-4">
             <div class="md:flex">
 
                 <div class="md:flex">
@@ -32,7 +32,7 @@
                     @foreach ($areas as $area)
                         <option value="{{ $area->id }}" @if(\Request::get('ar_id') == $area->id) selected @endif >{{ $area->ar_name }}</option>
                     @endforeach
-                         </select>
+                    </select>
                 </div>
                 <div class="flex ml-0 mb-2 md:flex md:ml-2 mb-4">
                     <label class="pr-1 items-center text-sm mt-2 md:ml-0 text-gray-800 dark:text-gray-200 leading-tight" ></label>
@@ -92,8 +92,8 @@
                 <tr>
                     <td class="w-2/8 text-xs text-left md:px-4 py-1">{{ $s_rank->co_name }}</td>
                     <td class="w-2/8 text-xs text-left md:px-4 py-1">{{ $s_rank->shop_name }}</td>
-                    <td class="w-2/8 text-xs md:pr-6 md:px-4 py-1 text-right">{{ number_format($s_rank->pcs)}}</td>
-                    <td class="w-2/8 text-xs pr-4 md:pr-10 md:px-4 py-1 text-right">{{ number_format(round($s_rank->kingaku)/1000)}}</td>
+                    <td class="w-2/8 text-xs md:pr-6 md:px-4 py-1 text-right"><span style="font-variant-numeric:tabular-nums"> {{ number_format($s_rank->pcs)}}</span></td>
+                    <td class="w-2/8 text-xs pr-4 md:pr-10 md:px-4 py-1 text-right"><span style="font-variant-numeric:tabular-nums"> {{ number_format(round($s_rank->kingaku)/1000)}}</span></td>
                 </tr>
                 @endforeach
 

@@ -81,16 +81,15 @@
 
                     <tbody>
                     @foreach ($u_stocks_all as $u_stock)
-                        {{-- @foreach ($h_stock->hinban as $hinban) --}}
 
                     <tr>
                         <td class="w-1/12 md:px-4 py-1">{{ $u_stock->unit_id }}</td>
                         <td class="w-1/12 md:px-4 py-1">{{ $u_stock->season_name }}</td>
-                        <td class="w-1/12 pr-2 md:px-4 py-1 text-right">{{ number_format($u_stock->pcs)}}</td>
-                        <td class="w-3/12 pr-10s md:px-4 py-1 text-right">{{ number_format(round($u_stock->zaikogaku)/1000)}}</td>
+                        <td class="w-1/12 pr-2 md:px-4 py-1 text-right"><span style="font-variant-numeric:tabular-nums"> {{ number_format($u_stock->pcs)}}</span></td>
+                        <td class="w-3/12 pr-10s md:px-4 py-1 text-right"><span style="font-variant-numeric:tabular-nums"> {{ number_format(round($u_stock->zaikogaku)/1000)}}</span></td>
                     </tr>
                 @endforeach
-                {{-- @endforeach --}}
+
                 </tbody>
             </table>
         </div>
@@ -111,16 +110,15 @@
 
                 <tbody>
                 @foreach ($u_stocks as $u_stock)
-                    {{-- @foreach ($h_stock->hinban as $hinban) --}}
 
                 <tr>
                     <td class="w-1/12 md:px-4 py-1">{{ $u_stock->unit_id }}</td>
                     <td class="w-1/12 md:px-4 py-1">{{ $u_stock->season_name }}</td>
-                    <td class="w-1/12 pr-2 md:px-4 py-1 text-right">{{ number_format($u_stock->pcs)}}</td>
-                    <td class="w-3/12 pr-10 md:px-4 py-1 text-right">{{ number_format(round($u_stock->zaikogaku)/1000)}}</td>
+                    <td class="w-1/12 pr-2 md:px-4 py-1 text-right"><span style="font-variant-numeric:tabular-nums"> {{ number_format($u_stock->pcs)}}</span></td>
+                    <td class="w-3/12 pr-10 md:px-4 py-1 text-right"><span style="font-variant-numeric:tabular-nums"> {{ number_format(round($u_stock->zaikogaku)/1000)}}</span></td>
                 </tr>
                 @endforeach
-                {{-- @endforeach --}}
+
                 </tbody>
             </table>
         </div>

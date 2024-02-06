@@ -53,9 +53,7 @@
                     @endforeach
                 </select>
 
-             {{-- <div>
-                <button  class="w-24 h-8 ml-2 text-center text-black bg-gray-300 border-0 py-0 px-2 focus:outline-none hover:bg-gray-400 rounded ">検索</button>
-            </div> --}}
+
             </div>
         </div>
         </form>
@@ -105,18 +103,17 @@
 
                 <tbody>
                 @foreach ($h_sales_all as $h_sale)
-                    {{-- @foreach ($h_stock->hinban as $hinban) --}}
 
                 <tr>
                     <td class="w-2/8 text-sm md:px-4 py-1">{{ $h_sale->year_code }}</td>
                     <td class="w-2/8 mtext-sm d:px-4 py-1">{{ $h_sale->unit_id }}</td>
                     <td class="w-2/8 text-sm md:px-4 py-1">{{ $h_sale->hinban_id }}</td>
                     <td class="w-2/8 text-xs pl-4 md:px-4 py-1 text-left">{{ $h_sale->hinmei }}</td>
-                    <td class="w-2/8 text-sm pr-6 md:px-4 py-1 text-right">{{ number_format($h_sale->pcs)}}</td>
+                    <td class="w-2/8 text-sm pr-6 md:px-4 py-1 text-right"><span style="font-variant-numeric:tabular-nums"> {{ number_format($h_sale->pcs)}}</span></td>
 
                 </tr>
                 @endforeach
-                {{-- @endforeach --}}
+
                 </tbody>
             </table>
         </div>
@@ -138,18 +135,18 @@
 
                 <tbody>
                 @foreach ($h_sales as $h_sale)
-                    {{-- @foreach ($h_stock->hinban as $hinban) --}}
+
 
                 <tr>
                     <td class="w-2/8 text-sm md:px-4 py-1">{{ $h_sale->year_code }}</td>
                     <td class="w-2/8 text-sm md:px-4 py-1">{{ $h_sale->unit_id }}</td>
                     <td class="w-2/8 text-sm md:px-4 py-1">{{ $h_sale->hinban_id }}</td>
                     <td class="w-2/8 text-xs pl-4 md:px-4 py-1 text-left">{{ $h_sale->hinmei }}</td>
-                    <td class="w-2/8 text-sm pr-6 md:px-4 py-1 text-right">{{ number_format($h_sale->pcs)}}</td>
+                    <td class="w-2/8 text-sm pr-6 md:px-4 py-1 text-right"><span style="font-variant-numeric:tabular-nums"> {{ number_format($h_sale->pcs)}}</span></td>
 
                 </tr>
                 @endforeach
-                {{-- @endforeach --}}
+
                 </tbody>
             </table>
         </div>

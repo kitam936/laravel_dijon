@@ -85,8 +85,8 @@
                     @foreach ($season_stocks_all as $season_stock)
                     <tr>
                         <td class="w-2/12 md:px-4 py-1">{{ $season_stock->season_name }}</td>
-                        <td class="w-1/12 pr-10 md:px-4 py-1 text-right">{{ number_format($season_stock->pcs)}}</td>
-                        <td class="w-2/12 pr-10 md:px-4 py-1 text-right">{{ number_format(round($season_stock->zaikogaku)/1000)}}</td>
+                        <td class="w-1/12 pr-10 md:px-4 py-1 text-right"><span style="font-variant-numeric:tabular-nums"> {{ number_format($season_stock->pcs)}}</span></td>
+                        <td class="w-2/12 pr-10 md:px-4 py-1 text-right"><span style="font-variant-numeric:tabular-nums"> {{ number_format(round($season_stock->zaikogaku)/1000)}}</span></td>
                     </tr>
                     @endforeach
                 </tbody>
@@ -110,8 +110,8 @@
                 @foreach ($season_stocks as $season_stock)
                 <tr>
                     <td class="w-2/12 md:px-4 py-1">{{ $season_stock->season_name }}</td>
-                    <td class="w-1/12 pr-10 md:px-4 py-1 text-right">{{ number_format($season_stock->pcs)}}</td>
-                    <td class="w-2/12 pr-10 md:px-4 py-1 text-right">{{ number_format(round($season_stock->zaikogaku)/1000)}}</td>
+                    <td class="w-1/12 pr-10 md:px-4 py-1 text-right"><span style="font-variant-numeric:tabular-nums"> {{ number_format($season_stock->pcs)}}</span></td>
+                    <td class="w-2/12 pr-10 md:px-4 py-1 text-right"><span style="font-variant-numeric:tabular-nums"> {{ number_format(round($season_stock->zaikogaku)/1000)}}</span></td>
                 </tr>
                 @endforeach
             </tbody>

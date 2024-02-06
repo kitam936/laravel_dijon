@@ -25,9 +25,7 @@
             @endforeach
             </select>
 
-         {{-- <div>
-            <button  class="w-24 h-8 ml-2 text-center text-black bg-gray-300 border-0 py-0 px-2 focus:outline-none hover:bg-gray-400 rounded ">検索</button>
-        </div> --}}
+
         <div>
             <button type="button" class="w-20 h-8 bg-indigo-500 text-white ml-2 hover:bg-indigo-600 rounded" onclick="location.href='{{ route('user.shop.index') }}'" class="mb-2 ml-2 text-right text-black bg-indigo-300 border-0 py-0 px-2 focus:outline-none hover:bg-indigo-300 rounded ">SHOP一覧</button>
             </div>
@@ -61,31 +59,6 @@
         @endif
     </x-slot>
 
-    {{-- @if(\Request::get('sh_id') =='0') --}}
-
-    {{-- <div class="py-6 border"> --}}
-        {{-- <div class=" w-1/2  sm:px-4 lg:px-4 border">
-            <table class="table-auto bg-white table-auto w-full text-center whitespace-no-wrap">
-                <thead >
-                <tr>
-                    <th class="w-1/4 md:px-4 py-1 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">年月</th>
-                    <th class="w-1/4 md:px-4 py-1 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">月売上</th>
-                </tr>
-                </thead>
-
-                <tbody>
-                    @foreach ($m_sales_all as $m_sale)
-                <tr>
-                    <td class="w-1/4 md:px-4 py-1">{{ $m_sale->YM }}</td>
-                    <td class="w-1/4 md:px-4 py-1 text-right">{{ number_format($m_sale->kingaku)}}</td>
-                </tr>
-                @endforeach
-                </tbody>
-            </table>
-        </div> --}}
-
-    {{-- @else --}}
-
         <div class="py-6 border">
         <div class="md:w-1/2 sm:px-4 lg:px-4 border">
             <table class="mx-auto table-auto bg-white table-auto w-full text-center whitespace-no-wrap">
@@ -102,14 +75,14 @@
                 <tr>
                     <td class="w-1/4 md:px-4 py-1">{{ $m_sale->YM }}</td>
 
-                    <td class="w-1/4 pr-24 md:px-4 py-1 text-right">{{ number_format(round($m_sale->kingaku)/1000)}}</td>
+                    <td class="w-1/4 pr-24 md:px-4 py-1 text-right"><span style="font-variant-numeric:tabular-nums"> {{ number_format(round($m_sale->kingaku)/1000)}}</span></td>
                 </tr>
                 @endforeach
                 </tbody>
             </table>
         </div>
         </div>
-    {{-- @endif --}}
+
 
     <script>
         const shop = document.getElementById('sh_id')

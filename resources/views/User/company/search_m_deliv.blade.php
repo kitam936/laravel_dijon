@@ -52,7 +52,7 @@
                     @foreach ($m_delivs as $m_deliv)
                 <tr>
                     <td class="md:px-4 py-1">{{ $m_deliv->YM }}</td>
-                    <td class="pr-28 md:px-4 py-1 text-right">{{ number_format(round($m_deliv->kingaku)/1000)}}</td>
+                    <td class="pr-28 md:px-4 py-1 text-right"><span style="font-variant-numeric:tabular-nums">{{ number_format(round($m_deliv->kingaku)/1000)}}</span></td>
                 </tr>
                 @endforeach
                 </tbody>

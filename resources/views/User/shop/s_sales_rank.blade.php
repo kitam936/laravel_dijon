@@ -90,8 +90,8 @@
                 <tr>
                     <td class="w-2/8 text-sm text-left md:px-4 py-1">{{ Str::limit($s_rank->co_name,12) }}</td>
                     <td class="w-2/8 text-sm text-left md:px-4 py-1">{{ Str::limit($s_rank->shop_name,12) }}</td>
-                    <td class="w-2/8 text-sm pr-0 md:px-4 py-1 text-right">{{ number_format($s_rank->pcs)}}</td>
-                    <td class="w-2/8 text-sm pr-4 md:px-4 py-1 text-right">{{ number_format(round($s_rank->kingaku)/1000)}}</td>
+                    <td class="w-2/8 text-sm pr-0 md:px-4 py-1 text-right"><span style="font-variant-numeric:tabular-nums"> {{ number_format($s_rank->pcs)}}</span></td>
+                    <td class="w-2/8 text-sm pr-4 md:px-4 py-1 text-right"><span style="font-variant-numeric:tabular-nums"> {{ number_format(round($s_rank->kingaku)/1000)}}</span></td>
                 </tr>
                 @endforeach
 
